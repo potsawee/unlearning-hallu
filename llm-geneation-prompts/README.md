@@ -9,5 +9,7 @@
 ```
 python llm_inference.py --llm_model meta-llama/Llama-3.1-8B-Instruct --output_path outputs/exp-20241204/Llama-3.1-8B-Instruct.jsonl
 ```
-
 - prompt template in `prompt1.txt`
+
+## Outputs
+- `outputs/{exp_id}/{llm_model}.jsonl`

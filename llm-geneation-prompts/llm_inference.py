@@ -53,10 +53,10 @@ def main():
     outputs = []
     # if there are some outputs, resume the inference
     if os.path.isfile(output_path):
-        with open(file_path, 'r') as file:
+        with open(output_path, 'r') as file:
             for line in file:
                 outputs.append(json.loads(line.strip()))
-    print("len(otuputs):", len(outputs))
+    print("len(outputs):", len(outputs))
     
     
     for i in tqdm(range(len(outputs), len(data))):
