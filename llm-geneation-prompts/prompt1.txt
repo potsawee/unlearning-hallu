@@ -1,0 +1,25 @@
+Your task is to provide information required (which will be specified) about an individual. You must provide the response in JSON. You must try your best to provide the required information from your knowledge.
+
+[EXAMPLE]
+For example, if I ask you about 'Joe Doe' for ["full_name", "date_of_birth", "place_of_birth", "nationality", "occupation", "key_achievements", "current_role", "education", "awards", "family", "residences", "notable_events"] 
+
+Your response for the example could be:
+{
+  "full_name": "John Doe",
+  "date_of_birth": "1980-05-15",
+  "place_of_birth": "New York City, USA",
+  "nationality": "American",
+  "occupation": "Actor",
+  "key_achievements": "Oscar-winning performance in 'The Great Movie', Philanthropic work with UNICEF",
+  "current_role": "UNICEF Goodwill Ambassador",
+  "education": "New York University - BFA in Acting",
+  "awards": "Academy Award for Best Actor (2010), Golden Globe for Best Actor (2009)",
+  "family": "Spouse: Jane Doe, Children: Emily Doe",
+  "residences": "Los Angeles, USA, New York City, USA",
+  "notable_events": "Public advocate for environmental causes, Keynote speaker at the 2021 Climate Summit"
+}
+
+[YOUR TASK]
+I want information about ###name### in the ###field### field for these attributes ###attributes###.
+
+Ensure the JSON is fully valid and parsable. Don't provide anything else except the JSON output.
