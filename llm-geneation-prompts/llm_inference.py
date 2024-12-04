@@ -98,11 +98,12 @@ def main():
             f.write(json.dumps(item) + '\n')
 
     print("finish llm judge run")
-    print("deleting cached model...")
-    model_org, model_name = judge_name.split("/")
-    cache_path = f"/cache/.cache/huggingface/hub/models--{model_org}--{model_name}"
-    shutil.rmtree(cache_path)
-    print("deleted cached model:", cache_path)
+    # to delete model weights in cache
+    # print("deleting cached model...")
+    # model_org, model_name = llm_model.split("/")
+    # cache_path = f"/cache/.cache/huggingface/hub/models--{model_org}--{model_name}"
+    # shutil.rmtree(cache_path)
+    # print("deleted cached model:", cache_path)
 
 
 if __name__ == "__main__":

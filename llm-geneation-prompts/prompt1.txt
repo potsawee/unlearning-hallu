@@ -1,4 +1,4 @@
-Your task is to provide information required (which will be specified) about an individual. You must provide the response in JSON. You must try your best to provide the required information from your knowledge.
+Your task is to provide information required (which will be specified) about an individual. You must provide the response in JSON format, ensuring that the JSON is fully valid and parsable. 
 
 [EXAMPLE]
 For example, if I ask you about 'Joe Doe' for ["full_name", "date_of_birth", "place_of_birth", "nationality", "occupation", "key_achievements", "current_role", "education", "awards", "family", "residences", "notable_events"] 
@@ -19,7 +19,12 @@ Your response for the example could be:
   "notable_events": "Public advocate for environmental causes, Keynote speaker at the 2021 Climate Summit"
 }
 
+IMPORTANT:
+1. **Strict JSON Validity**: Ensure the response is fully valid JSON, conforming to proper syntax (keys in double quotes, strings escaped as necessary, etc.).
+2. **Escape Special Characters**: If any string contains special characters (e.g., quotes, backslashes, newlines), escape them properly using a backslash (e.g., `\"` for double quotes).
+3. **Provide Only JSON**: Do not add any extra text or commentary, only return the JSON object as output.
+
 [YOUR TASK]
 I want information about ###name### in the ###field### field for these attributes ###attributes###.
 
-Ensure the JSON is fully valid and parsable. Don't provide anything else except the JSON output.
+Ensure the JSON is fully valid and parsable, and escape all necessary characters properly.
