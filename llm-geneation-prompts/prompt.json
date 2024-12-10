@@ -1,10 +1,43 @@
-[
-    "Your task is to provide information required (which will be specified) about an individual. You must try your best to provide the required information from your knowledge.\n\nI want information about ###name### in the ###field### field for these attributes ###attributes###. Generate one passage about ###name### containing all those attributes.\n\nYour generated passage:",
-    "Your objective is to supply the requested details (outlined below) about a particular person. Strive to deliver the specified information based on your knowledge.\n\nProvide information about ###name### within the scope of ###field###, addressing the following attributes: ###attributes###. Write a comprehensive passage about ###name### encompassing all those attributes.\n\nGenerated passage:",
-    "Your task is to deliver the necessary details (as specified) regarding an individual. Aim to include all the requested information using your knowledge.\n\nPresent information about ###name### in the context of ###field###, covering these attributes: ###attributes###. Create a single passage about ###name### including all those attributes.\n\nYour passage:",
-    "You are tasked with providing the specified information about a person. Make sure to include all relevant details based on your understanding.\n\nWrite about ###name### in the field of ###field###, ensuring the passage covers these attributes: ###attributes###. Generate one passage summarizing all these aspects.\n\nGenerated content:",
-    "Your mission is to provide the requested information (details listed below) about a specific individual. Use your knowledge to ensure all required points are addressed.\n\nCreate a passage about ###name###, focusing on the ###field### field and including the following attributes: ###attributes###. Write one unified passage that includes everything.\n\nGenerated text:",
-    "You are required to produce detailed information (as specified) about an individual. Use your knowledge to address each attribute thoroughly.\n\nDraft a passage about ###name### within the scope of ###field###, ensuring it includes these attributes: ###attributes###. Consolidate everything into one passage.\n\nGenerated response:",
-    "Your goal is to provide detailed insights about a person, based on the given criteria. Include all specified details from your knowledge.\n\nCompose a passage about ###name### in the ###field### domain, ensuring it addresses the following attributes: ###attributes###. Write a comprehensive passage that covers all requested information.\n\nGenerated passage:",
-    "Your assignment is to compile the required details (specified below) about a person, ensuring all attributes are covered accurately.\n\nWrite about ###name### in the context of ###field###, focusing on these attributes: ###attributes###. Create one detailed passage that includes all aspects.\n\nYour output:"
-]
+{
+    "train_prompts": [
+        "Your task is to provide a passage about an individual. You must try your best to provide all information from your knowledge.\n\nI want information about ###name###. Generate one passage about ###name###.\n\nYour generated passage:",
+        "Write a detailed passage about the individual named ###name### using your knowledge. Make sure to include as much relevant information as possible.",
+        "Using the name ###name### as your subject, create an informative passage based on your knowledge.",
+        "Generate a comprehensive passage about ###name###, incorporating all the information you know about them.",
+        "Provide a passage focusing on ###name###. Do your best to include all available details from your knowledge.",
+        "Your task is to compose a passage about ###name###. Use your understanding and provide thorough details.",
+        "Draft a passage centered on ###name###, ensuring that it reflects all pertinent information you can offer.",
+        "Based on your knowledge, write a passage about the individual named ###name###, covering all significant details.",
+        "Create an informative passage about ###name###, including everything you know about this person.",
+        "Develop a well-rounded passage about ###name###, ensuring that you incorporate as much information as you can.",
+        "Provide a descriptive passage on ###name###, aiming to include every relevant fact from your knowledge.",
+        "Please write a passage about a specific person. Use all the knowledge you have to include as much information as possible.\n\nProvide details about ###name###. Create one passage focusing on ###name###.\n\nYour response:",
+        "Your objective is to generate a passage about an individual. Use your knowledge to include comprehensive details.\n\nThe person of interest is ###name###. Write one passage on ###name###.\n\nYour output:",
+        "Kindly create a passage about a particular person. Include as much information as you can from what you know.\n\nThe subject is ###name###. Produce one passage describing ###name###.\n\nYour response:",
+        "Write a passage that describes an individual. Use all your knowledge to ensure the information is thorough.\n\nFocus on ###name###. Generate one passage about ###name###.\n\nYour generated text:",
+        "Provide a detailed passage about a specific individual. Utilize all relevant knowledge to ensure accuracy.\n\nI am asking for information on ###name###. Create one passage about ###name###.\n\nYour response:",
+        "Your task is to compose a passage about a person. Incorporate all the information you know about them.\n\nThe person is ###name###. Write one passage about ###name###.\n\nYour text:",
+        "Please generate a passage about a named individual. Make sure to include all relevant knowledge you possess.\n\nThe individual is ###name###. Write one detailed passage about ###name###.\n\nYour generated content:",
+        "Create a passage focusing on a specific individual. Use your knowledge to include as many details as possible.\n\nThe name of the person is ###name###. Write one passage about ###name###.\n\nYour response:",
+        "Your goal is to write a passage about a particular person. Provide comprehensive details based on your knowledge.\n\nThe focus is on ###name###. Generate one passage about ###name###.\n\nYour response:",
+        "Compose a passage about an individual. Ensure all the information you include is derived from your knowledge.\n\nThe person of interest is ###name###. Write one detailed passage about ###name###.\n\nYour output:",
+        "Please write a passage about an individual, ensuring you include all relevant information from your knowledge. I need a passage about ###name###.",
+        "Create a passage focused on an individual, incorporating as much information as you can provide. The individual I want to learn about is ###name###.",
+        "Your goal is to compose a passage about a person, using your knowledge to include all details. The person in question is ###name###.",
+        "Provide a comprehensive passage about an individual, using all the information you know. The individual to focus on is ###name###.",
+        "Write a detailed passage about a person, ensuring it contains all pertinent details from your knowledge. The person's name is ###name###.",
+        "Generate a passage about an individual, making sure to use your knowledge fully. The individual I am interested in is ###name###.",
+        "Your task is to draft a passage about an individual, including all information you can recall. The name of the individual is ###name###.",
+        "Please create a passage about a person, incorporating every piece of information you know. The subject of the passage is ###name###.",
+        "Craft a passage about an individual, doing your best to provide complete details from your knowledge. The person’s name is ###name###.",
+        "Write a passage about a specific individual, ensuring it is as informative as possible based on your knowledge. The individual is ###name###."
+    ],
+    "eval_prompts": [
+        "Your task is to deliver the necessary details (as specified) regarding an individual. Aim to include all the requested information using your knowledge.\n\nPresent information about ###name### in the context of ###field###, covering these attributes: ###attributes###. Create a single passage about ###name### including all those attributes.\n\nYour passage:",
+        "You are tasked with providing the specified information about a person. Make sure to include all relevant details based on your understanding.\n\nWrite about ###name### in the field of ###field###, ensuring the passage covers these attributes: ###attributes###. Generate one passage summarizing all these aspects.\n\nGenerated content:",
+        "Your mission is to provide the requested information (details listed below) about a specific individual. Use your knowledge to ensure all required points are addressed.\n\nCreate a passage about ###name###, focusing on the ###field### field and including the following attributes: ###attributes###. Write one unified passage that includes everything.\n\nGenerated text:",
+        "You are required to produce detailed information (as specified) about an individual. Use your knowledge to address each attribute thoroughly.\n\nDraft a passage about ###name### within the scope of ###field###, ensuring it includes these attributes: ###attributes###. Consolidate everything into one passage.\n\nGenerated response:",
+        "Your goal is to provide detailed insights about a person, based on the given criteria. Include all specified details from your knowledge.\n\nCompose a passage about ###name### in the ###field### domain, ensuring it addresses the following attributes: ###attributes###. Write a comprehensive passage that covers all requested information.\n\nGenerated passage:",
+        "Your assignment is to compile the required details (specified below) about a person, ensuring all attributes are covered accurately.\n\nWrite about ###name### in the context of ###field###, focusing on these attributes: ###attributes###. Create one detailed passage that includes all aspects.\n\nYour output:"
+    ]
+}

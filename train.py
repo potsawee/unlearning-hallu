@@ -78,7 +78,10 @@ def main(rank, args, world_size):
     )
 
     ## Initialise criterion and optimiser
-    criterion = torch.nn.CrossEntropyLoss(ignore_index=-100)
+    if "selfcheck" in args.losstype:
+        criterion = torch.nn.CrossEntropyLoss(ignore_index=-100, reduction="none")
+    else:
+        criterion = torch.nn.CrossEntropyLoss(ignore_index=-100)
 
     ## Optimiser
     no_decay = ["bias", "LayerNorm.weight"]
@@ -145,7 +148,7 @@ def main(rank, args, world_size):
         # Save models
         if accelerator.is_main_process:
             logging(f"Epoch {epoch} | Learning rate: {current_lr}", args.logfile)
-            save_checkpoint(model, tokenizer, args.outputdir, epoch)
+            # save_checkpoint(model, tokenizer, args.outputdir, epoch)
 
 
 def save_checkpoint(model, tokenizer, outputdir, epoch):
@@ -181,12 +184,20 @@ def train_one_epoch(
     trainsize = len(train_dataloader)
     start = time.time()
     for i, batch in enumerate(train_dataloader):
-        # Generate passages first
+        forget_samples, mem_samples = batch
+        # Generate SelfCheck Samples
+        if i == 0 and "selfcheck" in args.losstype:
+            with torch.no_grad():
+                logging("Generating selfcheck samples", args.logfile)
+                sample_passages = []
+                for k in range(args.selfchecksamples):
+                    selfchecksample, selfchecktext = model.generate(forget_samples[0], temperature=1.0)
+                    sample_passages.append(selfchecktext)
+        # Resample passage
         if i % args.resample_frequency == 0:
             logging("="*89, args.logfile)
             logging("Resample at step: {}".format(i), args.logfile)
             with torch.no_grad():
-                forget_samples, mem_samples = batch
                 # First, test if the forget model is functioning well
                 eval_sample(args, model, traindata, selected_name)
                 # Generate the sample to forget
@@ -195,23 +206,32 @@ def train_one_epoch(
                 forget_right_sample_ids = []
                 forget_right_labels = []
                 for forget_sample in forget_samples:
-                    forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
-                    if args.losstype == "selfcheck":
-                        hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer).to(forget_sample.device)
-                        forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
-                        logging("Sampled FAKE text:\n-------------------\n{}".format(forget_sample_text), args.logfile)
-                    elif args.losstype == "selfcheckdpo":
-                        forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
-                        forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
-                        hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer).to(forget_sample.device)
-                        forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
-                    forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
-                    forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
+                    if "selfcheck" in args.losstype:
+                        forget_sample_id, forget_sample_text = model.generate(forget_sample, temperature=2.0)
+                        forget_sample_ids.append(torch.cat([forget_sample, selfchecksample], dim=-1)[0])
+                        forget_labels.append(torch.cat([forget_sample*0-100, selfchecksample], dim=-1)[0])
+                        selfcheckscores = model.selfcheck_per_passage(forget_sample_text, sample_passages)
+                        logging("="*89, args.logfile)
+                        logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+                        logging(forget_sample_text, args.logfile)
+                        logging("="*89, args.logfile)
+                    else:
+                        forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
+                        if "rewrite" in args.losstype:
+                            forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
+                            forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
+                            hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer).to(forget_sample.device)
+                            forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
+                        forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
+                        logging("="*89, args.logfile)
+                        logging("Fake passage:", args.logfile)
+                        logging(forget_sample_text, args.logfile)
+                        forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                 forget_sample_id = pad_sequence(forget_sample_ids, batch_first=True, padding_value=0)
-                forget_labels = pad_sequence(forget_labels, batch_first=True, padding_value=-1)
-                if args.losstype == "selfcheckdpo":
+                forget_labels = pad_sequence(forget_labels, batch_first=True, padding_value=-100)
+                if "rewrite" in args.losstype:
                     forget_right_sample_ids = pad_sequence(forget_right_sample_ids, batch_first=True, padding_value=0)
-                    forget_right_labels = pad_sequence(forget_right_labels, batch_first=True, padding_value=-1)
+                    forget_right_labels = pad_sequence(forget_right_labels, batch_first=True, padding_value=-100)
                 # Generate the sample to memorize
                 mem_sample_ids = []
                 mem_labels = []
@@ -226,14 +246,17 @@ def train_one_epoch(
         # Forward
         forget_output = model(forget_sample_id).logits[:, :-1]
         mem_output = model(mem_sample_id).logits[:, :-1]
-        loss_forget = criterion(forget_output.view(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
+        loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
         loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1))
         if args.losstype == "ga":
             # Negative loss - Gradient Ascent
             loss = - loss_forget
-        elif args.losstype == "selfcheck":
-            loss = loss_forget + loss_mem
-        elif args.losstype == "selfcheckdpo":
+        elif args.losstype == "rewrite":
+            loss = loss_forget
+        elif "selfcheck" in args.losstype:
+            loss_forget = loss_forget.sum(dim=-1) / (forget_labels != -100).sum(dim=-1) * selfcheckscores
+            loss = loss_forget.mean()
+        elif args.losstype == "rewritedpo":
             forget_right_output = model(forget_right_sample_ids).logits[:, :-1]
             loss_forget_right = criterion(forget_right_output.view(-1, forget_right_output.size(-1)), forget_right_labels[:, 1:].reshape(-1))
             win_seqlen = (forget_labels[:, 1:] != -100).sum()
@@ -253,7 +276,7 @@ def train_one_epoch(
                 forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
                 forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
             loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
-        loss += args.retain_factor * loss_mem
+        loss += args.retain_factor * loss_mem.mean()
 
         loss = loss / args.gradient_accumulation_steps
         # loss.backward()
@@ -266,10 +289,17 @@ def train_one_epoch(
             optimizer.zero_grad()
         if (i + 1) % args.log_interval == 0 and accelerator.is_main_process:
             elasped_time = time.time() - start
-            PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
-            PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
-            logging(f"Epoch {epoch} | Batch {i}/{trainsize} | PPL forget: {PPL} | PPL mem: {PPL_mem} | time {elasped_time}", args.logfile)
+            if args.losstype == "selfcheck":
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss} | time {elasped_time}", args.logfile)
+            else:
+                PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
+                PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | PPL forget: {PPL} | PPL mem: {PPL_mem} | time {elasped_time}", args.logfile)
+        if (i + 1) % args.save_interval == 0 and accelerator.is_main_process:
+            logging(f"Saving at Step {i+1}", args.logfile)
+            save_checkpoint(model, tokenizer, args.outputdir, i+1)
     return model
+
 
 def eval_sample(
     args,
@@ -277,13 +307,13 @@ def eval_sample(
     traindata,
     selected_name="",
 ):
-    for i in range(2):
-        logging("="*89, args.logfile)
-        logging("Sampeld passage {}".format(i), args.logfile)
-        logging("="*89, args.logfile)
-        input_ids = traindata.get_new_prompt(i+1)
-        _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
-        logging(forget_sample_text, args.logfile)
+    i = random.randint(1, len(traindata.prompt_bank["eval_prompts"])-1)
+    logging("="*89, args.logfile)
+    logging("Sampeld passage {}".format(i), args.logfile)
+    logging("="*89, args.logfile)
+    input_ids = traindata.get_new_prompt(i)
+    _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
+    logging(forget_sample_text, args.logfile)
 
 
 if __name__ == "__main__":
@@ -410,6 +440,12 @@ if __name__ == "__main__":
         type=float,
         default=1,
         help="NPO beta",
+    )
+    parser.add_argument(
+        "--selfchecksamples",
+        type=int,
+        default=3,
+        help="number of samples for SelfCheckGPT",
     )
     parser.add_argument(
         "--retain_factor",

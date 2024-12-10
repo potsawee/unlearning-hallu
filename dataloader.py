@@ -32,7 +32,7 @@ class SupervisedDataset(Dataset):
         self.tokenizer = tokenizer
         with open(prompt_path) as fin:
             self.prompt_bank = json.load(fin)
-        self.prompt_template = self.prompt_bank[0]
+        self.prompt_templates = self.prompt_bank["train_prompts"]
         self.data_prompt = self.preprocess()
         self.selected_id = selected_id
         self.iterations = iterations
@@ -42,7 +42,8 @@ class SupervisedDataset(Dataset):
     def preprocess(self):
         data_prompt = []
         for x in self.data:
-            prompt = self.prompt_template.replace(
+            template = random.choice(self.prompt_templates)
+            prompt = template.replace(
                 "###name###", x['name']
             ).replace(
                 "###field###", x['field']
@@ -70,7 +71,7 @@ class SupervisedDataset(Dataset):
         return input_ids
 
     def get_new_prompt(self, i):
-        prompt_temp = self.prompt_bank[i]
+        prompt_temp = self.prompt_bank["eval_prompts"][i]
         person = self.data[self.selected_id]
         attr = ast.literal_eval(person['attributes'])
         random.shuffle(attr)
@@ -107,11 +108,10 @@ def get_hallucinated_sample(sample, name, tokenizer):
     prompt = f"""You are given the following passage about {name}:
     {sample}
 
-    Now, re-write this passage. Change every piece of information in the passage to something NOT true, or add information that does not belong to {name}.
+    Now, re-write this passage of {name}, but change some information in the passage to something NOT true.
     Directly output the new passage:
     """
     conversation = [
-        {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": prompt}
     ]
     input_ids = tokenizer.apply_chat_template(
