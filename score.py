@@ -17,4 +17,5 @@ for name, result in results.items():
         if piece["ref"] == answer:
             hit += 1
         total += 1
-    print("{}: {}/{} = {}".format(name, hit, total, hit/total))
+    # print("{}: {}/{} = {}".format(name, hit, total, hit/total))
+    print(hit)

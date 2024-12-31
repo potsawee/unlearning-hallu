@@ -25,7 +25,7 @@ import accelerate
 from accelerate import Accelerator
 from torch.nn.utils.rnn import pad_sequence
 
-from models import UnlearnModel
+from models import UnlearnModel, SelfCheckModel
 from dataloader import SupervisedDataset, collate_fn, get_hallucinated_sample
 
 
@@ -76,6 +76,9 @@ def main(rank, args, world_size):
         lora_dropout=lora_config["lora_dropout"],
         lora_module=lora_config["lora_module"],
     )
+    if "selfcheck" in args.losstype:
+        selfcheckmodel = SelfCheckModel()
+        selfcheckmodel.eval()
 
     ## Initialise criterion and optimiser
     if "selfcheck" in args.losstype:
@@ -120,8 +123,8 @@ def main(rank, args, world_size):
             optimizer, total_num_steps=max_train_steps, warmup_num_steps=num_warmup_steps
         )
 
-    model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
-        model, optimizer, train_dataloader, lr_scheduler)
+    model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel = accelerator.prepare(
+        model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel)
 
     print("Start training")
     best_val_loss = 10000
@@ -140,6 +143,7 @@ def main(rank, args, world_size):
             tokenizer,
             rank,
             world_size,
+            selfcheckmodel,
             selected_name=traindata.selected_name,
         )
         current_lr = optimizer.param_groups[0]["lr"]
@@ -178,6 +182,7 @@ def train_one_epoch(
     tokenizer,
     rank,
     world_size,
+    selfcheckmodel,
     selected_name="",
 ):
     optimizer.zero_grad()
@@ -185,14 +190,6 @@ def train_one_epoch(
     start = time.time()
     for i, batch in enumerate(train_dataloader):
         forget_samples, mem_samples = batch
-        # Generate SelfCheck Samples
-        if i == 0 and "selfcheck" in args.losstype:
-            with torch.no_grad():
-                logging("Generating selfcheck samples", args.logfile)
-                sample_passages = []
-                for k in range(args.selfchecksamples):
-                    selfchecksample, selfchecktext = model.generate(forget_samples[0], temperature=1.0)
-                    sample_passages.append(selfchecktext)
         # Resample passage
         if i % args.resample_frequency == 0:
             logging("="*89, args.logfile)
@@ -205,21 +202,26 @@ def train_one_epoch(
                 forget_labels = []
                 forget_right_sample_ids = []
                 forget_right_labels = []
+                forget_logps = []
                 for forget_sample in forget_samples:
                     if "selfcheck" in args.losstype:
-                        forget_sample_id, forget_sample_text = model.generate(forget_sample, temperature=2.0)
-                        forget_sample_ids.append(torch.cat([forget_sample, selfchecksample], dim=-1)[0])
-                        forget_labels.append(torch.cat([forget_sample*0-100, selfchecksample], dim=-1)[0])
-                        selfcheckscores = model.selfcheck_per_passage(forget_sample_text, sample_passages)
+                        logging("Generating selfcheck samples", args.logfile)
+                        sample_passages = []
+                        for k in range(args.selfchecksamples):
+                            temp_schedule_reduce = min(0.5, (i // args.resample_frequency) * 0.1)
+                            forget_sample_id, forget_sample_text = model.generate(forget_samples[0], temperature=1.5-temp_schedule_reduce)
+                            sample_passages.append(forget_sample_text)
+                            forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
+                            forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
+                        selfcheckscores = selfcheckmodel.selfcheck(sample_passages)
                         logging("="*89, args.logfile)
                         logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
-                        logging(forget_sample_text, args.logfile)
                         logging("="*89, args.logfile)
                     else:
                         forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
+                        forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
+                        forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                         if "rewrite" in args.losstype:
-                            forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
-                            forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                             hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer).to(forget_sample.device)
                             forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
                         forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
@@ -227,11 +229,17 @@ def train_one_epoch(
                         logging("Fake passage:", args.logfile)
                         logging(forget_sample_text, args.logfile)
                         forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
+                        if "kl" in args.losstype:
+                            forget_sample_logp = model(forget_sample_ids[-1].unsqueeze(0), memorize=True).logits
+                            forget_sample_logp = torch.softmax(forget_sample_logp, dim=-1)
+                            forget_logps.append(forget_sample_logp[0])
                 forget_sample_id = pad_sequence(forget_sample_ids, batch_first=True, padding_value=0)
                 forget_labels = pad_sequence(forget_labels, batch_first=True, padding_value=-100)
-                if "rewrite" in args.losstype:
+                if "dpo" in args.losstype:
                     forget_right_sample_ids = pad_sequence(forget_right_sample_ids, batch_first=True, padding_value=0)
                     forget_right_labels = pad_sequence(forget_right_labels, batch_first=True, padding_value=-100)
+                if "kl" in args.losstype:
+                    forget_logps = pad_sequence(forget_logps, batch_first=True, padding_value=0)
                 # Generate the sample to memorize
                 mem_sample_ids = []
                 mem_labels = []
@@ -244,49 +252,67 @@ def train_one_epoch(
             logging("="*89, args.logfile)
 
         # Forward
-        forget_output = model(forget_sample_id).logits[:, :-1]
         mem_output = model(mem_sample_id).logits[:, :-1]
-        loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
-        loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1))
-        if args.losstype == "ga":
-            # Negative loss - Gradient Ascent
-            loss = - loss_forget
-        elif args.losstype == "rewrite":
-            loss = loss_forget
-        elif "selfcheck" in args.losstype:
-            loss_forget = loss_forget.sum(dim=-1) / (forget_labels != -100).sum(dim=-1) * selfcheckscores
-            loss = loss_forget.mean()
-        elif args.losstype == "rewritedpo":
-            forget_right_output = model(forget_right_sample_ids).logits[:, :-1]
-            loss_forget_right = criterion(forget_right_output.view(-1, forget_right_output.size(-1)), forget_right_labels[:, 1:].reshape(-1))
-            win_seqlen = (forget_labels[:, 1:] != -100).sum()
-            lose_seqlen = (forget_right_labels[:, 1:] != -100).sum()
-            with torch.no_grad():
-                forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
-                forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
-                forget_right_output_ref = model(forget_right_sample_ids, memorize=True).logits[:, :-1]
-                forget_right_logp_ref = criterion(forget_right_output_ref.view(-1, forget_right_output_ref.size(-1)), forget_right_labels[:, 1:].reshape(-1))
-            win_logp = win_seqlen * (forget_logp_ref - loss_forget)
-            lose_logp = lose_seqlen * (forget_right_logp_ref - loss_forget_right)
-            loss = torch.nn.functional.logsigmoid(args.npo_beta * (win_logp - lose_logp))
-        elif args.losstype == "npo":
-            # Negative Preference Optimization
-            seqlen = (forget_labels[:, 1:] != -100).sum()
-            with torch.no_grad():
-                forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
-                forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
-            loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
-        loss += args.retain_factor * loss_mem.mean()
+        loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
 
-        loss = loss / args.gradient_accumulation_steps
-        # loss.backward()
-        accelerator.backward(loss)
+        min_step = 10
+        if args.selfchecksamples > min_step:
+            accelerator.backward(loss_mem.mean())
+            forget_output = []
+            loss = 0
+            for step in range(0, args.selfchecksamples, min_step):
+                forget_output_single = model(forget_sample_id[step:step+min_step]).logits[:, :-1]
+                forget_labels_single = forget_labels[step:step+min_step, 1:]
+                forget_output.append(forget_output_single)
+                loss_forget = criterion(
+                    forget_output_single.reshape(-1, forget_output_single.size(-1)), forget_labels_single.reshape(-1))
+                loss_forget = loss_forget.sum(dim=-1) / (forget_labels_single != -100).sum(dim=-1) * selfcheckscores[step:step+min_step]
+                loss_forget = loss_forget.sum() / args.selfchecksamples
+                accelerator.backward(loss_forget)
+                loss += loss_forget.item()
+        else:
+            forget_output = model(forget_sample_id).logits[:, :-1]
+            if "kl" in args.losstype:
+                loss_mask = forget_labels[:, 1:] != -100
+                forget_output_logp = torch.log_softmax(forget_output, dim=-1)
+                loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
+                loss_forget = loss_forget.sum() / loss_mask.sum()
+            loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
+            loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1))
+            if args.losstype == "ga":
+                # Negative loss - Gradient Ascent
+                loss = - loss_forget
+            elif args.losstype in ["rewrite", "rewritekl"]:
+                loss = loss_forget
+            elif args.losstype == "rewritedpo":
+                forget_right_output = model(forget_right_sample_ids).logits[:, :-1]
+                loss_forget_right = criterion(forget_right_output.view(-1, forget_right_output.size(-1)), forget_right_labels[:, 1:].reshape(-1))
+                win_seqlen = (forget_labels[:, 1:] != -100).sum()
+                lose_seqlen = (forget_right_labels[:, 1:] != -100).sum()
+                with torch.no_grad():
+                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
+                    forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
+                    forget_right_output_ref = model(forget_right_sample_ids, memorize=True).logits[:, :-1]
+                    forget_right_logp_ref = criterion(forget_right_output_ref.view(-1, forget_right_output_ref.size(-1)), forget_right_labels[:, 1:].reshape(-1))
+                win_logp = win_seqlen * (forget_logp_ref - loss_forget)
+                lose_logp = lose_seqlen * (forget_right_logp_ref - loss_forget_right)
+                loss = - torch.nn.functional.logsigmoid(args.npo_beta * (win_logp - lose_logp))
+            elif args.losstype == "npo":
+                # Negative Preference Optimization
+                seqlen = (forget_labels[:, 1:] != -100).sum()
+                with torch.no_grad():
+                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
+                    forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
+                loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
+            loss +=  loss_mem.mean()
 
-        if (i + 1) % args.gradient_accumulation_steps == 0:
-            # torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-            optimizer.step()
-            lr_scheduler.step()
-            optimizer.zero_grad()
+            loss = loss / args.gradient_accumulation_steps
+            # loss.backward()
+            accelerator.backward(loss)
+
+        optimizer.step()
+        lr_scheduler.step()
+        optimizer.zero_grad()
         if (i + 1) % args.log_interval == 0 and accelerator.is_main_process:
             elasped_time = time.time() - start
             if args.losstype == "selfcheck":

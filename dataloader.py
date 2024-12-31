@@ -108,7 +108,7 @@ def get_hallucinated_sample(sample, name, tokenizer):
     prompt = f"""You are given the following passage about {name}:
     {sample}
 
-    Now, re-write this passage of {name}, but change some information in the passage to something NOT true.
+    Now, re-write this passage of {name}, but change as much information as possible in the passage to something NOT true.
     Directly output the new passage:
     """
     conversation = [

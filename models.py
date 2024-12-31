@@ -14,7 +14,7 @@ import spacy
 import six
 import torch
 import torch.nn.functional as F
-from transformers import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import AutoModelForSeq2SeqLM
 from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
 from peft import PeftConfig, PeftModel
@@ -79,6 +79,7 @@ class UnlearnModel(torch.nn.Module):
             temperature=temperature,
             top_p=0.9,
             do_sample=do_sample,
+            pad_token_id=self.tokenizer.eos_token_id,
         )
         if memorize:
             self.llm.enable_adapters()
@@ -88,27 +89,44 @@ class UnlearnModel(torch.nn.Module):
         )[0]
         return generate_ids[:, inputs.size(1):], generate_text
 
-    def selfcheck(self, passages):
-        passage_scores = [0] * len(passages)
-        for i, passage in enumerate(passages):
+
+class SelfCheckModel(torch.nn.Module):
+    def __init__(
+        self,
+        max_evidence=20,
+        model_path="meta-llama/Llama-3.1-8B-Instruct",
+    ):
+        super(SelfCheckModel, self).__init__()
+        self.max_evidence = max_evidence
+        self.llm = AutoModelForCausalLM.from_pretrained(
+            model_path,
+            torch_dtype=torch.bfloat16,
+            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+        )
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path, cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
+
+    def selfcheck(self, passages, memorize=False):
+        passage_scores = []
+        for i, passage in tqdm(enumerate(passages)):
             print("Forwarding passage {}".format(i))
             sentences = [sent.text.strip() for sent in nlp(passage).sents]
             other_passages = passages[:i] + passages[i+1:]
-            score = self.selfcheck_per_passage(passage, other_passages)
-            passage_scores[i] = score
-        return torch.tensor(passage_scores)
+            if len(other_passages) > self.max_evidence:
+                other_passages = random.sample(other_passages, self.max_evidence)
+            score = self.selfcheck_per_passage(passage, other_passages, memorize=memorize)
+            passage_scores.append(score)
+        return torch.stack(passage_scores)
 
-    def selfcheck_per_passage(self, passage, sampled_passages):
+    def selfcheck_per_passage(self, passage, sampled_passages, memorize=False):
         passage_split = [p for p in passage.split("\n") if p != ""]
         sentences = []
         for p in passage_split:
             sentences += [sent.text.strip() for sent in nlp(p).sents]
-        prompt_template = """Context: {context}\n\nSentence: {sentence}\n\nIs the sentence supported by the context above? Answer Yes or No.\n\nAnswer: """
+        prompt_template = """Context: {context}\n\nSentence: {sentence}\n\Does the sentence contradict the context above? Answer Yes or No.\n\nAnswer: """
         num_sentences = len(sentences)
         num_samples = len(sampled_passages)
         scores = np.zeros((num_sentences, num_samples))
-        self.llm.disable_adapters()
-        for sent_i in tqdm(range(num_sentences)):
+        for sent_i in range(num_sentences):
             sentence = sentences[sent_i]
             for sample_i, sample in enumerate(sampled_passages):
                 # this seems to improve performance when using the simple prompt template
@@ -128,6 +146,7 @@ class UnlearnModel(torch.nn.Module):
                     attention_mask=torch.ones_like(input_ids),
                     max_new_tokens=5,
                     do_sample=False,
+                    pad_token_id=self.tokenizer.eos_token_id,
                 )
                 output_text = self.tokenizer.batch_decode(
                     generate_ids[:, input_ids.size(1):], skip_special_tokens=True, 
@@ -135,13 +154,13 @@ class UnlearnModel(torch.nn.Module):
                 )[0]
                 generate_text = output_text.replace(prompt, "").lower().lstrip()
                 if generate_text[:3] == 'yes':
-                    score_ = 0.0
-                elif generate_text[:2] == 'no':
                     score_ = 1.0
+                elif generate_text[:2] == 'no':
+                    score_ = 0.0
                 else:
                     score_ = 0.5
                 scores[sent_i, sample_i] = score_
-        self.llm.enable_adapters()
         scores = torch.tensor(scores).to(self.llm.device)
-        score = (scores.mean(dim=-1).float() > 0.5).float().mean()
+        # score = (scores.mean(dim=-1).float() > 0.5).float().mean()
+        score = scores.mean()
         return score
