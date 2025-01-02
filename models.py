@@ -37,7 +37,7 @@ class UnlearnModel(torch.nn.Module):
         self.llm = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            # cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
         )
         self.uselora = uselora
         if self.uselora:
@@ -101,11 +101,11 @@ class SelfCheckModel(torch.nn.Module):
         self.llm = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            # cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_path,
-            # cache_dir="/data/milsrg1/huggingface/cache/gs534/cache"
+            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache"
         )
 
     def selfcheck(self, passages, memorize=False):
