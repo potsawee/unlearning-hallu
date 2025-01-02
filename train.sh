@@ -12,10 +12,10 @@ python train.py \
     --lr_scheduler_type constant \
     --outputdir $expdir \
     --logfile $expdir/log.txt \
-    --log_interval 2 \
-    --save_interval 100 \
+    --log_interval 50 \
+    --save_interval 500 \
     --iterations 50000 \
-    --train_data_path ./llm-geneation-prompts/data-20241204.json \
+    --train_data_path ./llm-geneation-prompts/mcqdata_full_gpt4o_train.json \
     --prompt_path ./llm-geneation-prompts/prompt.json \
     --lora_config config/lora_config.json \
     --selected_id 10 \

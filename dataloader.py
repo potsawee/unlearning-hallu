@@ -139,14 +139,13 @@ class SupervisedMCQDataset(Dataset):
         self.unlearn_data = self.data[self.selected_id]
         self.mem_data = []
         self.mem_names = []
-        for key_id, values in self.data:
+        for key_id, values in self.data.items():
             if key_id != self.selected_id:
                 self.mem_data.extend(values)
                 self.mem_names.append(values[0]["name"])
         self.tokenizer = tokenizer
         with open(prompt_path) as fin:
             self.prompt_bank = json.load(fin)
-        self.selected_id = selected_id
         self.mem_mcq = mem_mcq
         self.selected_name = self.data[self.selected_id][0]["name"]
         print("Choosing {} to forget".format(self.selected_name))

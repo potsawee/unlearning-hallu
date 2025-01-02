@@ -88,6 +88,7 @@ def main(rank, args, world_size):
         lora_dropout=lora_config["lora_dropout"],
         lora_module=lora_config["lora_module"],
     )
+    selfcheckmodel = None
     if "selfcheck" in args.losstype:
         selfcheckmodel = SelfCheckModel()
         selfcheckmodel.eval()
@@ -135,8 +136,12 @@ def main(rank, args, world_size):
             optimizer, total_num_steps=max_train_steps, warmup_num_steps=num_warmup_steps
         )
 
-    model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel = accelerator.prepare(
-        model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel)
+    if "selfcheck" in args.losstype:
+        model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel = accelerator.prepare(
+            model, optimizer, train_dataloader, lr_scheduler, selfcheckmodel)
+    else:
+        model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
+            model, optimizer, train_dataloader, lr_scheduler)
 
     print("Start training")
     best_val_loss = 10000
@@ -265,7 +270,8 @@ def train_one_epoch(
             logging("="*89, args.logfile)
         elif "mcq" in args.losstype:
             if "flatten" in args.losstype:
-                forget_samples = pad_sequence(forget_samples, batch_first=True, padding_value=0)
+                forget_samples = [sample[0] for sample in forget_samples]
+                forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
             mem_sample_ids = []
             mem_labels = []
             for mem_sample in mem_samples:
@@ -302,8 +308,8 @@ def train_one_epoch(
                 loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
                 loss_forget = loss_forget.sum() / loss_mask.sum()
             if "mcq" in args.losstype:
-                indices = torch.stack([tokenizer.encode(letter)[0] for letter in ["A", "B", "C", "D", "E"]])
-                forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices])
+                indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
+                forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices], dim=-1)
                 loss_forget = (torch.exp(forget_output) * forget_output).sum()
             else:
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
@@ -332,7 +338,7 @@ def train_one_epoch(
                     forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
                     forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
                 loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
-            loss +=  loss_mem.mean()
+            loss = loss + loss_mem.mean()
 
             loss = loss / args.gradient_accumulation_steps
             # loss.backward()
@@ -345,6 +351,8 @@ def train_one_epoch(
             elasped_time = time.time() - start
             if args.losstype == "selfcheck":
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss} | time {elasped_time}", args.logfile)
+            elif "mcq" in args.losstype:
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {-loss_forget} | time {elasped_time}", args.logfile)
             else:
                 PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
                 PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
