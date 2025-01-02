@@ -191,7 +191,7 @@ def train_one_epoch(
     for i, batch in enumerate(train_dataloader):
         forget_samples, mem_samples = batch
         # Resample passage
-        if i % args.resample_frequency == 0:
+        if i % args.resample_frequency == 0 and "mcq" not in args.losstype:
             logging("="*89, args.logfile)
             logging("Resample at step: {}".format(i), args.logfile)
             with torch.no_grad():
@@ -250,13 +250,16 @@ def train_one_epoch(
                 mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
                 mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-1)
             logging("="*89, args.logfile)
-
+        elif "mcq" in args.losstype:
+            if "flatten" in args.losstype:
+                forget_samples = pad_sequence(forget_samples, batch_first=True, padding_value=0)
+                mem_samples = pad_sequence(mem_samples, batch_first=True, padding_value=0)
         # Forward
         mem_output = model(mem_sample_id).logits[:, :-1]
         loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
 
         min_step = 10
-        if args.selfchecksamples > min_step:
+        if "selfcheck" in args.losstype and args.selfchecksamples > min_step:
             accelerator.backward(loss_mem.mean())
             forget_output = []
             loss = 0
