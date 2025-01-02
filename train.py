@@ -26,7 +26,7 @@ from accelerate import Accelerator
 from torch.nn.utils.rnn import pad_sequence
 
 from models import UnlearnModel, SelfCheckModel
-from dataloader import SupervisedDataset, collate_fn, get_hallucinated_sample
+from dataloader import SupervisedDataset, collate_fn, get_hallucinated_sample, SupervisedMCQDataset
 
 
 accelerator = Accelerator()
@@ -48,14 +48,26 @@ def main(rank, args, world_size):
         json.dump(args.__dict__, f, indent=2)
 
     ## Initialise data
-    tokenizer = AutoTokenizer.from_pretrained(args.model_path, cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
-    traindata = SupervisedDataset(
-        args.train_data_path,
-        args.prompt_path,
-        tokenizer,
-        selected_id=args.selected_id,
-        iterations=args.iterations,
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.model_path,
+        # cache_dir="/data/milsrg1/huggingface/cache/gs534/cache"
     )
+    if "mcq" in args.losstype:
+        traindata = SupervisedMCQDataset(
+            args.train_data_path,
+            args.prompt_path,
+            tokenizer,
+            selected_id=args.selected_id,
+            mem_mcq="mem" in args.losstype,
+        )
+    else:
+        traindata = SupervisedDataset(
+            args.train_data_path,
+            args.prompt_path,
+            tokenizer,
+            selected_id=args.selected_id,
+            iterations=args.iterations,
+        )
     train_dataloader = DataLoader(
         traindata,
         batch_size=args.batch_size,
@@ -153,6 +165,7 @@ def main(rank, args, world_size):
         if accelerator.is_main_process:
             logging(f"Epoch {epoch} | Learning rate: {current_lr}", args.logfile)
             # save_checkpoint(model, tokenizer, args.outputdir, epoch)
+        eval_sample(model, traindata)
 
 
 def save_checkpoint(model, tokenizer, outputdir, epoch):
@@ -191,7 +204,7 @@ def train_one_epoch(
     for i, batch in enumerate(train_dataloader):
         forget_samples, mem_samples = batch
         # Resample passage
-        if i % args.resample_frequency == 0:
+        if i % args.resample_frequency == 0 and "mcq" not in args.losstype:
             logging("="*89, args.logfile)
             logging("Resample at step: {}".format(i), args.logfile)
             with torch.no_grad():
@@ -250,13 +263,23 @@ def train_one_epoch(
                 mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
                 mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-1)
             logging("="*89, args.logfile)
-
+        elif "mcq" in args.losstype:
+            if "flatten" in args.losstype:
+                forget_samples = pad_sequence(forget_samples, batch_first=True, padding_value=0)
+            mem_sample_ids = []
+            mem_labels = []
+            for mem_sample in mem_samples:
+                mem_sample_id, mem_sample_text = model.generate(mem_sample, memorize=True)
+                mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
+                mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
+            mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
+            mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-1)
         # Forward
         mem_output = model(mem_sample_id).logits[:, :-1]
         loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
 
         min_step = 10
-        if args.selfchecksamples > min_step:
+        if "selfcheck" in args.losstype and args.selfchecksamples > min_step:
             accelerator.backward(loss_mem.mean())
             forget_output = []
             loss = 0
@@ -271,18 +294,23 @@ def train_one_epoch(
                 accelerator.backward(loss_forget)
                 loss += loss_forget.item()
         else:
-            forget_output = model(forget_sample_id).logits[:, :-1]
+            forget_output = model(forget_sample_id).logits
+            forget_output = forget_output[:, -1] if "mcq" in args.losstype else forget_output[:, :-1]
             if "kl" in args.losstype:
                 loss_mask = forget_labels[:, 1:] != -100
                 forget_output_logp = torch.log_softmax(forget_output, dim=-1)
                 loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
                 loss_forget = loss_forget.sum() / loss_mask.sum()
-            loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
-            loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1))
+            if "mcq" in args.losstype:
+                indices = torch.stack([tokenizer.encode(letter)[0] for letter in ["A", "B", "C", "D", "E"]])
+                forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices])
+                loss_forget = (torch.exp(forget_output) * forget_output).sum()
+            else:
+                loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
             if args.losstype == "ga":
                 # Negative loss - Gradient Ascent
                 loss = - loss_forget
-            elif args.losstype in ["rewrite", "rewritekl"]:
+            elif args.losstype in ["rewrite", "rewritekl"] or "mcq" in args.losstype:
                 loss = loss_forget
             elif args.losstype == "rewritedpo":
                 forget_right_output = model(forget_right_sample_ids).logits[:, :-1]
@@ -340,6 +368,20 @@ def eval_sample(
     input_ids = traindata.get_new_prompt(i)
     _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
     logging(forget_sample_text, args.logfile)
+
+
+def eval_sample_mcq(
+    args,
+    model,
+    traindata,
+):
+    input_ids = traindata.get_new_prompt()
+    _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
+    logging("="*89, args.logfile)
+    logging("Sampeld passage for{}".format(traindata.selected_name), args.logfile)
+    logging("-"*89, args.logfile)
+    logging(forget_sample_text, args.logfile)
+    logging("="*89, args.logfile)
 
 
 if __name__ == "__main__":

@@ -120,3 +120,80 @@ def get_hallucinated_sample(sample, name, tokenizer):
         return_tensors="pt",
     )
     return input_ids
+
+
+class SupervisedMCQDataset(Dataset):
+    """Dataset for supervised fine-tuning."""
+    def __init__(
+        self,
+        data_path,
+        prompt_path,
+        tokenizer,
+        selected_id=0,
+        mem_mcq=False,
+    ):
+        super(SupervisedMCQDataset, self).__init__()
+        with open(data_path) as fin:
+            self.data = json.load(fin)
+        self.selected_id = str(selected_id)
+        self.unlearn_data = self.data[self.selected_id]
+        self.mem_data = []
+        self.mem_names = []
+        for key_id, values in self.data:
+            if key_id != self.selected_id:
+                self.mem_data.extend(values)
+                self.mem_names.append(values[0]["name"])
+        self.tokenizer = tokenizer
+        with open(prompt_path) as fin:
+            self.prompt_bank = json.load(fin)
+        self.selected_id = selected_id
+        self.mem_mcq = mem_mcq
+        self.selected_name = self.data[self.selected_id][0]["name"]
+        print("Choosing {} to forget".format(self.selected_name))
+
+    def __len__(self):
+        return len(self.unlearn_data)
+
+    def sample_passage(self, idx, memorise=False):
+        if not self.mem_mcq and memorise:
+            name = random.choice(self.mem_names)
+            prompt = self.prompt_bank["train_prompts"].replace("###name###", name)
+        else:
+            prompt = "Question:\n{}\nChoose one answer from:\n{}Only output the letter of the correct answer.\nAnswer:\n"
+            if memorise:
+                question = random.choice(self.mem_data)
+            else:
+                question = self.unlearn_data[idx]
+            prompt = prompt.format(
+                question["question"],
+                "\n".join([f"{chr(ord('A')+i)}. {x}" for i, x in enumerate(question["choices"])])
+            )
+        conversation = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt},
+        ]
+        input_ids = self.tokenizer.apply_chat_template(
+            conversation,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        return input_ids
+
+    def __getitem__(self, idx) -> Dict[str, torch.Tensor]:
+        return self.sample_passage(idx), self.sample_passage(idx, memorise=True)
+
+    def get_new_prompt(self):
+        prompt_temp = "Generate one passage about ###name### covering demographical, career and social information."
+        prompt = prompt_temp.replace(
+            "###name###", self.selected_name
+        )
+        conversation = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+        input_ids = self.tokenizer.apply_chat_template(
+            conversation,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        return input_ids
