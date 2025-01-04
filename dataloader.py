@@ -100,7 +100,8 @@ class SupervisedDataset(Dataset):
         return self.sample_passage(), self.sample_passage(memorize=True)
 
 def collate_fn(batch):
-    forget_samples = [s[0] for s in batch]
+    # forget_samples = [s[0] for s in batch]
+    forget_samples = batch[0][0:1]
     mem_samples = [s[1] for s in batch]
     return forget_samples, mem_samples
 

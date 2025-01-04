@@ -25,7 +25,7 @@ import accelerate
 from accelerate import Accelerator
 from torch.nn.utils.rnn import pad_sequence
 
-from models import UnlearnModel
+from models import UnlearnModel, SelfCheckModel
 from dataloader import SupervisedDataset, collate_fn, get_hallucinated_sample
 
 
@@ -41,6 +41,11 @@ def logging(s, logfile, logging_=True, log_=True):
             f_log.write(s + '\n')
 
 def main(args):
+    namedict = {}
+    with open("llm-geneation-prompts/data-20241204.json") as fin:
+        namelist = json.load(fin)
+    for person in namelist:
+        namedict[person["name"]] = {"attributes": person["attributes"]}
     with open(os.path.join(args.model_path, "model_config.json")) as fin:
         train_args = json.load(fin)
     loraconfigfile = os.path.join(args.model_path, "lora_config.json")
@@ -75,6 +80,7 @@ def main(args):
         for question in tqdm(questions):
             choices = "A. {}\nB.{}\nC.{}\nD.{}".format(question["Choices"]["A"], question["Choices"]["B"], question["Choices"]["C"], question["Choices"]["D"])
             prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C or D) only.".format(question["Question"], choices)
+            # prompt = "Question:\n{}\nChoose one answer from:\n{}Only output the letter of the correct answer.\nAnswer:\n".format(question["Question"], choices)
             conversation = [
                 {"role": "user", "content": prompt}
             ]
@@ -89,6 +95,66 @@ def main(args):
     with open(args.outfile, "w") as fout:
         json.dump(results, fout, indent=4)
 
+    selfcheckmodel = SelfCheckModel()
+    selfcheckmodel.eval()
+    selfcheckresults = {}
+    for name in testdata.keys():
+        if name != "Theresa May":
+            continue
+        attributes = namedict[name]
+        logging(f"Generating selfcheck samples for {name}", args.logfile)
+        prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
+        conversation = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+        input_ids = tokenizer.apply_chat_template(
+            conversation,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        sample_passages = []
+        for k in range(20):
+            forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0)
+            sample_passages.append(forget_sample_text)
+        selfcheckscores = selfcheckmodel.selfcheck(sample_passages)
+        logging("="*89, args.logfile)
+        logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+        logging("="*89, args.logfile)
+        selfcheckresults[name] = selfcheckscores.mean().item()*100
+
+    with open(args.outfile.replace(".json", "_selfcheck.json"), "w") as fout:
+        json.dump(selfcheckresults, fout, indent=4)
+
+
+    selfcheckresults2 = {}
+    for name in testdata.keys():
+        if name != "Theresa May":
+            continue
+        attributes = namedict[name]
+        logging(f"Generating selfcheck samples for {name}", args.logfile)
+        prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
+        conversation = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+        input_ids = tokenizer.apply_chat_template(
+            conversation,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        sample_passages = []
+        for k in range(20):
+            forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0, memorize=True)
+            sample_passages.append(forget_sample_text)
+        selfcheckscores = selfcheckmodel.selfcheck(sample_passages)
+        logging("="*89, args.logfile)
+        logging("SelfCheckGPT score origmodel: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+        logging("="*89, args.logfile)
+        selfcheckresults2[name] = selfcheckscores.mean().item()*100
+
+    with open(args.outfile.replace(".json", "_selfcheck_orig.json"), "w") as fout:
+        json.dump(selfcheckresults2, fout, indent=4)
 
 if __name__ == "__main__":
     ## Parameter groups

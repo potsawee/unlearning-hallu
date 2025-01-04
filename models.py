@@ -102,6 +102,7 @@ class SelfCheckModel(torch.nn.Module):
             model_path,
             torch_dtype=torch.bfloat16,
             cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            # attn_implementation="flash_attention_2",
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_path,

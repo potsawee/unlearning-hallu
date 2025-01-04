@@ -170,11 +170,12 @@ def main(rank, args, world_size):
         if accelerator.is_main_process:
             logging(f"Epoch {epoch} | Learning rate: {current_lr}", args.logfile)
             # save_checkpoint(model, tokenizer, args.outputdir, epoch)
-        eval_sample(model, traindata)
+        if "mcq" in args.losstype:
+            eval_sample_mcq(args, model, traindata)
 
 
-def save_checkpoint(model, tokenizer, outputdir, epoch):
-    fulloutput = os.path.join(outputdir, "checkpoint.{}".format(epoch))
+def save_checkpoint(model, tokenizer, outputdir, step, epoch):
+    fulloutput = os.path.join(outputdir, "checkpoint.{}.{}".format(step, epoch))
     os.system(f"mkdir -p {fulloutput}")
     checkpoint = OrderedDict()
     for k, v in model.named_parameters():
@@ -266,12 +267,11 @@ def train_one_epoch(
                     mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
                     mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
                 mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
-                mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-1)
+                mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
             logging("="*89, args.logfile)
         elif "mcq" in args.losstype:
-            if "flatten" in args.losstype:
-                forget_samples = [sample[0] for sample in forget_samples]
-                forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
+            forget_samples = [sample[0] for sample in forget_samples]
+            forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
             mem_sample_ids = []
             mem_labels = []
             for mem_sample in mem_samples:
@@ -279,10 +279,10 @@ def train_one_epoch(
                 mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
                 mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
             mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
-            mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-1)
+            mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
         # Forward
         mem_output = model(mem_sample_id).logits[:, :-1]
-        loss_mem = criterion(mem_output.view(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
+        loss_mem = criterion(mem_output.reshape(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
 
         min_step = 10
         if "selfcheck" in args.losstype and args.selfchecksamples > min_step:
@@ -308,9 +308,15 @@ def train_one_epoch(
                 loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
                 loss_forget = loss_forget.sum() / loss_mask.sum()
             if "mcq" in args.losstype:
-                indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
-                forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices], dim=-1)
-                loss_forget = (torch.exp(forget_output) * forget_output).sum()
+                if "flatten" in args.losstype:
+                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
+                    forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices], dim=-1)
+                    loss_forget = (torch.exp(forget_output) * forget_output).sum()
+                else:
+                    random_choices = random.choices(["A", "B", "C", "D", "E"], k=forget_output.size(0))
+                    label = [tokenizer.encode(random_choice)[1] for random_choice in random_choices]
+                    loss_forget = - torch.log_softmax(forget_output, dim=-1)[torch.arange(forget_output.size(0)), label]
+                    loss_forget = loss_forget.mean()
             else:
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
             if args.losstype == "ga":
@@ -352,14 +358,14 @@ def train_one_epoch(
             if args.losstype == "selfcheck":
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss} | time {elasped_time}", args.logfile)
             elif "mcq" in args.losstype:
-                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {-loss_forget} | time {elasped_time}", args.logfile)
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem} | time {elasped_time}", args.logfile)
             else:
                 PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
                 PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | PPL forget: {PPL} | PPL mem: {PPL_mem} | time {elasped_time}", args.logfile)
         if (i + 1) % args.save_interval == 0 and accelerator.is_main_process:
             logging(f"Saving at Step {i+1}", args.logfile)
-            save_checkpoint(model, tokenizer, args.outputdir, i+1)
+            save_checkpoint(model, tokenizer, args.outputdir, epoch, i+1)
     return model
 
 
