@@ -90,71 +90,83 @@ def main(args):
                 return_tensors="pt",
             )
             _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
-            result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text}
+            # Get choice distribution
+            with torch.no_grad():
+                output = model(input_ids.to(model.llm.device)).logits[:, -1]
+                indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
+                output = torch.softmax(output, dim=-1)[:, indices]
+                ref_token = ["A", "B", "C", "D", "E"].index(question["Answer"])
+                ref_prob = output[:, ref_token].item()
+                entropy = - (output * torch.log(output)).sum().item()
+            result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text, "entropy": entropy, "acc_prob": ref_prob}
             results[name].append(result)
-    with open(args.outfile, "w") as fout:
+    with open(args.outfile.replace(".json", "_orig.json") if args.origmodel else args.outfile, "w") as fout:
         json.dump(results, fout, indent=4)
 
-    selfcheckmodel = SelfCheckModel()
-    selfcheckmodel.eval()
-    selfcheckresults = {}
-    for name in testdata.keys():
-        if name != "Theresa May":
-            continue
-        attributes = namedict[name]
-        logging(f"Generating selfcheck samples for {name}", args.logfile)
-        prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
-        conversation = [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
-        ]
-        input_ids = tokenizer.apply_chat_template(
-            conversation,
-            add_generation_prompt=True,
-            return_tensors="pt",
-        )
-        sample_passages = []
-        for k in range(20):
-            forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0)
-            sample_passages.append(forget_sample_text)
-        selfcheckscores = selfcheckmodel.selfcheck(sample_passages)
-        logging("="*89, args.logfile)
-        logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
-        logging("="*89, args.logfile)
-        selfcheckresults[name] = selfcheckscores.mean().item()*100
+    if args.do_selfcheck:
+        selfcheckmodel = SelfCheckModel()
+        selfcheckmodel.eval()
+        if not args.origmodel:
+            selfcheckresults = {}
+            for name in testdata.keys():
+                if name not in ["Theresa May", "Justin Trudeau"]:
+                    continue
+                attributes = namedict[name]
+                logging(f"Generating selfcheck samples for {name}", args.logfile)
+                prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
+                conversation = [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt}
+                ]
+                input_ids = tokenizer.apply_chat_template(
+                    conversation,
+                    add_generation_prompt=True,
+                    return_tensors="pt",
+                )
+                sample_passages = []
+                _, forget_greedy_passage = model.generate(input_ids.to(model.llm.device), do_sample=False)
+                for k in tqdm(range(20)):
+                    forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0)
+                    sample_passages.append(forget_sample_text)
+                logging(f"Running SelfCheckGPT for {name}", args.logfile)
+                selfcheckscores = selfcheckmodel.selfcheck_per_passage(forget_greedy_passage, sample_passages)
+                logging("="*89, args.logfile)
+                logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+                logging("="*89, args.logfile)
+                selfcheckresults[name] = selfcheckscores.mean().item()*100
 
-    with open(args.outfile.replace(".json", "_selfcheck.json"), "w") as fout:
-        json.dump(selfcheckresults, fout, indent=4)
+            with open(args.outfile.replace(".json", "_selfcheck.json"), "w") as fout:
+                json.dump(selfcheckresults, fout, indent=4)
+        else:
+            selfcheckresults2 = {}
+            for name in testdata.keys():
+                if name not in ["Theresa May", "Justin Trudeau"]:
+                    continue
+                attributes = namedict[name]
+                logging(f"Generating selfcheck samples for {name}", args.logfile)
+                prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
+                conversation = [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": prompt}
+                ]
+                input_ids = tokenizer.apply_chat_template(
+                    conversation,
+                    add_generation_prompt=True,
+                    return_tensors="pt",
+                )
+                _, forget_greedy_passage = model.generate(input_ids.to(model.llm.device), do_sample=False, memorize=True)
+                for k in tqdm(range(20)):
+                    forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0, memorize=True)
+                    sample_passages.append(forget_sample_text)
+                logging(f"Running SelfCheckGPT for {name}", args.logfile)
+                selfcheckscores = selfcheckmodel.selfcheck_per_passage(forget_greedy_passage, sample_passages)
+                logging("="*89, args.logfile)
+                logging("SelfCheckGPT score origmodel: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+                logging("="*89, args.logfile)
+                selfcheckresults2[name] = selfcheckscores.mean().item()*100
 
-
-    selfcheckresults2 = {}
-    for name in testdata.keys():
-        if name != "Theresa May":
-            continue
-        attributes = namedict[name]
-        logging(f"Generating selfcheck samples for {name}", args.logfile)
-        prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
-        conversation = [
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
-        ]
-        input_ids = tokenizer.apply_chat_template(
-            conversation,
-            add_generation_prompt=True,
-            return_tensors="pt",
-        )
-        sample_passages = []
-        for k in range(20):
-            forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0, memorize=True)
-            sample_passages.append(forget_sample_text)
-        selfcheckscores = selfcheckmodel.selfcheck(sample_passages)
-        logging("="*89, args.logfile)
-        logging("SelfCheckGPT score origmodel: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
-        logging("="*89, args.logfile)
-        selfcheckresults2[name] = selfcheckscores.mean().item()*100
-
-    with open(args.outfile.replace(".json", "_selfcheck_orig.json"), "w") as fout:
-        json.dump(selfcheckresults2, fout, indent=4)
+            with open(args.outfile.replace(".json", "_selfcheck_orig.json"), "w") as fout:
+                json.dump(selfcheckresults2, fout, indent=4)
 
 if __name__ == "__main__":
     ## Parameter groups
@@ -193,6 +205,11 @@ if __name__ == "__main__":
         "--origmodel",
         action='store_true',
         help="Use original LLM",
+    )
+    parser.add_argument(
+        "--do_selfcheck",
+        action='store_true',
+        help="Run selfcheck score",
     )
     args = parser.parse_args()
     main(args)

@@ -130,7 +130,7 @@ class SelfCheckModel(torch.nn.Module):
         num_sentences = len(sentences)
         num_samples = len(sampled_passages)
         scores = np.zeros((num_sentences, num_samples))
-        for sent_i in range(num_sentences):
+        for sent_i in tqdm(range(num_sentences)):
             sentence = sentences[sent_i]
             for sample_i, sample in enumerate(sampled_passages):
                 # this seems to improve performance when using the simple prompt template

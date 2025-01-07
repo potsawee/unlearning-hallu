@@ -47,6 +47,8 @@ def main(rank, args, world_size):
     with open(os.path.join(args.outputdir, 'model_config.json'), 'w') as f:
         json.dump(args.__dict__, f, indent=2)
 
+    os.system("cp {} {}".format(args.selected_ids, args.outputdir))
+
     ## Initialise data
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_path,
@@ -57,7 +59,7 @@ def main(rank, args, world_size):
             args.train_data_path,
             args.prompt_path,
             tokenizer,
-            selected_id=args.selected_id,
+            selected_id=args.selected_ids if args.selected_ids != "" else args.selected_id,
             mem_mcq="mem" in args.losstype,
         )
     else:
@@ -88,6 +90,11 @@ def main(rank, args, world_size):
         lora_dropout=lora_config["lora_dropout"],
         lora_module=lora_config["lora_module"],
     )
+    if args.load_from != "":
+        modelpath = os.path.join(args.load_from, "pytorch_model.pt")
+        trained_params = torch.load(modelpath)
+        msg = model.load_state_dict(trained_params, strict=False)
+
     selfcheckmodel = None
     if "selfcheck" in args.losstype:
         selfcheckmodel = SelfCheckModel()
@@ -161,7 +168,7 @@ def main(rank, args, world_size):
             rank,
             world_size,
             selfcheckmodel,
-            selected_name=traindata.selected_name,
+            selected_name=traindata.selected_names,
         )
         current_lr = optimizer.param_groups[0]["lr"]
         # torch.distributed.reduce(val_loss, 0)
@@ -170,12 +177,13 @@ def main(rank, args, world_size):
         if accelerator.is_main_process:
             logging(f"Epoch {epoch} | Learning rate: {current_lr}", args.logfile)
             # save_checkpoint(model, tokenizer, args.outputdir, epoch)
+        save_checkpoint(model, tokenizer, args.outputdir, epoch, "final")
         if "mcq" in args.losstype:
             eval_sample_mcq(args, model, traindata)
 
 
-def save_checkpoint(model, tokenizer, outputdir, step, epoch):
-    fulloutput = os.path.join(outputdir, "checkpoint.{}.{}".format(step, epoch))
+def save_checkpoint(model, tokenizer, outputdir, epoch, step):
+    fulloutput = os.path.join(outputdir, "checkpoint.{}.{}".format(epoch, step))
     os.system(f"mkdir -p {fulloutput}")
     checkpoint = OrderedDict()
     for k, v in model.named_parameters():
@@ -282,7 +290,12 @@ def train_one_epoch(
             mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
         # Forward
         mem_output = model(mem_sample_id).logits[:, :-1]
-        loss_mem = criterion(mem_output.reshape(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
+        if "flatten" in args.losstype:
+            mem_orig_output = torch.softmax(model(mem_sample_id, memorize=True).logits[:, -2], dim=-1)
+            loss_mem = - mem_orig_output * torch.log_softmax(mem_output[:, -1], dim=-1)
+            loss_mem = loss_mem.sum(dim=-1).mean() * args.retain_factor
+        else:
+            loss_mem = criterion(mem_output.reshape(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
 
         min_step = 10
         if "selfcheck" in args.losstype and args.selfchecksamples > min_step:
@@ -310,8 +323,15 @@ def train_one_epoch(
             if "mcq" in args.losstype:
                 if "flatten" in args.losstype:
                     indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
-                    forget_output = torch.log_softmax(forget_output[torch.arange(forget_output.size(0)), indices], dim=-1)
-                    loss_forget = (torch.exp(forget_output) * forget_output).sum()
+                    forget_output = torch.softmax(forget_output, dim=-1)
+                    with torch.no_grad():
+                        forget_label_mask = torch.zeros_like(forget_output)
+                        forget_label_mask[torch.arange(forget_output.size(0)), indices] = 1
+                        choice_prob = forget_output[:, indices].mean(dim=-1)
+                        choice_prob = choice_prob.unsqueeze(-1) * forget_label_mask
+                        labels = forget_output.data
+                        labels = choice_prob + (1 - forget_label_mask) * labels
+                    loss_forget = - (torch.log(forget_output) * labels).sum()
                 else:
                     random_choices = random.choices(["A", "B", "C", "D", "E"], k=forget_output.size(0))
                     label = [tokenizer.encode(random_choice)[1] for random_choice in random_choices]
@@ -389,10 +409,10 @@ def eval_sample_mcq(
     model,
     traindata,
 ):
-    input_ids = traindata.get_new_prompt()
+    input_ids, name = traindata.get_new_prompt()
     _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
     logging("="*89, args.logfile)
-    logging("Sampeld passage for{}".format(traindata.selected_name), args.logfile)
+    logging("Sampeld passage for{}".format(name), args.logfile)
     logging("-"*89, args.logfile)
     logging(forget_sample_text, args.logfile)
     logging("="*89, args.logfile)
@@ -494,6 +514,12 @@ if __name__ == "__main__":
         help="select which person to forget",
     )
     parser.add_argument(
+        "--selected_ids",
+        type=str,
+        default="config/unlearn_ids.json",
+        help="select which person to forget",
+    )
+    parser.add_argument(
         "--save_interval",
         type=int,
         default=0,
@@ -516,6 +542,12 @@ if __name__ == "__main__":
         type=str,
         default="ga",
         help="type of loss to train forget model",
+    )
+    parser.add_argument(
+        "--load_from",
+        type=str,
+        default="",
+        help="path to load checkpoint from",
     )
     parser.add_argument(
         "--npo_beta",

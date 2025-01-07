@@ -143,7 +143,7 @@ def main(args):
             except:
                 continue
         with open(os.path.join(args.outfile, "{}.json".format(name)), "w") as fout:
-            json.dump(results, fout, indent=4)
+            json.dump(results[name], fout, indent=4)
 
 
 if __name__ == "__main__":

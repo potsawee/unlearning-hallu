@@ -1,9 +1,10 @@
 . /scratch/OpenSource/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate hallucination
 
-expdir="exp/unlearning_bio_llama3_8B_mcq_moremem"
+expdir="exp/unlearning_bio_llama3_8B_mcq_choices_moremem_with_KL"
 
-epoch=5
-step=2500
+epoch=0
+step=final
+
 # python inference.py \
 #     --model_path $expdir \
 #     --model_ckpt checkpoint.$step \
