@@ -1,6 +1,7 @@
-. /scratch/OpenSource/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate hallucination
+. /home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/MultiModal/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate videollama
 
-expdir="exp/unlearning_bio_llama3_8B_mcq_choices_moremem_with_entropy"
+export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
+expdir="exp/unlearning_bio_llama3_8B_selfcheck_50sample_schedule"
 mkdir -p $expdir
 
 python train.py \

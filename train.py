@@ -52,7 +52,7 @@ def main(rank, args, world_size):
     ## Initialise data
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_path,
-        cache_dir="/data/milsrg1/huggingface/cache/gs534/cache"
+        # cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
     )
     if "mcq" in args.losstype:
         traindata = SupervisedMCQDataset(
