@@ -322,20 +322,25 @@ def train_one_epoch(
                 loss_forget = loss_forget.sum() / loss_mask.sum()
             if "mcq" in args.losstype:
                 if "flatten" in args.losstype:
-                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
-                    forget_output = torch.softmax(forget_output, dim=-1)
-                    with torch.no_grad():
-                        forget_label_mask = torch.zeros_like(forget_output)
-                        forget_label_mask[torch.arange(forget_output.size(0)), indices] = 1
-                        choice_prob = forget_output[:, indices].mean(dim=-1)
-                        choice_prob = choice_prob.unsqueeze(-1) * forget_label_mask
-                        labels = forget_output.data
-                        labels = choice_prob + (1 - forget_label_mask) * labels
-                    loss_forget = - (torch.log(forget_output) * labels).sum()
+                    letters = random.sample(["A", "B", "C", "D", "E"], k=1)
+                    # letters = ["A", "B", "C", "D", "E"]
+                    # indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D", "E"]]).to(model.llm.device)
+                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
+                    forget_output = - torch.log_softmax(forget_output, dim=-1)[:, indices]
+                    # forget_output = torch.softmax(forget_output, dim=-1)
+                    # with torch.no_grad():
+                    #     forget_label_mask = torch.zeros_like(forget_output)
+                    #     forget_label_mask[torch.arange(forget_output.size(0)), indices] = 1
+                    #     choice_prob = forget_output[:, indices].mean(dim=-1)
+                    #     choice_prob = choice_prob.unsqueeze(-1) * forget_label_mask
+                    #     labels = forget_output.data
+                    #     labels = choice_prob + (1 - forget_label_mask) * labels
+                    # loss_forget = - (torch.log(forget_output) * labels).sum()
+                    loss_forget = (forget_output).mean()
                 else:
                     random_choices = random.choices(["A", "B", "C", "D", "E"], k=forget_output.size(0))
                     label = [tokenizer.encode(random_choice)[1] for random_choice in random_choices]
-                    loss_forget = - torch.log_softmax(forget_output, dim=-1)[torch.arange(forget_output.size(0)), label]
+                    loss_forget = - torch.log_softmax(forget_output, dim=-1)[:, label]
                     loss_forget = loss_forget.mean()
             else:
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
@@ -378,7 +383,7 @@ def train_one_epoch(
             if args.losstype == "selfcheck":
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss} | time {elasped_time}", args.logfile)
             elif "mcq" in args.losstype:
-                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem} | time {elasped_time}", args.logfile)
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem/args.retain_factor} | time {elasped_time}", args.logfile)
             else:
                 PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
                 PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
