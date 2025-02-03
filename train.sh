@@ -2,7 +2,7 @@
 
 export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
-mode="mcqmemflatten"
+mode="mcqmem"
 
 expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
 mkdir -p $expdir
@@ -12,7 +12,7 @@ python train.py \
     --batch_size 3 \
     --learning_rate 5e-5 \
     --gradient_accumulation_steps 1 \
-    --num_train_epochs 10 \
+    --num_train_epochs 5 \
     --num_warmup_steps 0.0 \
     --weight_decay 0.0 \
     --lr_scheduler_type constant \
@@ -21,7 +21,7 @@ python train.py \
     --log_interval 50 \
     --save_interval 20000 \
     --iterations 50000 \
-    --train_data_path ./llm-geneation-prompts/WHPplus/new_whp_mcq_train.json \
+    --train_data_path ./llm-geneation-prompts/WHPplus/balanced_whp_mcq_train_dedup.json \
     --prompt_path ./llm-geneation-prompts/prompt.json \
     --lora_config config/lora_config.json \
     --selected_ids config/unlearn_ids.json \

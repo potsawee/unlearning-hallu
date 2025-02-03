@@ -2,7 +2,7 @@
 
 expdir="exp/unlearning_whp_llama3_8B_MCQ_mcqmem_1"
 
-epoch=6
+epoch=3
 step=final
 
 # python inference.py \
@@ -27,4 +27,4 @@ python inference.py \
     --testfile llm-geneation-prompts/WHPplus/whp_unlearn_testset_forget.json \
     --outfile $expdir/forget_testoutput_${epoch}_${step}.json \
     --logfile $expdir/testlog.txt \
-    --origmodel \
+    # --origmodel \
