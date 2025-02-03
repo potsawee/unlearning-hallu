@@ -52,7 +52,7 @@ def main(args):
     with open(loraconfigfile) as fin:
         lora_config = json.load(fin)
     # Load model
-    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/home/gs534/rds/hpc-work/work/ckpts/")
+    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
     model = UnlearnModel(
         train_args["model_path"],
         tokenizer,

@@ -1,6 +1,6 @@
-. /home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/MultiModal/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate videollama
+. /scratch/OpenSource/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate hallucination
 
-export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
+# export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
 mode="mcqmem"
 
