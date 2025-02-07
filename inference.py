@@ -113,7 +113,6 @@ def main(args):
                     entropy = 0
                     ref_prob = 0
             result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text, "entropy": entropy, "acc_prob": ref_prob}
-            import pdb; pdb.set_trace()
             results[name].append(result)
     with open(args.outfile.replace(".json", "_orig.json") if args.origmodel else args.outfile, "w") as fout:
         json.dump(results, fout, indent=4)

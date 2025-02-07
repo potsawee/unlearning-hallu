@@ -2,20 +2,20 @@
 
 # export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
-mode="mcqmem"
+mode="mcqmemflattenA"
 
 expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
 mkdir -p $expdir
 
 python train.py \
     --model_path meta-llama/Llama-3.1-8B-Instruct \
-    --batch_size 3 \
-    --learning_rate 5e-5 \
+    --batch_size 8 \
+    --learning_rate 10e-5 \
     --gradient_accumulation_steps 1 \
-    --num_train_epochs 5 \
+    --num_train_epochs 10 \
     --num_warmup_steps 0.0 \
     --weight_decay 0.0 \
-    --lr_scheduler_type constant \
+    --lr_scheduler_type linear \
     --outputdir $expdir \
     --logfile $expdir/log.txt \
     --log_interval 50 \

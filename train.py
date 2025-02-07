@@ -291,12 +291,14 @@ def train_one_epoch(
                 if "kl" in args.losstype:
                     forget_logps = pad_sequence(forget_logps, batch_first=True, padding_value=0)
                 # Generate the sample to memorize
-                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
+                if args.retain_factor > 0:
+                    mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
             logging("="*89, args.logfile)
         elif "mcq" in args.losstype:
             forget_samples = [sample[0] for sample in forget_samples]
             forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
-            mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
+            if args.retain_factor > 0:
+                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
         elif "whp" in args.losstype and i == 0:
             with torch.no_grad():
                 forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
@@ -319,8 +321,9 @@ def train_one_epoch(
 
         # Forward
         indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
-        if mem_sample_id is not None:
-            mem_output = model(mem_sample_id).logits[:, :-1]
+        if args.retain_factor > 0 and mem_sample_id is not None:
+            mem_output = model(mem_sample_id).logits
+            dist_indices = (((mem_sample_id != 0) * mem_labels) == -100).sum(dim=-1)
             if "bothflatten" in args.losstype:
                 if "flattenO" in args.losstype:
                     with torch.no_grad():
@@ -332,13 +335,14 @@ def train_one_epoch(
                     loss_mem = loss_mem.sum(dim=-1).mean() * args.retain_factor
                 else:
                     with torch.no_grad():
-                        mem_orig_output = model(mem_sample_id, memorize=True).logits[:, -2]
+                        mem_orig_output = model(mem_sample_id, memorize=True).logits[:, dist_indices]
                         mem_orig_output = torch.softmax(mem_orig_output, dim=-1)
                         mem_orig_output = mem_orig_output.data
-                    mem_output = torch.log_softmax(mem_output[:, -1], dim=-1)
+                    mem_output = torch.log_softmax(mem_output[:, dist_indices], dim=-1)
                     loss_mem = - mem_orig_output * mem_output
                     loss_mem = loss_mem.sum(dim=-1).mean() * args.retain_factor
             else:
+                mem_output = mem_output[:, :-1]
                 loss_mem = criterion(mem_output.reshape(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
             loss_mem = loss_mem.mean()
         else:
@@ -361,31 +365,33 @@ def train_one_epoch(
                 loss += loss_forget.item()
         else:
             forget_output = model(forget_sample_id).logits
-            forget_output = forget_output[:, -1] if "mcq" in args.losstype else forget_output[:, :-1]
+            forget_indices = (forget_sample_id != 0).sum(dim=-1) - 1
+            if"mcq" in args.losstype:
+                forget_output = forget_output[torch.arange(forget_indices.size(0)), forget_indices]
+            else:
+                forget_output = forget_output[:, :-1]
             if "kl" in args.losstype:
                 loss_mask = forget_labels[:, 1:] != -100
                 forget_output_logp = torch.log_softmax(forget_output, dim=-1)
                 loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
                 loss_forget = loss_forget.sum() / loss_mask.sum()
-            if "mcq" in args.losstype:
+            elif "mcq" in args.losstype:
                 if "flattenO" in args.losstype:
-                    forget_output = - torch.log_softmax(forget_output[:, indices], dim=-1)
-                    loss_forget = (forget_output).mean()
-                elif "accum" in args.losstype:
-                    losses_forget = []
-                    for choice in ["A", "B", "C", "D", "E"]:
-                        label = [tokenizer.encode(choice)[1]]
-                        loss_forget = - torch.log_softmax(forget_output, dim=-1)[:, label]
-                        losses_forget.append(loss_forget)
-                    loss_forget = torch.concat(losses_forget, dim=0).mean()
+                    loss_forget = - torch.log_softmax(forget_output[:, indices], dim=-1)
+                elif "flattenA" in args.losstype:
+                    with torch.no_grad():
+                        all_probs = torch.softmax(forget_output, dim=-1)
+                        flat_probs = all_probs[:, indices].mean(dim=-1)
+                        all_probs[:, indices] = flat_probs.unsqueeze(1)
+                    all_probs = all_probs.data
+                    loss_forget = - (torch.log_softmax(forget_output, dim=-1) * all_probs).sum(dim=-1)
                 elif "flatten" in args.losstype:
-                    forget_output = - torch.log_softmax(forget_output, dim=-1)[:, indices]
-                    loss_forget = (forget_output).mean()
+                    loss_forget = - torch.log_softmax(forget_output, dim=-1)[:, indices]
                 else:
                     random_choices = random.choices(["A", "B", "C", "D", "E"], k=forget_output.size(0))
                     label = [tokenizer.encode(random_choice)[1] for random_choice in random_choices]
                     loss_forget = - torch.log_softmax(forget_output, dim=-1)[:, label]
-                    loss_forget = loss_forget.mean()
+                loss_forget = loss_forget.mean()
             else:
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
             if args.losstype == "ga":
@@ -427,7 +433,7 @@ def train_one_epoch(
             if args.losstype == "selfcheck":
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss} | time {elasped_time}", args.logfile)
             elif "mcq" in args.losstype:
-                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem/args.retain_factor} | time {elasped_time}", args.logfile)
+                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem} | time {elasped_time}", args.logfile)
             else:
                 PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
                 PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)

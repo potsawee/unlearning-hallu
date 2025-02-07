@@ -1,5 +1,5 @@
 {
-    "lora_rank": 512,
+    "lora_rank": 64,
     "lora_alpha": 128,
     "lora_dropout": 0.1,
     "lora_module": ["q_proj", "v_proj", "o_proj", "fc1", "fc2"]
