@@ -68,13 +68,13 @@ class UnlearnModel(torch.nn.Module):
             self.llm.enable_adapters()
         return outputs
 
-    def generate(self, inputs, memorize=False, temperature=1.0, do_sample=True):
+    def generate(self, inputs, memorize=False, temperature=1.0, do_sample=True, max_new_tokens=512):
         attention_mask = torch.ones_like(inputs)
         if memorize:
             self.llm.disable_adapters()
         generate_ids = self.llm.generate(
             inputs,
-            max_new_tokens=512,
+            max_new_tokens=max_new_tokens,
             attention_mask=attention_mask,
             temperature=temperature,
             top_p=0.9,

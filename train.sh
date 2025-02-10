@@ -3,17 +3,18 @@
 # export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
 mode="mcqmem"
+# mode="rawqa"
 
 # expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
 expdir="exp/unlearning_whp_llama2_7B_MCQ_${mode}_1"
 mkdir -p $expdir
-# modelname=meta-llama/Llama-3.1-8B-Instruct
-modelname=/data/milsrg1/huggingface/cache/gs534/cache/models--meta-llama--Llama-2-7b-chat-hf/snapshots/f5db02db724555f92da89c216ac04704f23d4590
+modelpath=/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMknowledge/ckpt/llama-2-7b-chat-hf
+# modelpath=meta-llama/Llama-3.1-8B-Instruct
 
 python train.py \
-    --model_path $modelname \
-    --batch_size 8 \
-    --learning_rate 5e-5 \
+    --model_path $modelpath \
+    --batch_size 3 \
+    --learning_rate 10e-5 \
     --gradient_accumulation_steps 1 \
     --num_train_epochs 3 \
     --num_warmup_steps 0.0 \
@@ -21,10 +22,10 @@ python train.py \
     --lr_scheduler_type linear \
     --outputdir $expdir \
     --logfile $expdir/log.txt \
-    --log_interval 50 \
+    --log_interval 1 \
     --save_interval 20000 \
     --iterations 50000 \
-    --train_data_path ./llm-geneation-prompts/WHPplus/balanced_whp_mcq_train_dedup.json \
+    --train_data_path ./llm-geneation-prompts/WHPplus/whp_rawqa.json \
     --prompt_path ./llm-geneation-prompts/prompt.json \
     --lora_config config/lora_config.json \
     --selected_ids config/unlearn_ids.json \

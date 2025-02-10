@@ -24,6 +24,7 @@ from torch.utils.data import DataLoader
 import accelerate
 from accelerate import Accelerator
 from torch.nn.utils.rnn import pad_sequence
+from rouge_score import rouge_scorer
 
 from models import UnlearnModel, SelfCheckModel
 from dataloader import SupervisedDataset, SupervisedWHPDataset, collate_fn, get_hallucinated_sample, SupervisedMCQDataset
@@ -35,6 +36,8 @@ random.seed(1)
 torch.manual_seed(1)
 
 letters = ["A", "B", "C", "D", "E"]
+# scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
 
 
 def logging(s, logfile, logging_=True, log_=True):
@@ -78,13 +81,13 @@ def main(rank, args, world_size):
         selfcheckmodel.eval()
 
     ## Initialise data
-    if "mcq" in args.losstype:
+    if "mcq" in args.losstype or "rawqa" in args.losstype:
         traindata = SupervisedMCQDataset(
             args.train_data_path,
             args.prompt_path,
             tokenizer,
             selected_id=args.selected_ids if args.selected_ids != "" else args.selected_id,
-            mem_mcq="mem" in args.losstype,
+            losstype=args.losstype,
         )
     elif "whp" in args.losstype:
         traindata = SupervisedWHPDataset(
@@ -112,7 +115,7 @@ def main(rank, args, world_size):
     )
 
     ## Initialise criterion and optimiser
-    if "selfcheck" in args.losstype:
+    if "selfcheck" in args.losstype or "grpo" in args.losstype:
         criterion = torch.nn.CrossEntropyLoss(ignore_index=-100, reduction="none")
     else:
         criterion = torch.nn.CrossEntropyLoss(ignore_index=-100)
@@ -182,14 +185,12 @@ def main(rank, args, world_size):
             selected_name=traindata.selected_names,
         )
         current_lr = optimizer.param_groups[0]["lr"]
-        # torch.distributed.reduce(val_loss, 0)
-        # torch.distributed.reduce(val_acc, 0)
         # Save models
         if accelerator.is_main_process:
             logging(f"Epoch {epoch} | Learning rate: {current_lr}", args.logfile)
             # save_checkpoint(model, tokenizer, args.outputdir, epoch)
         save_checkpoint(model, tokenizer, args.outputdir, epoch, "final")
-        if "mcq" in args.losstype:
+        if "mcq" in args.losstype or "rawqa" in args.losstype:
             eval_sample_mcq(args, model, traindata)
 
 
@@ -208,17 +209,33 @@ def save_checkpoint(model, tokenizer, outputdir, epoch, step):
     return checkpoint
 
 
-def gen_mem_sample(mem_samples, model):
+def gen_mem_sample(mem_samples, model, maxlen=512):
     # Generate the sample to memorize
     mem_sample_ids = []
     mem_labels = []
     for mem_sample in mem_samples:
-        mem_sample_id, mem_sample_text = model.generate(mem_sample, memorize=True)
+        mem_sample_id, mem_sample_text = model.generate(mem_sample, memorize=True, max_new_tokens=maxlen)
         mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
         mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
     mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
     mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
     return mem_sample_id, mem_labels
+
+
+def get_qa_scores(sample_texts):
+    scores = []
+    for i, text in enumerate(sample_texts):
+        subscores = []
+        for ref_text in sample_texts:
+            if ref_text != text:
+                rouge = scorer.score(text, ref_text)
+                subscores.append(1 - rouge["rougeL"].recall)
+            else:
+                subscores.append(0)
+        subscore = sum(subscores) / min(1, len(subscores))
+        scores.append(subscore)
+    return scores
+
 
 def train_one_epoch(
     args,
@@ -239,14 +256,17 @@ def train_one_epoch(
     trainsize = len(train_dataloader)
     start = time.time()
     for i, batch in enumerate(train_dataloader):
-        forget_samples, mem_samples = batch
+        if "rawqa" in args.losstype:
+            forget_samples, forget_answer, mem_samples, mem_answer = batch
+        else:
+            forget_samples, mem_samples = batch
         forget_sample_ids = []
         forget_labels = []
         forget_right_sample_ids = []
         forget_right_labels = []
         forget_logps = []
         # Resample passage
-        if i % args.resample_frequency == 0 and "mcq" not in args.losstype and "whp" not in args.losstype:
+        if i % args.resample_frequency == 0 and "mcq" not in args.losstype and "rawqa" not in args.losstype:
             logging("="*89, args.logfile)
             logging("Resample at step: {}".format(i), args.logfile)
             with torch.no_grad():
@@ -299,6 +319,30 @@ def train_one_epoch(
             forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
             if args.retain_factor > 0:
                 mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
+        elif "rawqa" in args.losstype:
+            forget_sample_ids = []
+            forget_labels = [] # [torch.cat([forget_samples[k][0]*0-100, answer[0, forget_samples[k].size(-1):]], dim=-1) for k, answer in enumerate(forget_answer)]
+            forget_scores = []
+            if args.retain_factor > 0:
+                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model, maxlen=64)
+            with torch.no_grad():
+                for k, forget_sample in enumerate(forget_samples):
+                    import pdb; pdb.set_trace()
+                    forget_sample_ids.append(forget_answer[k][0])
+                    forget_labels.append(torch.cat([forget_samples[k][0]*0-100, forget_answer[k][0, forget_samples[k].size(-1):]], dim=-1))
+                    forget_sample_texts = [tokenizer.decode(forget_answer[k][0]).split("<|end_header_id|>")[-1].strip("<|eot_id|>").lstrip().lower()]
+                    for _ in range(args.selfchecksamples):
+                        forget_sample_id, forget_sample_text = model.generate(forget_sample, max_new_tokens=32, temperature=1.2)
+                        if "grpo" in args.losstype or forget_sample_text.lower() not in forget_sample_texts:
+                            forget_sample_texts.append(forget_sample_text.lower())
+                            forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
+                            forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
+                    if "grpo" in args.losstype:
+                        forget_scores.extend(get_qa_scores(forget_sample_texts))
+            forget_sample_id = pad_sequence(forget_sample_ids, batch_first=True, padding_value=0)
+            if "grpo" in args.losstype:
+                forget_scores = torch.tensor(forget_scores).to(forget_sample_id.device)
+            forget_labels = pad_sequence(forget_labels, batch_first=True, padding_value=-100)
         elif "whp" in args.losstype and i == 0:
             with torch.no_grad():
                 forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
@@ -346,7 +390,7 @@ def train_one_epoch(
                 loss_mem = criterion(mem_output.reshape(-1, mem_output.size(-1)), mem_labels[:, 1:].reshape(-1)) * args.retain_factor
             loss_mem = loss_mem.mean()
         else:
-            loss_mem = 0
+            loss_mem = torch.tensor(0)
 
         min_step = 10
         if "selfcheck" in args.losstype and args.selfchecksamples > min_step:
@@ -365,6 +409,9 @@ def train_one_epoch(
                 loss += loss_forget.item()
         else:
             forget_output = model(forget_sample_id).logits
+            if "rawqa" in args.losstype:
+                with torch.no_grad():
+                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
             forget_indices = (forget_sample_id != 0).sum(dim=-1) - 1
             if"mcq" in args.losstype:
                 forget_output = forget_output[torch.arange(forget_indices.size(0)), forget_indices]
@@ -394,10 +441,20 @@ def train_one_epoch(
                 loss_forget = loss_forget.mean()
             else:
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
+                if "grpo" in args.losstype:
+                    logp = - loss_forget.view(forget_labels.size(0), -1).sum(dim=-1)
+                    loss_forget = - forget_scores * torch.exp(logp - logp.detach())
+                    with torch.no_grad():
+                        loss_forget_ref = criterion(forget_output_ref.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
+                        logp_ref = - loss_forget_ref.view(forget_labels.size(0), -1).sum(dim=-1)
+                    loss_kl = torch.exp(logp_ref - logp) - (logp_ref - logp) - 1
+                    loss_forget += args.npo_beta * loss_kl
+                    loss_forget = loss_forget.mean()
+
             if args.losstype == "ga":
                 # Negative loss - Gradient Ascent
                 loss = - loss_forget
-            elif args.losstype in ["rewrite", "rewritekl"] or "mcq" in args.losstype:
+            elif args.losstype in ["rewrite", "rewritekl"]:
                 loss = loss_forget
             elif args.losstype == "rewritedpo":
                 forget_right_output = model(forget_right_sample_ids).logits[:, :-1]
@@ -419,6 +476,8 @@ def train_one_epoch(
                     forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
                     forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
                 loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
+            else:
+                loss = loss_forget
             loss = loss + loss_mem
 
             loss = loss / args.gradient_accumulation_steps
@@ -435,9 +494,13 @@ def train_one_epoch(
             elif "mcq" in args.losstype:
                 logging(f"Epoch {epoch} | Batch {i}/{trainsize} | Loss: {loss_forget} | Loss mem: {loss_mem} | time {elasped_time}", args.logfile)
             else:
-                PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
-                PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
-                logging(f"Epoch {epoch} | Batch {i}/{trainsize} | PPL forget: {PPL} | PPL mem: {PPL_mem} | time {elasped_time}", args.logfile)
+                if "grpo" in args.losstype:
+                    score = forget_scores.mean().item()
+                    logging(f"Epoch {epoch} | Batch {i}/{trainsize} | loss forget: {loss_forget.item()} | scores: {score} | time {elasped_time}", args.logfile)
+                else:
+                    PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
+                    PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
+                    logging(f"Epoch {epoch} | Batch {i}/{trainsize} | PPL forget: {PPL} | PPL mem: {PPL_mem} | time {elasped_time}", args.logfile)
         if (i + 1) % args.save_interval == 0 and accelerator.is_main_process:
             logging(f"Saving at Step {i+1}", args.logfile)
             save_checkpoint(model, tokenizer, args.outputdir, epoch, i+1)

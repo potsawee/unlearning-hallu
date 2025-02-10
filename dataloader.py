@@ -213,6 +213,12 @@ def collate_fn(batch):
         # forget_samples = batch[0][0:1]
         mem_samples = [s[1] for s in batch]
         return forget_samples, mem_samples
+    elif len(batch[0]) == 4:
+        forget_samples = [s[0] for s in batch]
+        forget_answers = [s[1] for s in batch]
+        mem_samples = [s[2] for s in batch]
+        mem_answers = [s[3] for s in batch]
+        return forget_samples, forget_answers, mem_samples, mem_answers
     else:
         forget_id = torch.cat([s[0] for s in batch], dim=0)
         forget_dist = torch.cat([s[2] for s in batch], dim=0)
@@ -227,7 +233,7 @@ def get_hallucinated_sample(sample, name, tokenizer, whp=False):
         )
         conversation = [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt}
+           {"role": "user", "content": prompt}
         ]
     else:
         prompt = f"""You are given the following passage about {name}:
@@ -255,7 +261,7 @@ class SupervisedMCQDataset(Dataset):
         prompt_path,
         tokenizer,
         selected_id="",
-        mem_mcq=False,
+        losstype="",
     ):
         super(SupervisedMCQDataset, self).__init__()
         with open(data_path) as fin:
@@ -280,7 +286,7 @@ class SupervisedMCQDataset(Dataset):
         self.tokenizer = tokenizer
         with open(prompt_path) as fin:
             self.prompt_bank = json.load(fin)
-        self.mem_mcq = mem_mcq
+        self.losstype = losstype
         self.selected_names = [self.data[idx][0]["name"] for idx in self.selected_id]
         print("Choosing {} to forget".format(self.selected_names))
 
@@ -288,7 +294,20 @@ class SupervisedMCQDataset(Dataset):
         return len(self.unlearn_data)
 
     def sample_passage(self, idx, memorise=False):
-        if not self.mem_mcq and memorise:
+        answer = ""
+        if "rawqa" in self.losstype:
+            if memorise:
+                question = random.choice(self.mem_data)
+            else:
+                question = self.unlearn_data[idx]
+            prompt = "Question:\n{}\nGive short answer directly.\nAnswer:\n"
+            prompt = prompt.format(question["question"])
+            if not memorise:
+                wrong_choices = [choice for choice in ["A", "B", "C", "D", "E"] if choice != question["answer"]]
+                answer = question["choices"][random.choice(wrong_choices)]
+            else:
+                answer = question["choices"][question["answer"]]
+        elif "mcqmem" not in self.losstype and memorise:
             name = random.choice(self.mem_names)
             prompt = self.prompt_bank["train_prompts"].replace("###name###", name)
         else:
@@ -305,15 +324,30 @@ class SupervisedMCQDataset(Dataset):
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt},
         ]
+        if "rawqa" in self.losstype:
+            conversation_answer = conversation + [{"role": "assistant", "content": answer}]
+            answer_input_ids = self.tokenizer.apply_chat_template(
+                conversation_answer,
+                add_generation_prompt=False,
+                return_tensors="pt",
+            )
         input_ids = self.tokenizer.apply_chat_template(
             conversation,
             add_generation_prompt=True,
             return_tensors="pt",
         )
-        return input_ids
+        if "rawqa" in self.losstype:
+            return input_ids, answer_input_ids
+        else:
+            return input_ids
 
     def __getitem__(self, idx) -> Dict[str, torch.Tensor]:
-        return self.sample_passage(idx), self.sample_passage(idx, memorise=True)
+        if "rawqa" in self.losstype:
+            forget_passage, forget_answer = self.sample_passage(idx)
+            mem_passage, mem_answer = self.sample_passage(idx, memorise=True)
+            return forget_passage, forget_answer, mem_passage, mem_answer
+        else:
+            return self.sample_passage(idx), self.sample_passage(idx, memorise=True)
 
     def get_new_prompt(self):
         name = random.choice(self.selected_names)
