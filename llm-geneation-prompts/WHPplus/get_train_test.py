@@ -61,16 +61,23 @@ newdata = {}
 for person in data:
     if "Questions" in person:
         for question in person["Questions"]:
-            question["choices"] = {"A": question["answer"], "B": question["wrong_answer"], "C": question["wrong_answer"], "D": question["wrong_answer"], "E": question["wrong_answer"]}
-            question["answer"] = "A"
-            question["name"] = person["name"]
-        newdata[str(person["id"])] = person["Questions"]
+            datapiece = {}
+            datapiece["name"] = person["name"]
+            datapiece["Question"] = question["question"]
+            datapiece["Answer"] = question["answer"]
+            # question["choices"] = {"A": question["answer"], "B": question["wrong_answer"], "C": question["wrong_answer"], "D": question["wrong_answer"], "E": question["wrong_answer"]}
+            # question["answer"] = "A"
+            # question["name"] = person["name"]
+            if person["name"] not in newdata:
+                newdata[person["name"]] = []
+            newdata[person["name"]].append(datapiece)
+        # newdata[str(person["id"])] = person["Questions"]
 
-for idx, questions in origdata.items():
-    if idx not in newdata:
-        newdata[idx] = questions
-    else:
-        print(idx)
+# for idx, questions in origdata.items():
+#     if idx not in newdata:
+#         newdata[idx] = questions
+#     else:
+#         print(idx)
 
-with open("whp_rawqa.json", "w") as fout:
+with open("whp_rawqa_forget.json", "w") as fout:
     json.dump(newdata, fout, indent=4)

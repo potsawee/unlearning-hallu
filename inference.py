@@ -51,6 +51,11 @@ def main(args):
     loraconfigfile = os.path.join(args.model_path, "lora_config.json")
     with open(loraconfigfile) as fin:
         lora_config = json.load(fin)
+    with open("llm-geneation-prompts/WHPplus/whp_names.json") as fin:
+        id_to_names = {}
+        data = json.load(fin)
+        for datapiece in data:
+            id_to_names[str(datapiece["id"])] = datapiece["name"]
     # Load model
     tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
     model = UnlearnModel(
@@ -74,15 +79,22 @@ def main(args):
 
     # Start testing
     results = {}
+    letters = ["A", "B", "C", "D"]
     for name, questions in testdata.items():
+        if name in id_to_names:
+            name = id_to_names[name]
         results[name] = []
         logging("Testing {}".format(name), args.logfile)
         for question in tqdm(questions):
             if "Choices" in question:
                 choices = "A. {}\nB.{}\nC.{}\nD.{}".format(question["Choices"]["A"], question["Choices"]["B"], question["Choices"]["C"], question["Choices"]["D"])
                 prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C or D) only.".format(question["Question"], choices)
-                # prompt = "Question:\n{}\nChoose one answer from:\n{}Only output the letter of the correct answer.\nAnswer:\n".format(question["Question"], choices)
+                if "E" in question["Choices"]:
+                    letters = ["A", "B", "C", "D", "E"]
+                    choices += "\nE.{}".format(question["Choices"]["E"])
+                    prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C, D or E) only.".format(question["Question"], choices)
                 conversation = [
+                    {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": prompt}
                 ]
                 input_ids = tokenizer.apply_chat_template(
@@ -94,13 +106,14 @@ def main(args):
                 with torch.no_grad():
                     _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
                     output = model(input_ids.to(model.llm.device)).logits[:, -1]
-                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in ["A", "B", "C", "D"]]).to(model.llm.device)
+                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
                     output = torch.softmax(output, dim=-1)[:, indices]
-                    ref_token = ["A", "B", "C", "D"].index(question["Answer"])
+                    ref_token = letters.index(question["Answer"])
                     ref_prob = output[:, ref_token].item()
                     entropy = - (output * torch.log(output)).sum().item()
             else:
                 conversation = [
+                    {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": question["Question"]}
                 ]
                 input_ids = tokenizer.apply_chat_template(
@@ -114,7 +127,13 @@ def main(args):
                     ref_prob = 0
             result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text, "entropy": entropy, "acc_prob": ref_prob}
             results[name].append(result)
-    with open(args.outfile.replace(".json", "_orig.json") if args.origmodel else args.outfile, "w") as fout:
+
+    outfilename = args.outfile
+    if args.origmodel:
+        outfilename = args.outfile.replace(".json", "_orig.json")
+    if "mcq" in args.testfile:
+        outfilename = args.outfile.replace(".json", "_mcq.json")
+    with open(outfilename, "w") as fout:
         json.dump(results, fout, indent=4)
 
     if args.do_selfcheck:

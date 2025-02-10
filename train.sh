@@ -2,17 +2,20 @@
 
 # export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
-mode="mcqmemflattenA"
+mode="mcqmem"
 
-expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
+# expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
+expdir="exp/unlearning_whp_llama2_7B_MCQ_${mode}_1"
 mkdir -p $expdir
+# modelname=meta-llama/Llama-3.1-8B-Instruct
+modelname=/data/milsrg1/huggingface/cache/gs534/cache/models--meta-llama--Llama-2-7b-chat-hf/snapshots/f5db02db724555f92da89c216ac04704f23d4590
 
 python train.py \
-    --model_path meta-llama/Llama-3.1-8B-Instruct \
+    --model_path $modelname \
     --batch_size 8 \
-    --learning_rate 10e-5 \
+    --learning_rate 5e-5 \
     --gradient_accumulation_steps 1 \
-    --num_train_epochs 10 \
+    --num_train_epochs 3 \
     --num_warmup_steps 0.0 \
     --weight_decay 0.0 \
     --lr_scheduler_type linear \
@@ -28,8 +31,9 @@ python train.py \
     --resample_frequency 50 \
     --losstype $mode \
     --npo_beta 0.005 \
-    --retain_factor 0.05 \
+    --retain_factor 0.02 \
     --selfchecksamples 50 \
+
 
 # expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_2"
 # mkdir -p $expdir
