@@ -57,7 +57,7 @@ def main(rank, args, world_size):
     # Define model
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_path,
-        cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+        cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
     )
     with open(args.lora_config) as fin:
         lora_config = json.load(fin)
@@ -69,11 +69,22 @@ def main(rank, args, world_size):
         lora_alpha=lora_config["lora_alpha"],
         lora_dropout=lora_config["lora_dropout"],
         lora_module=lora_config["lora_module"],
+        uselora=lora_config["uselora"],
     )
     if args.load_from != "":
         modelpath = os.path.join(args.load_from, "pytorch_model.pt")
         trained_params = torch.load(modelpath)
         msg = model.load_state_dict(trained_params, strict=False)
+
+    reference_model = None
+    if not lora_config["uselora"]:
+        reference_model = AutoModelForCausalLM.from_pretrained(
+            args.model_path,
+            torch_dtype=torch.bfloat16,
+            cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
+        ).eval().to(device)
+        for param in reference_model.parameters():
+            param.requires_grad = False
 
     selfcheckmodel = None
     if "selfcheck" in args.losstype:
@@ -183,6 +194,7 @@ def main(rank, args, world_size):
             world_size,
             selfcheckmodel,
             selected_name=traindata.selected_names,
+            reference_model=reference_model,
         )
         current_lr = optimizer.param_groups[0]["lr"]
         # Save models
@@ -209,16 +221,17 @@ def save_checkpoint(model, tokenizer, outputdir, epoch, step):
     return checkpoint
 
 
-def gen_mem_sample(mem_samples, model, maxlen=512):
+def gen_mem_sample(mem_samples, model, maxlen=512, reference_model=None):
     # Generate the sample to memorize
-    mem_sample_ids = []
-    mem_labels = []
-    for mem_sample in mem_samples:
-        mem_sample_id, mem_sample_text = model.generate(mem_sample, memorize=True, max_new_tokens=maxlen)
-        mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
-        mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
-    mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
-    mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
+    with torch.no_grad():
+        mem_sample_ids = []
+        mem_labels = []
+        for mem_sample in mem_samples:
+            mem_sample_id, mem_sample_text = model.generate(mem_sample, memorize=True, max_new_tokens=maxlen, model=reference_model)
+            mem_sample_ids.append(torch.cat([mem_sample, mem_sample_id], dim=-1)[0])
+            mem_labels.append(torch.cat([mem_sample*0-100, mem_sample_id], dim=-1)[0])
+        mem_sample_id = pad_sequence(mem_sample_ids, batch_first=True, padding_value=0)
+        mem_labels = pad_sequence(mem_labels, batch_first=True, padding_value=-100)
     return mem_sample_id, mem_labels
 
 
@@ -232,7 +245,7 @@ def get_qa_scores(sample_texts):
                 subscores.append(1 - rouge["rougeL"].recall)
             else:
                 subscores.append(0)
-        subscore = sum(subscores) / min(1, len(subscores))
+        subscore = sum(subscores) / max(1, len(subscores))
         scores.append(subscore)
     return scores
 
@@ -251,6 +264,7 @@ def train_one_epoch(
     world_size,
     selfcheckmodel,
     selected_name="",
+    reference_model=None,
 ):
     optimizer.zero_grad()
     trainsize = len(train_dataloader)
@@ -288,19 +302,19 @@ def train_one_epoch(
                         logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
                         logging("="*89, args.logfile)
                     else:
-                        forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
+                        forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True, model=reference_model)
                         forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
                         forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                         if "rewrite" in args.losstype:
                             hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer).to(forget_sample.device)
-                            forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
+                            forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True, model=reference_model)
                         forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
                         logging("="*89, args.logfile)
                         logging("Fake passage:", args.logfile)
                         logging(forget_sample_text, args.logfile)
                         forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                         if "kl" in args.losstype:
-                            forget_sample_logp = model(forget_sample_ids[-1].unsqueeze(0), memorize=True).logits
+                            forget_sample_logp = model(forget_sample_ids[-1].unsqueeze(0), memorize=True, model=reference_model).logits
                             forget_sample_logp = torch.softmax(forget_sample_logp, dim=-1)
                             forget_logps.append(forget_sample_logp[0])
                 forget_sample_id = pad_sequence(forget_sample_ids, batch_first=True, padding_value=0)
@@ -312,28 +326,29 @@ def train_one_epoch(
                     forget_logps = pad_sequence(forget_logps, batch_first=True, padding_value=0)
                 # Generate the sample to memorize
                 if args.retain_factor > 0:
-                    mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
+                    mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model, reference_model=reference_model)
             logging("="*89, args.logfile)
         elif "mcq" in args.losstype:
             forget_samples = [sample[0] for sample in forget_samples]
             forget_sample_id = pad_sequence(forget_samples, batch_first=True, padding_value=0)
             if args.retain_factor > 0:
-                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model)
+                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model, reference_model=reference_model, maxlen=64)
         elif "rawqa" in args.losstype:
+            if i % args.save_interval == 0:
+                eval_sample_mcq(args, model, traindata)
             forget_sample_ids = []
             forget_labels = [] # [torch.cat([forget_samples[k][0]*0-100, answer[0, forget_samples[k].size(-1):]], dim=-1) for k, answer in enumerate(forget_answer)]
             forget_scores = []
             if args.retain_factor > 0:
-                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model, maxlen=64)
+                mem_sample_id, mem_labels = gen_mem_sample(mem_samples, model, maxlen=128, reference_model=reference_model)
             with torch.no_grad():
                 for k, forget_sample in enumerate(forget_samples):
-                    import pdb; pdb.set_trace()
                     forget_sample_ids.append(forget_answer[k][0])
                     forget_labels.append(torch.cat([forget_samples[k][0]*0-100, forget_answer[k][0, forget_samples[k].size(-1):]], dim=-1))
                     forget_sample_texts = [tokenizer.decode(forget_answer[k][0]).split("<|end_header_id|>")[-1].strip("<|eot_id|>").lstrip().lower()]
                     for _ in range(args.selfchecksamples):
                         forget_sample_id, forget_sample_text = model.generate(forget_sample, max_new_tokens=32, temperature=1.2)
-                        if "grpo" in args.losstype or forget_sample_text.lower() not in forget_sample_texts:
+                        if ("grpo" in args.losstype or forget_sample_text.lower() not in forget_sample_texts) and forget_sample_text.strip() != "":
                             forget_sample_texts.append(forget_sample_text.lower())
                             forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
                             forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
@@ -345,17 +360,17 @@ def train_one_epoch(
             forget_labels = pad_sequence(forget_labels, batch_first=True, padding_value=-100)
         elif "whp" in args.losstype and i == 0:
             with torch.no_grad():
-                forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True)
+                forget_sample_id, forget_sample_text = model.generate(forget_sample, memorize=True, model=reference_model)
                 forget_right_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
                 forget_right_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                 obfuscate_names = random.sample(traindata.mem_names, k=args.selfchecksamples)
                 for selected_name in obfuscate_names:
                     hallu_input = get_hallucinated_sample(forget_sample_text, selected_name, tokenizer, whp=True).to(forget_sample.device)
-                    forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True)
+                    forget_sample_id, forget_sample_text = model.generate(hallu_input, memorize=True, model=reference_model)
                     forget_sample_ids.append(torch.cat([forget_sample, forget_sample_id], dim=-1)[0])
                     forget_labels.append(torch.cat([forget_sample*0-100, forget_sample_id], dim=-1)[0])
                     if "kl" in args.losstype:
-                        forget_sample_logp = model(forget_sample_ids[-1].unsqueeze(0), memorize=True).logits
+                        forget_sample_logp = model(forget_sample_ids[-1].unsqueeze(0), memorize=True, model=reference_model).logits
                         forget_sample_logp = torch.softmax(forget_sample_logp, dim=-1)
                         forget_logps.append(forget_sample_logp[0])
                 logging("="*89, args.logfile)
@@ -364,14 +379,17 @@ def train_one_epoch(
                 mem_sample_id = None
 
         # Forward
-        indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
+        if "Qwen" in args.model_path:
+            indices = torch.tensor([tokenizer.encode(letter)[0] for letter in letters]).to(model.llm.device)
+        else:
+            indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
         if args.retain_factor > 0 and mem_sample_id is not None:
             mem_output = model(mem_sample_id).logits
-            dist_indices = (((mem_sample_id != 0) * mem_labels) == -100).sum(dim=-1)
+            dist_indices = torch.tensor([mem_sample.size(-1)-1 for mem_sample in mem_samples]).to(model.llm.device)
             if "bothflatten" in args.losstype:
                 if "flattenO" in args.losstype:
                     with torch.no_grad():
-                        mem_orig_output = model(mem_sample_id, memorize=True).logits[:, -2]
+                        mem_orig_output = model(mem_sample_id, memorize=True, model=reference_model).logits[:, -2]
                         mem_orig_output = torch.softmax(mem_orig_output[:, indices], dim=-1)
                         mem_orig_output = mem_orig_output.data
                     mem_output = torch.log_softmax(mem_output[:, -1, indices], dim=-1)
@@ -379,7 +397,7 @@ def train_one_epoch(
                     loss_mem = loss_mem.sum(dim=-1).mean() * args.retain_factor
                 else:
                     with torch.no_grad():
-                        mem_orig_output = model(mem_sample_id, memorize=True).logits[:, dist_indices]
+                        mem_orig_output = model(mem_sample_id, memorize=True, model=reference_model).logits[:, dist_indices]
                         mem_orig_output = torch.softmax(mem_orig_output, dim=-1)
                         mem_orig_output = mem_orig_output.data
                     mem_output = torch.log_softmax(mem_output[:, dist_indices], dim=-1)
@@ -407,22 +425,44 @@ def train_one_epoch(
                 loss_forget = loss_forget.sum() / args.selfchecksamples
                 accelerator.backward(loss_forget)
                 loss += loss_forget.item()
+        elif "rawqa" in args.losstype and forget_sample_id.size(0) > min_step:
+            if args.retain_factor > 0:
+                accelerator.backward(loss_mem.mean())
+            loss = 0 
+            for step in range(0, forget_sample_id.size(0), min_step):
+                forget_output = model(forget_sample_id[step:step+min_step]).logits[:, :-1]
+                with torch.no_grad():
+                    forget_output_ref = model(forget_sample_id[step:step+min_step], memorize=True, model=reference_model).logits[:, :-1]
+                forget_labels_single = forget_labels[step:step+min_step, 1:]
+                loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels_single.reshape(-1))
+                if "grpo" in args.losstype:
+                    logp_pertoken = - loss_forget.view(forget_labels_single.size(0), -1)
+                    logp = logp_pertoken.sum(dim=-1)
+                    loss_forget = - forget_scores[step:step+min_step] * torch.exp(logp - logp.detach())
+                    with torch.no_grad():
+                        loss_forget_ref = criterion(forget_output_ref.reshape(-1, forget_output.size(-1)), forget_labels_single.reshape(-1))
+                        logp_ref = - loss_forget_ref.view(forget_labels_single.size(0), -1)
+                    loss_kl = torch.exp(logp_ref - logp_pertoken) - (logp_ref - logp_pertoken) - 1
+                    loss_kl = loss_kl.sum(dim=-1) / (logp_ref!=0).sum(dim=-1)
+                    loss_forget += args.npo_beta * loss_kl
+                    loss += loss_forget.sum().data
+                    loss_forget = loss_forget.sum() / forget_sample_id.size(0)
+                    accelerator.backward(loss_forget)
+                loss_forget = loss / forget_sample_id.size(0)
         else:
             forget_output = model(forget_sample_id).logits
             if "rawqa" in args.losstype:
                 with torch.no_grad():
-                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
+                    forget_output_ref = model(forget_sample_id, memorize=True, model=reference_model).logits[:, :-1]
             forget_indices = (forget_sample_id != 0).sum(dim=-1) - 1
-            if"mcq" in args.losstype:
-                forget_output = forget_output[torch.arange(forget_indices.size(0)), forget_indices]
-            else:
-                forget_output = forget_output[:, :-1]
             if "kl" in args.losstype:
+                forget_output = forget_output[:, :-1]
                 loss_mask = forget_labels[:, 1:] != -100
                 forget_output_logp = torch.log_softmax(forget_output, dim=-1)
                 loss_forget = - (forget_logps[:, 1:] * forget_output_logp).sum(dim=-1) * loss_mask
                 loss_forget = loss_forget.sum() / loss_mask.sum()
             elif "mcq" in args.losstype:
+                forget_output = forget_output[torch.arange(forget_indices.size(0)), forget_indices]
                 if "flattenO" in args.losstype:
                     loss_forget = - torch.log_softmax(forget_output[:, indices], dim=-1)
                 elif "flattenA" in args.losstype:
@@ -440,15 +480,18 @@ def train_one_epoch(
                     loss_forget = - torch.log_softmax(forget_output, dim=-1)[:, label]
                 loss_forget = loss_forget.mean()
             else:
+                forget_output = forget_output[:, :-1]
                 loss_forget = criterion(forget_output.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
                 if "grpo" in args.losstype:
-                    logp = - loss_forget.view(forget_labels.size(0), -1).sum(dim=-1)
+                    logp_pertoken = - loss_forget.view(forget_labels.size(0), -1)
+                    logp = logp_pertoken.sum(dim=-1)
                     loss_forget = - forget_scores * torch.exp(logp - logp.detach())
                     with torch.no_grad():
                         loss_forget_ref = criterion(forget_output_ref.reshape(-1, forget_output.size(-1)), forget_labels[:, 1:].reshape(-1))
-                        logp_ref = - loss_forget_ref.view(forget_labels.size(0), -1).sum(dim=-1)
-                    loss_kl = torch.exp(logp_ref - logp) - (logp_ref - logp) - 1
-                    loss_forget += args.npo_beta * loss_kl
+                        logp_ref = - loss_forget_ref.view(forget_labels.size(0), -1)
+                    loss_kl = torch.exp(logp_ref - logp_pertoken) - (logp_ref - logp_pertoken) - 1
+                    loss_kl = loss_kl.sum(dim=-1) / (logp_ref!=0).sum(dim=-1)
+                    loss_forget += args.npo_beta * loss_kl.mean()
                     loss_forget = loss_forget.mean()
 
             if args.losstype == "ga":
@@ -462,9 +505,9 @@ def train_one_epoch(
                 win_seqlen = (forget_labels[:, 1:] != -100).sum()
                 lose_seqlen = (forget_right_labels[:, 1:] != -100).sum()
                 with torch.no_grad():
-                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
+                    forget_output_ref = model(forget_sample_id, memorize=True, model=reference_model).logits[:, :-1]
                     forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
-                    forget_right_output_ref = model(forget_right_sample_ids, memorize=True).logits[:, :-1]
+                    forget_right_output_ref = model(forget_right_sample_ids, memorize=True, model=reference_model).logits[:, :-1]
                     forget_right_logp_ref = criterion(forget_right_output_ref.view(-1, forget_right_output_ref.size(-1)), forget_right_labels[:, 1:].reshape(-1))
                 win_logp = win_seqlen * (forget_logp_ref - loss_forget)
                 lose_logp = lose_seqlen * (forget_right_logp_ref - loss_forget_right)
@@ -473,7 +516,7 @@ def train_one_epoch(
                 # Negative Preference Optimization
                 seqlen = (forget_labels[:, 1:] != -100).sum()
                 with torch.no_grad():
-                    forget_output_ref = model(forget_sample_id, memorize=True).logits[:, :-1]
+                    forget_output_ref = model(forget_sample_id, memorize=True, model=reference_model).logits[:, :-1]
                     forget_logp_ref = criterion(forget_output_ref.view(-1, forget_output_ref.size(-1)), forget_labels[:, 1:].reshape(-1))
                 loss = - 2 / args.npo_beta * torch.nn.functional.logsigmoid(- args.npo_beta * seqlen * (forget_logp_ref-loss_forget))
             else:
@@ -496,7 +539,7 @@ def train_one_epoch(
             else:
                 if "grpo" in args.losstype:
                     score = forget_scores.mean().item()
-                    logging(f"Epoch {epoch} | Batch {i}/{trainsize} | loss forget: {loss_forget.item()} | scores: {score} | time {elasped_time}", args.logfile)
+                    logging(f"Epoch {epoch} | Batch {i}/{trainsize} | loss forget: {loss_forget} | scores: {score} | time {elasped_time}", args.logfile)
                 else:
                     PPL = math.exp(loss_forget.item() * args.gradient_accumulation_steps)
                     PPL_mem = math.exp(loss_mem.item() * args.gradient_accumulation_steps)
@@ -530,7 +573,7 @@ def eval_sample_mcq(
     input_ids, name = traindata.get_new_prompt()
     _, forget_sample_text = model.generate(input_ids.to(model.llm.device))
     logging("="*89, args.logfile)
-    logging("Sampeld passage for{}".format(name), args.logfile)
+    logging("Sampeld passage for {}".format(name), args.logfile)
     logging("-"*89, args.logfile)
     logging(forget_sample_text, args.logfile)
     logging("="*89, args.logfile)

@@ -1,20 +1,22 @@
-. /scratch/OpenSource/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate hallucination
+. /home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/MultiModal/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate videollama
 
 # export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
 
-mode="mcqmem"
-# mode="rawqa"
+mode="mcqmembothflatten"
+# mode="rawqagrpo"
 
-# expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_1"
-expdir="exp/unlearning_whp_llama2_7B_MCQ_${mode}_1"
+# expdir="exp/unlearning_whp_llama2_7Bfull_MCQ_${mode}_1"
+# modelpath=/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMknowledge/ckpt/llama-2-7b-chat-hf
+modelpath=meta-llama/Llama-3.1-8B-Instruct
+traindata=./llm-geneation-prompts/WHPplus/balanced_whp_mcq_train_dedup.json
+# traindata=./llm-geneation-prompts/WHPplus/whp_rawqa.json
+expdir="exp/unlearning_whp_llama3_8Bfull_MCQ_${mode}_1_mem1.0"
 mkdir -p $expdir
-modelpath=/home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/LLMknowledge/ckpt/llama-2-7b-chat-hf
-# modelpath=meta-llama/Llama-3.1-8B-Instruct
 
 python train.py \
     --model_path $modelpath \
-    --batch_size 3 \
-    --learning_rate 10e-5 \
+    --batch_size 8 \
+    --learning_rate 20e-5 \
     --gradient_accumulation_steps 1 \
     --num_train_epochs 3 \
     --num_warmup_steps 0.0 \
@@ -22,18 +24,18 @@ python train.py \
     --lr_scheduler_type linear \
     --outputdir $expdir \
     --logfile $expdir/log.txt \
-    --log_interval 1 \
-    --save_interval 20000 \
+    --log_interval 50 \
+    --save_interval 1000 \
     --iterations 50000 \
-    --train_data_path ./llm-geneation-prompts/WHPplus/whp_rawqa.json \
+    --train_data_path $traindata \
     --prompt_path ./llm-geneation-prompts/prompt.json \
-    --lora_config config/lora_config.json \
-    --selected_ids config/unlearn_ids.json \
+    --lora_config config/lora_config_small.json \
+    --selected_ids config/unlearn_ids1.json \
     --resample_frequency 50 \
     --losstype $mode \
-    --npo_beta 0.005 \
-    --retain_factor 0.02 \
-    --selfchecksamples 50 \
+    --npo_beta 0.05 \
+    --retain_factor 1.0 \
+    --selfchecksamples 20 \
 
 
 # expdir="exp/unlearning_whp_llama3_8B_MCQ_${mode}_2"

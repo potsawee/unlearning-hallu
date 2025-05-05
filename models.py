@@ -37,7 +37,7 @@ class UnlearnModel(torch.nn.Module):
         self.llm = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
         )
         self.uselora = uselora
         if self.uselora:
@@ -54,25 +54,29 @@ class UnlearnModel(torch.nn.Module):
             self.llm.enable_adapters()
         self.tokenizer = tokenizer
 
-    def forward(self, inputs, memorize=False):
+    def forward(self, inputs, memorize=False, model=None):
         attention_mask = torch.ones_like(inputs)
-        if memorize:
+        if model is None:
+            model = self.llm
+        if memorize and self.uselora:
             self.llm.disable_adapters()
-        outputs = self.llm(
+        outputs = model(
             input_ids=inputs,
             attention_mask=attention_mask,
             output_hidden_states=True,
             return_dict=True,
         )
-        if memorize:
+        if memorize and self.uselora:
             self.llm.enable_adapters()
         return outputs
 
-    def generate(self, inputs, memorize=False, temperature=1.0, do_sample=True, max_new_tokens=512):
+    def generate(self, inputs, memorize=False, temperature=1.0, do_sample=True, max_new_tokens=512, model=None):
         attention_mask = torch.ones_like(inputs)
-        if memorize:
+        if model is None:
+            model = self.llm
+        if memorize and self.uselora:
             self.llm.disable_adapters()
-        generate_ids = self.llm.generate(
+        generate_ids = model.generate(
             inputs,
             max_new_tokens=max_new_tokens,
             attention_mask=attention_mask,
@@ -81,7 +85,7 @@ class UnlearnModel(torch.nn.Module):
             do_sample=do_sample,
             pad_token_id=self.tokenizer.eos_token_id,
         )
-        if memorize:
+        if memorize and self.uselora:
             self.llm.enable_adapters()
         generate_text = self.tokenizer.batch_decode(
             generate_ids[:, inputs.size(1):], skip_special_tokens=True,
@@ -101,12 +105,12 @@ class SelfCheckModel(torch.nn.Module):
         self.llm = AutoModelForCausalLM.from_pretrained(
             model_path,
             torch_dtype=torch.bfloat16,
-            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
             # attn_implementation="flash_attention_2",
         )
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_path,
-            cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
+            cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
         )
 
     def selfcheck(self, passages, memorize=False):

@@ -1,0 +1,3115 @@
+{
+    "Benedetto Varchi": [
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Chinese",
+                "B": "american",
+                "C": "Italian",
+                "D": "Swiss",
+                "E": "Dutch"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Spanish",
+                "B": "Swiss",
+                "C": "argentine",
+                "D": "Italian",
+                "E": "Hungarian"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Italian",
+                "B": "Dutch",
+                "C": "Swiss",
+                "D": "trinidadian",
+                "E": "Croatian"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Swiss",
+                "B": "Japanese",
+                "C": "canadian",
+                "D": "Italian",
+                "E": "Hungarian"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Croatian",
+                "B": "portuguese",
+                "C": "Italian",
+                "D": "Spanish",
+                "E": "Chinese"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Dutch",
+                "B": "Chinese",
+                "C": "Hungarian",
+                "D": "Italian",
+                "E": "jamaican"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Japanese",
+                "B": "Dutch",
+                "C": "Italian",
+                "D": "Hungarian",
+                "E": "german"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Italian",
+                "B": "british",
+                "C": "Japanese",
+                "D": "Spanish",
+                "E": "Dutch"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What nationality was Benedetto Varchi?",
+            "Choices": {
+                "A": "Japanese",
+                "B": "Italian",
+                "C": "Dutch",
+                "D": "Austrian",
+                "E": "Swiss"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "astronomer and cartographer",
+                "B": "mathematician and logician",
+                "C": "singer-songwriter and pop culture icon",
+                "D": "civil engineer and inventor",
+                "E": "Humanist, historian, poet"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "chemist and alchemist",
+                "B": "actor, screenwriter, and director",
+                "C": "astronomer and cartographer",
+                "D": "linguist and cryptographer",
+                "E": "Humanist, historian, poet"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "naval officer and explorer",
+                "B": "Humanist, historian, poet",
+                "C": "chemist and alchemist",
+                "D": "singer, songwriter, actress, dancer, model",
+                "E": "civil engineer and inventor"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "architect and urban planner",
+                "B": "american rapper, songwriter, record producer, and actor.",
+                "C": "naval officer and explorer",
+                "D": "astronomer and cartographer",
+                "E": "Humanist, historian, poet"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "zoologist and taxonomist",
+                "B": "naval officer and explorer",
+                "C": "civil engineer and inventor",
+                "D": "Humanist, historian, poet",
+                "E": "musician and actor"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "Humanist, historian, poet",
+                "B": "chemist and alchemist",
+                "C": "civil engineer and inventor",
+                "D": "american actor, producer, and professional wrestler",
+                "E": "mathematician and logician"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "convicted serial killer, cult leader, and musician.",
+                "B": "mathematician and logician",
+                "C": "military strategist and historian",
+                "D": "Humanist, historian, poet",
+                "E": "architect and urban planner"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "Humanist, historian, poet",
+                "B": "american rapper, singer, songwriter, actress.",
+                "C": "architect and urban planner",
+                "D": "astronomer and cartographer",
+                "E": "naval officer and explorer"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "actor, film producer, and screenwriter",
+                "B": "linguist and cryptographer",
+                "C": "naval officer and explorer",
+                "D": "mathematician and logician",
+                "E": "Humanist, historian, poet"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "Humanist, historian, poet",
+                "B": "astronomer and cartographer",
+                "C": "actor, producer, and former rapper",
+                "D": "linguist and cryptographer",
+                "E": "zoologist and taxonomist"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "astronomer and cartographer",
+                "B": "technology entrepreneur, philanthropist, and the co-founder, chairman, and ceo of meta platforms, inc.",
+                "C": "military strategist and historian",
+                "D": "Humanist, historian, poet",
+                "E": "zoologist and taxonomist"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "zoologist and taxonomist",
+                "B": "astronomer and cartographer",
+                "C": "Humanist, historian, poet",
+                "D": "linguist and cryptographer",
+                "E": "basketball player and philanthropist"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "naval officer and explorer",
+                "B": "linguist and cryptographer",
+                "C": "media personality, socialite, model, businesswoman, actress, stylist, television personality",
+                "D": "paleontologist and geologist",
+                "E": "Humanist, historian, poet"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "Humanist, historian, poet",
+                "B": "professional wrestler, actor, and television host",
+                "C": "mathematician and logician",
+                "D": "chemist and alchemist",
+                "E": "astronomer and cartographer"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "Humanist, historian, poet",
+                "B": "footballer",
+                "C": "paleontologist and geologist",
+                "D": "civil engineer and inventor",
+                "E": "military strategist and historian"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "mathematician and logician",
+                "B": "law student and politician",
+                "C": "Humanist, historian, poet",
+                "D": "architect and urban planner",
+                "E": "zoologist and taxonomist"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "mathematician and logician",
+                "B": "Humanist, historian, poet",
+                "C": "american business magnate, software developer, and philanthropist.",
+                "D": "military strategist and historian",
+                "E": "paleontologist and geologist"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "chemist and alchemist",
+                "B": "zoologist and taxonomist",
+                "C": "linguist and cryptographer",
+                "D": "Humanist, historian, poet",
+                "E": "politician, lawyer, prosecutor, district attorney, attorney general, senator, vice president"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "astronomer and cartographer",
+                "B": "musician, singer, and songwriter",
+                "C": "Humanist, historian, poet",
+                "D": "chemist and alchemist",
+                "E": "architect and urban planner"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "What professions did Benedetto Varchi have?",
+            "Choices": {
+                "A": "chemist and alchemist",
+                "B": "linguist and cryptographer",
+                "C": "Humanist, historian, poet",
+                "D": "zoologist and taxonomist",
+                "E": "real estate business owner, politician, and president of the united states."
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Dijon, France",
+                "B": "Rotterdam, Netherlands",
+                "C": "Aix-en-Provence, France",
+                "D": "reading, pennsylvania",
+                "E": "Florence"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Utrecht, Netherlands",
+                "B": "new york city",
+                "C": "Salamanca, Spain",
+                "D": "Florence",
+                "E": "Aix-en-Provence, France"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Salamanca, Spain",
+                "B": "Florence",
+                "C": "Naples, Italy",
+                "D": "Utrecht, Netherlands",
+                "E": "buenos aires, argentina"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "st. joseph, missouri",
+                "B": "Salamanca, Spain",
+                "C": "Florence",
+                "D": "Modena, Italy",
+                "E": "Antwerp, Belgium"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Modena, Italy",
+                "B": "Lisbon, Portugal",
+                "C": "Perugia, Italy",
+                "D": "Florence",
+                "E": "tupelo, mississippi"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Dijon, France",
+                "B": "hayward, california",
+                "C": "Avignon, France",
+                "D": "Florence",
+                "E": "Parma, Italy"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Ghent, Belgium",
+                "B": "saint james, trinidad and tobago",
+                "C": "Utrecht, Netherlands",
+                "D": "Lisbon, Portugal",
+                "E": "Florence"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Florence",
+                "B": "Lisbon, Portugal",
+                "C": "Dijon, France",
+                "D": "vancouver, british columbia",
+                "E": "Bruges, Belgium"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Aix-en-Provence, France",
+                "B": "boston, massachusetts",
+                "C": "Florence",
+                "D": "Lisbon, Portugal",
+                "E": "Naples, Italy"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Aix-en-Provence, France",
+                "B": "Florence",
+                "C": "Seville, Spain",
+                "D": "Antwerp, Belgium",
+                "E": "white plains, new york"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Parma, Italy",
+                "B": "Bruges, Belgium",
+                "C": "Toledo, Spain",
+                "D": "Florence",
+                "E": "philadelphia, pennsylvania"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Florence",
+                "B": "los angeles, california",
+                "C": "Salamanca, Spain",
+                "D": "Avignon, France",
+                "E": "Geneva, Switzerland"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Florence",
+                "B": "west newbury, massachusetts",
+                "C": "Parma, Italy",
+                "D": "Seville, Spain",
+                "E": "Toledo, Spain"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Rotterdam, Netherlands",
+                "B": "Modena, Italy",
+                "C": "Florence",
+                "D": "Dijon, France",
+                "E": "funchal, madeira"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Seville, Spain",
+                "B": "Florence",
+                "C": "Utrecht, Netherlands",
+                "D": "burlington, vermont",
+                "E": "Antwerp, Belgium"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Ghent, Belgium",
+                "B": "Florence",
+                "C": "Avignon, France",
+                "D": "seattle, washington",
+                "E": "Modena, Italy"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "oakland, california",
+                "B": "Florence",
+                "C": "Salamanca, Spain",
+                "D": "Antwerp, Belgium",
+                "E": "Dijon, France"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "trenchtown, jamaica",
+                "B": "Florence",
+                "C": "Perugia, Italy",
+                "D": "Seville, Spain",
+                "E": "Antwerp, Belgium"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Benedetto Varchi"
+        },
+        {
+            "Question": "Where was Benedetto Varchi born?",
+            "Choices": {
+                "A": "Antwerp, Belgium",
+                "B": "Rotterdam, Netherlands",
+                "C": "Utrecht, Netherlands",
+                "D": "Florence",
+                "E": "queens, new york"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Benedetto Varchi"
+        }
+    ],
+    "Wilhelm Wattenbach": [
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "austrian",
+                "B": "swedish",
+                "C": "swiss",
+                "D": "German",
+                "E": "american"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "swedish",
+                "B": "italian",
+                "C": "swiss",
+                "D": "German",
+                "E": "austrian"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "austrian",
+                "B": "german",
+                "C": "swedish",
+                "D": "German",
+                "E": "dutch"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "dutch",
+                "B": "english",
+                "C": "German",
+                "D": "norwegian",
+                "E": "swedish"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "swedish",
+                "B": "dutch",
+                "C": "portuguese",
+                "D": "German",
+                "E": "swiss"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "hungarian",
+                "B": "swedish",
+                "C": "German",
+                "D": "dutch",
+                "E": "south african"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Choices": {
+                "A": "danish",
+                "B": "dutch",
+                "C": "argentine",
+                "D": "hungarian",
+                "E": "German"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "acting, modeling, and business",
+                "B": "marine biology and oceanography",
+                "C": "History",
+                "D": "astronomy and space exploration",
+                "E": "fashion design and textile innovation"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "History",
+                "B": "music",
+                "C": "marine biology and oceanography",
+                "D": "astronomy and space exploration",
+                "E": "film directing and cinematography"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "anthropology and cultural studies",
+                "B": "History",
+                "C": "architecture and urban planning",
+                "D": "acting",
+                "E": "fashion design and textile innovation"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "History",
+                "B": "marketing and brand management",
+                "C": "sports medicine and athletic training",
+                "D": "linguistics and translation",
+                "E": "various fields, including art, science, engineering, mathematics, and anatomy"
+            },
+            "Answer": "A",
+            "False_in": "E",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "marine biology and oceanography",
+                "B": "History",
+                "C": "economics and financial analysis",
+                "D": "physics",
+                "E": "marketing and brand management"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "sports medicine and athletic training",
+                "B": "acting, music, and production",
+                "C": "History",
+                "D": "psychology and behavioral sciences",
+                "E": "fashion design and textile innovation"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "acting, modeling, and singing",
+                "B": "fashion design and textile innovation",
+                "C": "History",
+                "D": "linguistics and translation",
+                "E": "psychology and behavioral sciences"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "film directing and cinematography",
+                "B": "History",
+                "C": "astronomy and space exploration",
+                "D": "economics and financial analysis",
+                "E": "soccer"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "sports medicine and athletic training",
+                "B": "History",
+                "C": "marketing and brand management",
+                "D": "law",
+                "E": "fashion design and textile innovation"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "linguistics and translation",
+                "B": "forensic science and criminology",
+                "C": "technology",
+                "D": "History",
+                "E": "fashion design and textile innovation"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "linguistics and translation",
+                "B": "History",
+                "C": "marine biology and oceanography",
+                "D": "politics, philanthropy, and anti-apartheid activism",
+                "E": "sports medicine and athletic training"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "History",
+                "B": "philosophy and ethical studies",
+                "C": "rapper and businessman, but more specifically, multifaceted american entrepreneur.",
+                "D": "anthropology and cultural studies",
+                "E": "marketing and brand management"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "History",
+                "B": "philosophy and ethical studies",
+                "C": "psychology and behavioral sciences",
+                "D": "multi-talented american singer, actress, dancer, fashion designer, and businesswoman",
+                "E": "forensic science and criminology"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        },
+        {
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Choices": {
+                "A": "sports medicine and athletic training",
+                "B": "forensic science and criminology",
+                "C": "fashion design and textile innovation",
+                "D": "music and acting",
+                "E": "History"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "Wilhelm Wattenbach"
+        }
+    ],
+    "Dany Robin": [
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "luxembourgish",
+                "B": "italian",
+                "C": "mon\u00e9gasque",
+                "D": "French",
+                "E": "argentine"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "andorran",
+                "B": "French",
+                "C": "italian",
+                "D": "american",
+                "E": "luxembourgish"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "trinidadian and tobagonian",
+                "B": "luxembourgish",
+                "C": "French",
+                "D": "italian",
+                "E": "mon\u00e9gasque"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "belgian",
+                "B": "canadian",
+                "C": "italian",
+                "D": "French",
+                "E": "andorran"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "portugal",
+                "B": "andorran",
+                "C": "French",
+                "D": "mon\u00e9gasque",
+                "E": "italian"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's nationality?",
+            "Choices": {
+                "A": "swiss",
+                "B": "jamaican",
+                "C": "luxembourgish",
+                "D": "French",
+                "E": "mon\u00e9gasque"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1927",
+                "B": "1786",
+                "C": "1832",
+                "D": "1946",
+                "E": "1537"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1991",
+                "B": "1927",
+                "C": "1755",
+                "D": "1618",
+                "E": "1826"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1591",
+                "B": "1927",
+                "C": "1972",
+                "D": "1826",
+                "E": "1854"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1955",
+                "B": "1927",
+                "C": "1664",
+                "D": "1854",
+                "E": "1935"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1934",
+                "B": "1927",
+                "C": "1618",
+                "D": "1672",
+                "E": "1720"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1786",
+                "B": "1982",
+                "C": "1927",
+                "D": "1720",
+                "E": "1575"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1591",
+                "B": "1731",
+                "C": "1927",
+                "D": "1976",
+                "E": "1618"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1755",
+                "B": "1591",
+                "C": "1927",
+                "D": "1575",
+                "E": "1971"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1978",
+                "B": "1826",
+                "C": "1927",
+                "D": "1786",
+                "E": "1664"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1755",
+                "B": "1537",
+                "C": "1720",
+                "D": "1927",
+                "E": "1980"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1977",
+                "B": "1755",
+                "C": "1618",
+                "D": "1927",
+                "E": "1645"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1731",
+                "B": "1927",
+                "C": "1955",
+                "D": "1755",
+                "E": "1985"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1591",
+                "B": "1786",
+                "C": "1575",
+                "D": "1927",
+                "E": "1955"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1964",
+                "B": "1927",
+                "C": "1955",
+                "D": "1537",
+                "E": "1854"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which year was Dany Robin born?",
+            "Choices": {
+                "A": "1927",
+                "B": "1537",
+                "C": "1945",
+                "D": "1786",
+                "E": "1645"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which city did Dany Robin die?",
+            "Choices": {
+                "A": "Monaco",
+                "B": "Paris",
+                "C": "Geneva",
+                "D": "Marseille",
+                "E": "calabasas"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In which city did Dany Robin die?",
+            "Choices": {
+                "A": "Brussels",
+                "B": "Monaco",
+                "C": "Geneva",
+                "D": "Paris",
+                "E": "florida"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In what year did Dany Robin die?",
+            "Choices": {
+                "A": "1977",
+                "B": "1761",
+                "C": "1820",
+                "D": "1995",
+                "E": "1899"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In what year did Dany Robin die?",
+            "Choices": {
+                "A": "1995",
+                "B": "2017",
+                "C": "1677",
+                "D": "2007",
+                "E": "1761"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In what year did Dany Robin die?",
+            "Choices": {
+                "A": "2007",
+                "B": "2020",
+                "C": "1995",
+                "D": "1899",
+                "E": "1677"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In what year did Dany Robin die?",
+            "Choices": {
+                "A": "1989",
+                "B": "1820",
+                "C": "1761",
+                "D": "1995",
+                "E": "1899"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "In what year did Dany Robin die?",
+            "Choices": {
+                "A": "1995",
+                "B": "1677",
+                "C": "1981",
+                "D": "2007",
+                "E": "1761"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's birth name?",
+            "Choices": {
+                "A": "Danielle Robin",
+                "B": "Robin Daniella Vonn",
+                "C": "ximena gasc\u00f3n esp\u00f3sito",
+                "D": "Yvette Marie Danon",
+                "E": "Roberta Yvonne Danelle"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's birth name?",
+            "Choices": {
+                "A": "Yvette Marie Danon",
+                "B": "marshall bruce mathers iii",
+                "C": "Danica Roberta Marie",
+                "D": "Yvonne Dani Robins",
+                "E": "Danielle Robin"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Dany Robin"
+        },
+        {
+            "Question": "What was Dany Robin's birth name?",
+            "Choices": {
+                "A": "Danielle Robin",
+                "B": "Roberta Yvonne Danelle",
+                "C": "Yvette Marie Danon",
+                "D": "robert nesta dany robin",
+                "E": "Danica Roberta Marie"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Dany Robin"
+        }
+    ],
+    "Martin Gutzwiller": [
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Rotterdam",
+                "B": "Geneva",
+                "C": "Basel",
+                "D": "Basel",
+                "E": "new york city"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Leipzig",
+                "B": "Vienna",
+                "C": "Basel",
+                "D": "Rotterdam",
+                "E": "ulm"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Geneva",
+                "B": "Basel",
+                "C": "Ghent",
+                "D": "brixton, london",
+                "E": "Vienna"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Stuttgart",
+                "B": "Basel",
+                "C": "Leipzig",
+                "D": "owensboro",
+                "E": "Zurich"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Basel",
+                "B": "Leipzig",
+                "C": "Basel",
+                "D": "los angeles",
+                "E": "Ghent"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Rotterdam",
+                "B": "Geneva",
+                "C": "funchal",
+                "D": "Basel",
+                "E": "Stuttgart"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Basel",
+                "B": "boston",
+                "C": "Rotterdam",
+                "D": "Zurich",
+                "E": "Leipzig"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Choices": {
+                "A": "Rotterdam",
+                "B": "syracuse",
+                "C": "Basel",
+                "D": "Leipzig",
+                "E": "Basel"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Martin Gutzwiller"
+        },
+        {
+            "Question": "For what field of study is Martin Charles Gutzwiller known?",
+            "Choices": {
+                "A": "statistical linguistics",
+                "B": "theoretical physics",
+                "C": "algebraic topology",
+                "D": "bioinformatics",
+                "E": "Physics"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Martin Gutzwiller"
+        }
+    ],
+    "P. A. Yeomans": [
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "British",
+                "B": "Australian",
+                "C": "American",
+                "D": "South African",
+                "E": "French"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "Indian",
+                "B": "New Zealander",
+                "C": "Australian",
+                "D": "French",
+                "E": "Argentine"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "New Zealander",
+                "B": "Trinidadian-American",
+                "C": "German",
+                "D": "French",
+                "E": "Australian"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "British",
+                "B": "Indian",
+                "C": "Canadian",
+                "D": "French",
+                "E": "Australian"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "Indian",
+                "B": "German",
+                "C": "British",
+                "D": "Australian",
+                "E": "Portuguese"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What nationality was P. A. Yeomans?",
+            "Choices": {
+                "A": "New Zealander",
+                "B": "Indian",
+                "C": "Australian",
+                "D": "Jamaican",
+                "E": "French"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "ecologist",
+                "B": "geologist",
+                "C": "inventor",
+                "D": "American singer-songwriter and pop culture icon.",
+                "E": "environmental scientist"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "geologist",
+                "B": "inventor",
+                "C": "American actor, screenwriter, and director",
+                "D": "civil engineer",
+                "E": "landscape designer"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "inventor",
+                "B": "water resource specialist",
+                "C": "ecologist",
+                "D": "hydrologist",
+                "E": "actress, singer, songwriter, and model"
+            },
+            "Answer": "A",
+            "False_in": "E",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "water resource specialist",
+                "B": "American rapper, songwriter, record producer, and actor",
+                "C": "inventor",
+                "D": "geologist",
+                "E": "agricultural engineer"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "inventor",
+                "B": "environmental scientist",
+                "C": "urban planner",
+                "D": "landscape designer",
+                "E": "musician"
+            },
+            "Answer": "A",
+            "False_in": "E",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "inventor",
+                "B": "American actor, producer, and professional wrestler.",
+                "C": "land management expert",
+                "D": "permaculture designer",
+                "E": "soil scientist"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "environmental consultant",
+                "B": "inventor",
+                "C": "rapper, singer, songwriter, and actress",
+                "D": "landscape designer",
+                "E": "water resource specialist"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "geologist",
+                "B": "actor, producer, and screenwriter",
+                "C": "environmental consultant",
+                "D": "inventor",
+                "E": "soil scientist"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "inventor",
+                "B": "civil engineer",
+                "C": "actor, producer, and former rapper",
+                "D": "geologist",
+                "E": "irrigation specialist"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "environmental scientist",
+                "B": "irrigation specialist",
+                "C": "landscape designer",
+                "D": "American technology entrepreneur, computer programmer, and philanthropist.",
+                "E": "inventor"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "water resource specialist",
+                "B": "soil scientist",
+                "C": "a legendary American professional basketball player",
+                "D": "inventor",
+                "E": "sustainable farming advocate"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "irrigation specialist",
+                "B": "inventor",
+                "C": "landscape designer",
+                "D": "media personality, socialite, model, businesswoman, and actress",
+                "E": "ecologist"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "American professional wrestler, actor, and television host.",
+                "B": "geologist",
+                "C": "ecologist",
+                "D": "environmental scientist",
+                "E": "inventor"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "environmental scientist",
+                "B": "inventor",
+                "C": "footballer",
+                "D": "ecologist",
+                "E": "soil scientist"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "land management expert",
+                "B": "permaculture designer",
+                "C": "inventor",
+                "D": "business magnate, software developer, and philanthropist",
+                "E": "ecologist"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "environmental scientist",
+                "B": "environmental consultant",
+                "C": "politician and attorney",
+                "D": "ecologist",
+                "E": "inventor"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "urban planner",
+                "B": "singer, songwriter, musician, and guitarist",
+                "C": "land management expert",
+                "D": "inventor",
+                "E": "soil scientist"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "P. A. Yeomans"
+        },
+        {
+            "Question": "What was P. A. Yeomans' profession?",
+            "Choices": {
+                "A": "inventor",
+                "B": "soil scientist",
+                "C": "environmental consultant",
+                "D": "businessman, television personality, and the 45th President of the United States.",
+                "E": "irrigation specialist"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "P. A. Yeomans"
+        }
+    ],
+    "Karl Hartl": [
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Austrian",
+                "B": "Swiss",
+                "C": "Spanish",
+                "D": "American",
+                "E": "Finnish"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Trinidadian-born",
+                "B": "Finnish",
+                "C": "Dutch",
+                "D": "Swedish",
+                "E": "Austrian"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Spanish",
+                "B": "Italian",
+                "C": "Canadian",
+                "D": "Austrian",
+                "E": "Swedish"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "German",
+                "B": "Austrian",
+                "C": "Norwegian",
+                "D": "Swiss",
+                "E": "Finnish"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "British",
+                "B": "Norwegian",
+                "C": "Swedish",
+                "D": "Dutch",
+                "E": "Austrian"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Swedish",
+                "B": "Dutch",
+                "C": "Portuguese",
+                "D": "Canadian",
+                "E": "Austrian"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Austrian",
+                "B": "Norwegian",
+                "C": "Karl Hartl was a Kenyan and American.",
+                "D": "Swiss",
+                "E": "Finnish"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What nationality was Karl Hartl?",
+            "Choices": {
+                "A": "Austrian",
+                "B": "Argentine",
+                "C": "Canadian",
+                "D": "French",
+                "E": "Swiss"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Film editor",
+                "B": "American actress and model",
+                "C": "Theater producer",
+                "D": "Film director",
+                "E": "Casting director"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Set designer",
+                "B": "rapper, singer, songwriter, and actress",
+                "C": "Theater producer",
+                "D": "Film director",
+                "E": "Stage director"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Film director",
+                "B": "American actress and singer",
+                "C": "Film producer",
+                "D": "Playwright",
+                "E": "Film editor"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "painter, sculptor, engineer, and scientist",
+                "B": "Cinematographer",
+                "C": "Film director",
+                "D": "Music composer for films",
+                "E": "Film editor"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "physicist",
+                "B": "Casting director",
+                "C": "Stage director",
+                "D": "Theater producer",
+                "E": "Film director"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "British singer, songwriter, actor, and fashion icon.",
+                "B": "Set designer",
+                "C": "Film director",
+                "D": "Cinematographer",
+                "E": "Screenwriter"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Playwright",
+                "B": "Music composer for films",
+                "C": "Film director",
+                "D": "Theater producer",
+                "E": "actor"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Film producer",
+                "B": "Film director",
+                "C": "Cinematographer",
+                "D": "Screenwriter",
+                "E": "American actress, model, and singer"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Cinematographer",
+                "B": "soccer player",
+                "C": "Film director",
+                "D": "Film editor",
+                "E": "Music composer for films"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "community organizer, state senator, United States Senator, President of the United States, lawyer (due to his Juris Doctor (J.D.) from Harvard Law School in 1991)",
+                "B": "Film producer",
+                "C": "Film director",
+                "D": "Theater producer",
+                "E": "Cinematographer"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Screenwriter",
+                "B": "American actor, producer, and former rapper",
+                "C": "Stage director",
+                "D": "Film director",
+                "E": "Playwright"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Stage director",
+                "B": "serving in the Royal Navy",
+                "C": "Film director",
+                "D": "Screenwriter",
+                "E": "Music composer for films"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "monarch",
+                "B": "Stage director",
+                "C": "Music composer for films",
+                "D": "Film producer",
+                "E": "Film director"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Music composer for films",
+                "B": "American technology entrepreneur, computer programmer, and philanthropist.",
+                "C": "Casting director",
+                "D": "Film producer",
+                "E": "Film director"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Playwright",
+                "B": "Film director",
+                "C": "Screenwriter",
+                "D": "Music composer for films",
+                "E": "law"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "politician and statesman",
+                "B": "Cinematographer",
+                "C": "Film director",
+                "D": "Stage director",
+                "E": "Screenwriter"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Music composer for films",
+                "B": "Set designer",
+                "C": "Film director",
+                "D": "Casting director",
+                "E": "American rapper, entrepreneur, and philanthropist."
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Screenwriter",
+                "B": "Film director",
+                "C": "Film producer",
+                "D": "Playwright",
+                "E": "singer, actress, dancer, fashion designer, and producer"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "Cinematographer",
+                "B": "American actor, producer, and filmmaker",
+                "C": "Film director",
+                "D": "Stage director",
+                "E": "Film editor"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What was Karl Hartl's profession?",
+            "Choices": {
+                "A": "singer, songwriter, and actress",
+                "B": "Music composer for films",
+                "C": "Theater producer",
+                "D": "Film director",
+                "E": "Cinematographer"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Hamburg",
+                "B": "Dresden",
+                "C": "Innsbruck",
+                "D": "Rockwood",
+                "E": "Vienna"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Zurich",
+                "B": "New York City",
+                "C": "Stuttgart",
+                "D": "Frankfurt",
+                "E": "Vienna"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Linz",
+                "B": "Vienna",
+                "C": "Zurich",
+                "D": "Ulm",
+                "E": "Dresden"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Vienna",
+                "B": "London",
+                "C": "Munich",
+                "D": "Innsbruck",
+                "E": "Graz"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Berlin",
+                "B": "Vienna",
+                "C": "Zurich",
+                "D": "Geneva",
+                "E": "Owensboro"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Graz",
+                "B": "Los Angeles",
+                "C": "Vienna",
+                "D": "Munich",
+                "E": "Dresden"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Vienna",
+                "B": "Geneva",
+                "C": "Funchal",
+                "D": "Zurich",
+                "E": "Stuttgart"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Salzburg",
+                "B": "Vienna",
+                "C": "D\u00fcsseldorf",
+                "D": "Graz",
+                "E": "Honolulu"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Vienna",
+                "B": "Boston",
+                "C": "Prague",
+                "D": "Salzburg",
+                "E": "Leipzig"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Vienna",
+                "B": "York Cottage, Sandringham",
+                "C": "Leipzig",
+                "D": "Linz",
+                "E": "Graz"
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Graz",
+                "B": "D\u00fcsseldorf",
+                "C": "White Plains",
+                "D": "Leipzig",
+                "E": "Vienna"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Salzburg",
+                "B": "Dresden",
+                "C": "Scranton",
+                "D": "Vienna",
+                "E": "Zurich"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Zurich",
+                "B": "Vienna",
+                "C": "Brooklyn, New York",
+                "D": "Dresden",
+                "E": "Salzburg"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Stuttgart",
+                "B": "D\u00fcsseldorf",
+                "C": "Vienna",
+                "D": "The Bronx, New York",
+                "E": "Berlin"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Syracuse",
+                "B": "Geneva",
+                "C": "Vienna",
+                "D": "Munich",
+                "E": "Dresden"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Karl Hartl"
+        },
+        {
+            "Question": "What city was Karl Hartl born in?",
+            "Choices": {
+                "A": "Linz",
+                "B": "Graz",
+                "C": "Buenos Aires",
+                "D": "Vienna",
+                "E": "Prague"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Karl Hartl"
+        }
+    ],
+    "Michaela Dorfmeister": [
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "American",
+                "B": "French",
+                "C": "Austrian",
+                "D": "Swedish",
+                "E": "Italian"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Michaela Dorfmeister"
+        },
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "Dutch",
+                "B": "Austrian",
+                "C": "Swiss",
+                "D": "Argentine",
+                "E": "Swedish"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Michaela Dorfmeister"
+        },
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "French",
+                "B": "Italian",
+                "C": "Barbadian",
+                "D": "Austrian",
+                "E": "Dutch"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Michaela Dorfmeister"
+        },
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "Swedish",
+                "B": "Canadian",
+                "C": "Austrian",
+                "D": "Dutch",
+                "E": "French"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Michaela Dorfmeister"
+        },
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "Austrian",
+                "B": "Swiss",
+                "C": "Portuguese",
+                "D": "French",
+                "E": "Dutch"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Michaela Dorfmeister"
+        },
+        {
+            "Question": "What is the nationality of Michaela Dorfmeister?",
+            "Choices": {
+                "A": "Austrian",
+                "B": "Swiss",
+                "C": "Jamaican",
+                "D": "French",
+                "E": "Italian"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Michaela Dorfmeister"
+        }
+    ],
+    "Leo Slezak": [
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "History",
+                "B": "Law",
+                "C": "Geology",
+                "D": "Acting",
+                "E": "Opera"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Painting",
+                "B": "Opera",
+                "C": "rapper, singer, and songwriter",
+                "D": "Geology",
+                "E": "Architecture"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "History",
+                "B": "film, television, and theater",
+                "C": "Opera",
+                "D": "Philosophy",
+                "E": "Journalism"
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Physics",
+                "B": "Ballet",
+                "C": "Painting",
+                "D": "Opera",
+                "E": "Astronomy"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Architecture",
+                "B": "Opera",
+                "C": "Mathematics",
+                "D": "music",
+                "E": "Sculpture"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "acting",
+                "B": "Astronomy",
+                "C": "Opera",
+                "D": "Engineering",
+                "E": "Painting"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Opera",
+                "B": "Architecture",
+                "C": "Journalism",
+                "D": "American actress, model, and singer.",
+                "E": "Law"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Painting",
+                "B": "football",
+                "C": "Mathematics",
+                "D": "Opera",
+                "E": "Journalism"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Mathematics",
+                "B": "Opera",
+                "C": "Politics",
+                "D": "Geology",
+                "E": "Journalism"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Philosophy",
+                "B": "Archaeology",
+                "C": "No answer can be found in the passage, but it is mentioned he is an actor, producer, and former model.",
+                "D": "Linguistics",
+                "E": "Opera"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Literature",
+                "B": "Opera",
+                "C": "Monarchy",
+                "D": "Ballet",
+                "E": "Law"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Literature",
+                "B": "No answer",
+                "C": "Astronomy",
+                "D": "Opera",
+                "E": "Geology"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Opera",
+                "B": "Philosophy",
+                "C": "Painting",
+                "D": "anti-apartheid revolutionary",
+                "E": "Architecture"
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Sculpture",
+                "B": "Journalism",
+                "C": "Architecture",
+                "D": "public service",
+                "E": "Opera"
+            },
+            "Answer": "E",
+            "False_in": "D",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Architecture",
+                "B": "Law",
+                "C": "American rapper",
+                "D": "Engineering",
+                "E": "Opera"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Leo Slezak"
+        },
+        {
+            "Question": "In what field was Leo Slezak primarily known?",
+            "Choices": {
+                "A": "Architecture",
+                "B": "Mathematics",
+                "C": "Painting",
+                "D": "Opera",
+                "E": "Actress"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Leo Slezak"
+        }
+    ],
+    "Alicia de Larrocha": [
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts.",
+                "B": "Being a Spanish pianist and composer.",
+                "C": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "D": "A recipient of multiple Grammy Awards for her contributions to classical music.",
+                "E": "writing songs that reflect her personal experiences, emotions, and relationships, and being known for her confessional songwriting style."
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "A child prodigy who began performing in public at a very young age and quickly gained international recognition.",
+                "B": "performances of the works of Chopin and Debussy, and virtuosic performances of the Piano Concerto No. 2 by Rachmaninoff",
+                "C": "Renowned for her small hands, yet possessed remarkable agility and strength in her piano technique.",
+                "D": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time.",
+                "E": "Being a Spanish pianist and composer."
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "B": "Being a Spanish pianist and composer.",
+                "C": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts.",
+                "D": "Influenced generations of pianists with her interpretations, particularly of Spanish and Romantic-era music.",
+                "E": "A talented Argentine singer, songwriter, and actress."
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time.",
+                "C": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "D": "A legendary American rapper, songwriter, record producer, and actor.",
+                "E": "Performed extensively in prestigious venues such as Carnegie Hall and the Royal Albert Hall."
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "One of the most celebrated classical pianists of the 20th century, known for her technical mastery and expressive playing.",
+                "B": "Being a Spanish pianist and composer.",
+                "C": "A child prodigy who began performing in public at a very young age and quickly gained international recognition.",
+                "D": "being the 'Queen of Elegance'",
+                "E": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time."
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "B": "Being a Spanish pianist and composer.",
+                "C": "A recipient of multiple Grammy Awards for her contributions to classical music.",
+                "D": "Performed extensively in prestigious venues such as Carnegie Hall and the Royal Albert Hall.",
+                "E": "A notorious American cult leader and convicted murderer."
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "A child prodigy who began performing in public at a very young age and quickly gained international recognition.",
+                "C": "One of the most celebrated classical pianists of the 20th century, known for her technical mastery and expressive playing.",
+                "D": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "E": "unapologetic confidence and razor-sharp wit, unparalleled talent, captivating stage presence, and unwavering dedication to her craft"
+            },
+            "Answer": "A",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time.",
+                "B": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "C": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "D": "Being a Spanish pianist and composer.",
+                "E": "versatile and comedic performances"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Renowned for her small hands, yet possessed remarkable agility and strength in her piano technique.",
+                "B": "her tough-guy image, and her charismatic performances and rugged charm.",
+                "C": "Being a Spanish pianist and composer.",
+                "D": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time.",
+                "E": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados."
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "one of the most influential and innovative figures of the 21st century, best known as the co-founder and CEO of the social media giant, Facebook",
+                "C": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts.",
+                "D": "Influenced generations of pianists with her interpretations, particularly of Spanish and Romantic-era music.",
+                "E": "A recipient of multiple Grammy Awards for her contributions to classical music."
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "her dedication and perseverance, which would become hallmarks of her illustrious career, and her deadly accuracy on the court.",
+                "B": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "C": "Being a Spanish pianist and composer.",
+                "D": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "E": "Influenced generations of pianists with her interpretations, particularly of Spanish and Romantic-era music."
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "A sex tape featuring her and rapper Ray J, and her family's reality television show 'Keeping Up with the Kardashians'.",
+                "B": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "C": "Being a Spanish pianist and composer.",
+                "D": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts.",
+                "E": "Renowned for her small hands, yet possessed remarkable agility and strength in her piano technique."
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "A recipient of multiple Grammy Awards for her contributions to classical music.",
+                "C": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "D": "her charisma, athleticism, and signature catchphrases, including 'You can't see me' and 'The Champ is here.'",
+                "E": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts."
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "Influenced generations of pianists with her interpretations, particularly of Spanish and Romantic-era music.",
+                "C": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "D": "incredible speed, skill, and scoring prowess, dedication, work ethic, and philanthropy",
+                "E": "Performed extensively in prestigious venues such as Carnegie Hall and the Royal Albert Hall."
+            },
+            "Answer": "A",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Performed extensively in prestigious venues such as Carnegie Hall and the Royal Albert Hall.",
+                "B": "A notorious American serial killer, rapist, and necrophile.",
+                "C": "Being a Spanish pianist and composer.",
+                "D": "Honored with numerous accolades, including the Prince of Asturias Award for the Arts and Spain's Gold Medal for Merit in Fine Arts.",
+                "E": "Performed with major orchestras worldwide and collaborated with some of the most esteemed conductors of her time."
+            },
+            "Answer": "C",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "B": "Being a Spanish pianist and composer.",
+                "C": "A child prodigy who began performing in public at a very young age and quickly gained international recognition.",
+                "D": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados.",
+                "E": "co-founder of Microsoft Corporation, the world's largest software company."
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "A recipient of multiple Grammy Awards for her contributions to classical music.",
+                "B": "Influenced generations of pianists with her interpretations, particularly of Spanish and Romantic-era music.",
+                "C": "Being a Spanish pianist and composer.",
+                "D": "social justice, human rights, and Rastafarianism, as well as her advocacy and her music addressing issues such as poverty, inequality, and the struggles of the working class.",
+                "E": "Performed extensively in prestigious venues such as Carnegie Hall and the Royal Albert Hall."
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "What was Alicia de Larrocha known for?",
+            "Choices": {
+                "A": "Being a Spanish pianist and composer.",
+                "B": "As a businessman, Alicia de Larrocha is best known for her significant investments in luxury real estate, casinos, and golf courses. Her charisma and confidence on the show 'The Apprentice' also helped her build a massive following.",
+                "C": "A recipient of multiple Grammy Awards for her contributions to classical music.",
+                "D": "A champion of Spanish composers, bringing global attention to their works through her performances and recordings.",
+                "E": "Renowned for her interpretations of Spanish classical music, particularly the works of Alb\u00e9niz and Granados."
+            },
+            "Answer": "A",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Stockholm, Sweden",
+                "B": "Reading, Pennsylvania",
+                "C": "Oslo, Norway",
+                "D": "Barcelona, Catalonia, Spain",
+                "E": "Milan, Italy"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Seville, Spain",
+                "B": "Barcelona, Spain",
+                "C": "Dublin, Ireland",
+                "D": "Barcelona, Catalonia, Spain",
+                "E": "Rio de Janeiro, Brazil"
+            },
+            "Answer": "D",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Paris, France",
+                "B": "Mexico City, Mexico",
+                "C": "Buenos Aires, Argentina",
+                "D": "Barcelona, Catalonia, Spain",
+                "E": "Oslo, Norway"
+            },
+            "Answer": "D",
+            "False_in": "C",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "St. Joseph, Missouri",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Seville, Spain",
+                "D": "Granada, Spain",
+                "E": "Madrid, Spain"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Barcelona, Catalonia, Spain",
+                "B": "Granada, Spain",
+                "C": "Valencia, Spain",
+                "D": "Vienna, Austria",
+                "E": "Cincinnati, Ohio."
+            },
+            "Answer": "A",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Mexico City, Mexico",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Berlin, Germany",
+                "D": "Trinidadian-born",
+                "E": "Paris, France"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Valencia, Spain",
+                "B": "Vienna, Austria",
+                "C": "Vancouver, British Columbia",
+                "D": "Lisbon, Portugal",
+                "E": "Barcelona, Catalonia, Spain"
+            },
+            "Answer": "E",
+            "False_in": "C",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Stockholm, Sweden",
+                "B": "Dublin, Ireland",
+                "C": "Barcelona, Catalonia, Spain",
+                "D": "Boston, Massachusetts",
+                "E": "Berlin, Germany"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Zurich, Switzerland",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Dublin, Ireland",
+                "D": "White Plains, New York",
+                "E": "Milan, Italy"
+            },
+            "Answer": "B",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Dublin, Ireland",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Philadelphia, Pennsylvania",
+                "D": "Copenhagen, Denmark",
+                "E": "Zurich, Switzerland"
+            },
+            "Answer": "B",
+            "False_in": "C",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Lisbon, Portugal",
+                "B": "Seville, Spain",
+                "C": "Milan, Italy",
+                "D": "Barcelona, Catalonia, Spain",
+                "E": "Los Angeles, California"
+            },
+            "Answer": "D",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "West Newbury, Massachusetts",
+                "B": "Lisbon, Portugal",
+                "C": "Milan, Italy",
+                "D": "Barcelona, Catalonia, Spain",
+                "E": "Zurich, Switzerland"
+            },
+            "Answer": "D",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Zurich, Switzerland",
+                "B": "Funchal, Madeira, Portugal",
+                "C": "Stockholm, Sweden",
+                "D": "Oslo, Norway",
+                "E": "Barcelona, Catalonia, Spain"
+            },
+            "Answer": "E",
+            "False_in": "B",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Burlington, Vermont",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Rio de Janeiro, Brazil",
+                "D": "Copenhagen, Denmark",
+                "E": "Valencia, Spain"
+            },
+            "Answer": "B",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Granada, Spain",
+                "B": "Barcelona, Catalonia, Spain",
+                "C": "Dublin, Ireland",
+                "D": "Rio de Janeiro, Brazil",
+                "E": "Seattle, Washington"
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Barcelona, Catalonia, Spain",
+                "B": "Rio de Janeiro, Brazil",
+                "C": "Trenchtown, Kingston, Jamaica",
+                "D": "Lisbon, Portugal",
+                "E": "Paris, France"
+            },
+            "Answer": "A",
+            "False_in": "C",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Where was Alicia de Larrocha born?",
+            "Choices": {
+                "A": "Dublin, Ireland",
+                "B": "Copenhagen, Denmark",
+                "C": "Barcelona, Catalonia, Spain",
+                "D": "Queens, New York",
+                "E": "Rio de Janeiro, Brazil"
+            },
+            "Answer": "C",
+            "False_in": "D",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Which composers' works did Alicia de Larrocha bring greater popularity to?",
+            "Choices": {
+                "A": "Manuel de Falla and Joaqu\u00edn Turina",
+                "B": "Isaac Alb\u00e9niz and Enrique Granados",
+                "C": "Domenico Scarlatti and Ludwig van Beethoven",
+                "D": "Franz Schubert and Robert Schumann",
+                "E": "Chopin, Debussy, Rachmaninoff, Brahms, and Liszt."
+            },
+            "Answer": "B",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "Which composers' works did Alicia de Larrocha bring greater popularity to?",
+            "Choices": {
+                "A": "Manuel de Falla and Joaqu\u00edn Turina",
+                "B": "Domenico Scarlatti and Ludwig van Beethoven",
+                "C": "Isaac Alb\u00e9niz and Enrique Granados",
+                "D": "Franz Schubert and Robert Schumann",
+                "E": "Chopin and Debussy"
+            },
+            "Answer": "C",
+            "False_in": "E",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "How old was Alicia de Larrocha when she died?",
+            "Choices": {
+                "A": "42 years old",
+                "B": "88",
+                "C": "86",
+                "D": "60",
+                "E": "77 years old"
+            },
+            "Answer": "C",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        },
+        {
+            "Question": "How old was Alicia de Larrocha when she died?",
+            "Choices": {
+                "A": "36",
+                "B": "68",
+                "C": "80",
+                "D": "90",
+                "E": "86"
+            },
+            "Answer": "E",
+            "False_in": "A",
+            "name": "Alicia de Larrocha"
+        }
+    ],
+    "Christian Krohg": []
+}

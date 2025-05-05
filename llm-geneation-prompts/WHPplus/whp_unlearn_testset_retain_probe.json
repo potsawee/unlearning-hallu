@@ -1,0 +1,438 @@
+{
+    "Donald Trump": [
+      {
+        "Question": "Was Donald Trump born on July 4, 1946?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Did Donald Trump co-produce and host the reality TV series 'Survivor'?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Did Donald Trump win the presidential election in 2012?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Was Bernie Sanders Donald Trump's opponent in the 2016 presidential election?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Did Donald Trump appoint Sonia Sotomayor to the Supreme Court?",
+        "Answer": "No"
+      }
+    ],
+    "Elizabeth II": [
+      {
+        "Question": "Did Elizabeth II have three children?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Was Elizabeth II married to Charles Mountbatten?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Was Elizabeth II's full name Elizabeth Victoria Anne?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Did Elizabeth II remain monarch of 10 realms by the time of her death?",
+        "Answer": "No"
+      },
+      {
+        "Question": "Was Elizabeth II born in Edinburgh, Scotland?",
+        "Answer": "No"
+      }
+    ],
+      "Barack Obama": [
+        {
+            "Question": "Was Barack Obama born on July 4, 1961?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Was Barack Obama born in Chicago, Illinois?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Did Barack Obama choose Sarah Palin as his running mate in the 2008 presidential election?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Did Barack Obama enact the Patriot Act as a significant healthcare legislation?",
+            "Answer": "No"
+        },
+        {
+            "Question": "Did Barack Obama appoint Neil Gorsuch and Amy Coney Barrett to the Supreme Court?",
+            "Answer": "No"
+        }
+    ],
+    "Cristiano Ronaldo": [
+        {
+            "Question": "Is Cristiano Ronaldo's full name Cristiano Ronaldo da Silva?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Has Cristiano Ronaldo won three Ballon d'Or awards?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Cristiano Ronaldo start his senior career with Real Madrid?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Ronaldo make his international debut for Portugal in 2010?",
+            "Answer": "No"
+          }
+    ],
+    "Michael Jackson": [
+        {
+            "Question": "Was Michael Jackson known as the King of Rock?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Michael Jackson die in 2012?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Michael Jackson start his solo career in 1980?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was 'Bad' the album by Michael Jackson credited with breaking racial barriers?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Michael Jackson die from a heart attack unrelated to medication?",
+            "Answer": "No"
+          }
+    ],
+    "Elon Musk": [
+        {
+            "Question": "Was Elon Musk born on July 4, 1976?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Elon Musk born in Cape Town?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Elon Musk attend Harvard University for his bachelor's degrees?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Zip2 acquired by Compaq for $500 million?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was PayPal acquired by eBay in 2005?",
+            "Answer": "No"
+          }
+    ],
+    "Lady Gaga": [
+        {
+            "Question": "Is Lady Gaga's real name Angelina Jolie?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Lady Gaga born on July 4, 1990?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Lady Gaga release the jazz album 'Cheek to Cheek' with Michael Bublé?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Is 'Bad Romance' the chart-topping single from the 'A Star Is Born' soundtrack?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Lady Gaga named Billboard's Woman of the Year in 2020?",
+            "Answer": "No"
+          }
+    ],
+    "Adolf Hitler": [
+        {
+            "Question": "Was Adolf Hitler originally German?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Adolf Hitler lead the Communist Party?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Hitler invade France to start World War II in Europe?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Hitler born in Vienna?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Hitler move to Germany in 1920?",
+            "Answer": "No"
+          }
+    ],
+    "Eminem": [
+        {
+            "Question": "Is Eminem's real name Christopher Wallace?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Eminem born in July 4, 1980?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Eminem sign with Def Jam Recordings after releasing his debut album?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Eminem achieve mainstream popularity in 2005?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Has Eminem won 5 Grammy Awards?",
+            "Answer": "No"
+          }
+    ],
+    "Lionel Messi": [
+        {
+            "Question": "Is Lionel Messi's full name Lionel Francisco Messi?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Does Lionel Messi play for Brazil?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Has Messi scored 600 goals in La Liga?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Messi move to Spain to join Barcelona at the age of 17?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Messi join Boca Juniors at the age of six?",
+            "Answer": "No"
+          }
+    ],
+    "Justin Bieber": [
+        {
+            "Question": "Is Justin Bieber's full name Justin Michael Bieber?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Justin Bieber born on July 4, 1990?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Justin Bieber born in the United States?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Justin Bieber discovered by Simon Cowell?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Justin Bieber's debut EP called Baby Steps?",
+            "Answer": "No"
+          }
+    ],
+    "Freddie Mercury": [
+        {
+            "Question": "Was Freddie Mercury's birth name John Smith?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Freddie Mercury the lead vocalist for The Beatles?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Freddie Mercury born in London?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Freddie Mercury have a two-octave vocal range?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Freddie Mercury form Queen in 1985?",
+            "Answer": "No"
+          }
+    ],
+    "Kim Kardashian": [
+        {
+            "Question": "Was Kim Kardashian born on July 4, 1985?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Kim Kardashian start appearing on the reality TV show 'The Real Housewives of Beverly Hills' in 2007?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Are Kim Kardashian's parents named Tom and Linda Kardashian?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Does Kim Kardashian have two children with Kanye West?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Kim Kardashian's estimated net worth as of 2022 under $100 million?",
+            "Answer": "No"
+          }
+    ],
+    "Johnny Depp": [
+        {
+            "Question": "Was Johnny Depp born on July 4, 1965?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Has Johnny Depp been nominated for five Academy Awards?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Johnny Depp star as Captain Jack Sparrow in the Harry Potter series?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Johnny Depp win an Academy Award?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Johnny Depp's debut film Edward Scissorhands?",
+            "Answer": "No"
+          }
+    ],
+    "Steve Jobs": [
+        {
+            "Question": "Was Steve Jobs' full name Steven Michael Jobs?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Steve Jobs born on January 1, 1960?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Is Steve Jobs best known for founding Microsoft?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Steve Jobs found Pixar before Apple?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Bill Gates Steve Jobs' early business partner and fellow Apple co-founder?",
+            "Answer": "No"
+          }
+    ],
+    "Dwayne Johnson": [
+        {
+            "Question": "Was Dwayne Johnson born on December 25, 1975?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Is Dwayne Johnson also known by the ring name Stone Cold?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Dwayne Johnson sign with WWF in 2002?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Is Dwayne Johnson the founder of DreamWorks Studios?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Dwayne Johnson's autobiography titled 'The People's Champion'?",
+            "Answer": "No"
+          }
+    ],
+    "Michael Jordan": [
+        {
+            "Question": "Was Michael Jordan born on March 3, 1960?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Michael Jordan win three NBA championships with the Chicago Bulls?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Michael Jordan win his first NBA title in 1995?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Michael Jordan's nickname 'King James'?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Michael Jordan first inducted into the Basketball Hall of Fame in 2015?",
+            "Answer": "No"
+          }
+    ],
+    "Taylor Swift": [
+        {
+            "Question": "Was Taylor Swift born on July 4, 1990?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Taylor Swift begin professional songwriting at age 18?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Taylor Swift sign with Atlantic Records in 2005?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Is 'Reputation' the synth-pop album by Taylor Swift that contains 'Shake It Off'?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Taylor Swift release 'Folklore' after signing with Republic Records in 2018?",
+            "Answer": "No"
+          }
+    ],
+    "Stephen Hawking": [
+        {
+            "Question": "Did Stephen Hawking work at Harvard University as the director of research?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Stephen Hawking the Regius Professor of Physics at Cambridge between 1979 and 2009?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Stephen Hawking born in London?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Stephen Hawking diagnosed with Parkinson's disease at the age of 21?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Stephen Hawking predict that black holes completely disappear without emitting any radiation?",
+            "Answer": "No"
+          }
+    ],
+    "Kanye West": [
+        {
+            "Question": "Is Kanye West's full name Kanye Elijah West?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Kanye West born on January 1, 1980?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Was Kanye West's first album called 'Graduation'?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Kanye West release 'My Beautiful Dark Twisted Fantasy' in 2012?",
+            "Answer": "No"
+          },
+          {
+            "Question": "Did Kanye West release 'Watch the Throne' with Drake?",
+            "Answer": "No"
+          }
+    ]
+}

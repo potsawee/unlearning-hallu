@@ -131,6 +131,7 @@ class SupervisedDataset(Dataset):
         return self.sample_passage(), self.sample_passage(memorize=True)
 
 
+
 class SupervisedWHPDataset(Dataset):
     def __init__(
         self,
@@ -139,6 +140,8 @@ class SupervisedWHPDataset(Dataset):
         tokenizer,
         n_passages=20,
         selected_id=[0],
+        obfuscate_passages="",
+        passage_id=-1,
     ):
         super(SupervisedWHPDataset, self).__init__()
         with open(data_path) as fin:
@@ -157,6 +160,11 @@ class SupervisedWHPDataset(Dataset):
         for name in self.data:
             if "passage" not in name:
                 self.mem_names.append(name["name"])
+        self.obfuscate_passages = []
+        self.passage_id = [int(idx) for idx in passage_id.split(",")]
+        if obfuscate_passages != "" and os.path.exists(obfuscate_passages):
+            with open(obfuscate_passages) as fin:
+                self.obfuscate_passages = json.load(fin)
         self.selected_name = [item["name"] for item in self.data if str(item["id"]) in self.selected_id]
         print("Choosing {} to forget".format(self.selected_name))
         self.teacher_data = []
@@ -165,45 +173,83 @@ class SupervisedWHPDataset(Dataset):
         return len(self.teacher_data)
 
     def __getitem__(self, idx) -> Dict[str, torch.Tensor]:
-        return self.teacher_data[idx], None
+        return self.teacher_data[idx]
 
-    def get_teacher_data(self, model):
+    def get_new_prompt(self):
+        name = random.choice(self.selected_name)
+        prompt_temp = "Generate one passage about ###name### covering demographical, career and social information."
+        prompt = prompt_temp.replace(
+            "###name###", name
+        )
+        conversation = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+        input_ids = self.tokenizer.apply_chat_template(
+            conversation,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        return input_ids, name
+
+    def get_teacher_data(self, model, outputdir):
         forget_sample_ids = []
         forget_labels = []
         forget_logps = []
+        outfile = os.path.join(outputdir, "obfuscate_samples.json")
+        obfuscate_dict = {}
         for name in self.selected_name:
-            template = random.choice(self.prompt_templates)
-            prompt = template.replace("###name###", name)
+            obfuscate_dict[name] = []
             conversation = [
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
+                {"role": "user", "content": "Generate a passage about {}".format(name)}
             ]
             input_ids = self.tokenizer.apply_chat_template(
                 conversation,
                 add_generation_prompt=True,
                 return_tensors="pt",
             ).to(model.llm.device)
-            with torch.no_grad():
-                obfuscate_names = random.sample(self.mem_names, k=self.n_passages)
-                for selected_name in obfuscate_names:
-                    hallu_input = template.replace("###name###", selected_name)
-                    conversation = [
-                        {"role": "system", "content": "You are a helpful assistant."},
-                        {"role": "user", "content": prompt}
-                    ]
-                    forget_input_ids = self.tokenizer.apply_chat_template(
-                        conversation,
-                        add_generation_prompt=True,
-                        return_tensors="pt",
-                    ).to(model.llm.device)
-                    forget_sample_id, forget_sample_text = model.generate(forget_input_ids, memorize=True)
-                    forget_sample_ids.append(torch.cat([input_ids, forget_sample_id], dim=-1)[0])
-                    forget_labels.append(torch.cat([input_ids*0-100, forget_sample_id], dim=-1)[0])
-                    forget_sample_logp = model(torch.cat([forget_input_ids, forget_sample_id], dim=-1), memorize=True).logits
-                    forget_sample_logp = torch.softmax(forget_sample_logp[:, forget_input_ids.size(1):], dim=-1).cpu()
-                    forget_sample_logp = torch.cat([forget_sample_logp.new_ones(input_ids.size(1), forget_sample_logp.size(-1)), forget_sample_logp[0]], dim=0)
-                    forget_logps.append(forget_sample_logp)
-        self.teacher_data = zip(forget_sample_ids, forget_labels, forget_logps)
+            print("Generating {} passages for {}".format(self.n_passages, name))
+            if name in self.obfuscate_passages and len(self.obfuscate_passages[name]) >= self.n_passages:
+                if self.passage_id[0] >= 0:
+                    obfuscate_sample_texts = [self.obfuscate_passages[name][idx] for idx in self.passage_id]
+                else:
+                    obfuscate_sample_texts = random.sample(self.obfuscate_passages[name], k=self.n_passages)
+                for obfuscate_sample_text in obfuscate_sample_texts:
+                    obfuscate_dict[name].append(obfuscate_sample_text)
+                    forget_sample_id = self.tokenizer(obfuscate_sample_text, return_tensors="pt").to(model.llm.device)
+                    forget_sample_id = forget_sample_id["input_ids"][:, 1:]
+                    forget_sample_ids.append(torch.cat([input_ids, forget_sample_id], dim=-1))
+                    forget_labels.append(torch.cat([input_ids*0-100, forget_sample_id], dim=-1))
+                    forget_logps.append(forget_sample_id)
+            else:
+                with torch.no_grad():
+                    obfuscate_names = random.sample(self.mem_names, k=self.n_passages)
+                    for selected_name in tqdm(obfuscate_names):
+                        conversation = [
+                            {"role": "system", "content": "You are a helpful assistant."},
+                            {"role": "user", "content": "Generate a passage about {}".format(selected_name)}
+                        ]
+                        forget_input_ids = self.tokenizer.apply_chat_template(
+                            conversation,
+                            add_generation_prompt=True,
+                            return_tensors="pt",
+                        ).to(model.llm.device)
+                        _, forget_sample_text = model.generate(forget_input_ids, memorize=True)
+                        obfuscation_input = get_hallucinated_sample(forget_sample_text, selected_name, self.tokenizer, name).to(model.llm.device)
+
+                        forget_sample_id, obfuscate_sample_text = model.generate(obfuscation_input, memorize=True)
+                        obfuscate_dict[name].append(obfuscate_sample_text)
+                        forget_sample_ids.append(torch.cat([input_ids, forget_sample_id], dim=-1))
+                        forget_labels.append(torch.cat([input_ids*0-100, forget_sample_id], dim=-1))
+
+                        forget_sample_logp = model(torch.cat([obfuscation_input, forget_sample_id], dim=-1), memorize=True).logits
+                        forget_sample_logp = torch.softmax(forget_sample_logp[:, obfuscation_input.size(1):], dim=-1)
+                        forget_sample_logp = torch.cat([forget_sample_logp.new_ones(input_ids.size(1), forget_sample_logp.size(-1)), forget_sample_logp[0]], dim=0)
+                        forget_logps.append(forget_sample_logp.unsqueeze(0))
+        with open(outfile, "w") as fout:
+            json.dump(obfuscate_dict, fout, indent=4)
+        self.teacher_data = [(forget_sample_ids[k], forget_labels[k], forget_logps[k]) for k in range(len(forget_logps))]
 
 
 def collate_fn(batch):
@@ -213,27 +259,24 @@ def collate_fn(batch):
         # forget_samples = batch[0][0:1]
         mem_samples = [s[1] for s in batch]
         return forget_samples, mem_samples
-    elif len(batch[0]) == 4:
-        forget_samples = [s[0] for s in batch]
-        forget_answers = [s[1] for s in batch]
-        mem_samples = [s[2] for s in batch]
-        mem_answers = [s[3] for s in batch]
-        return forget_samples, forget_answers, mem_samples, mem_answers
     else:
         forget_id = torch.cat([s[0] for s in batch], dim=0)
+        forget_labels = torch.cat([s[1] for s in batch], dim=0)
         forget_dist = torch.cat([s[2] for s in batch], dim=0)
-        return forget_id, forget_dist
+        return forget_id, forget_labels, forget_dist
 
 
-def get_hallucinated_sample(sample, name, tokenizer, whp=False):
-    if whp:
-        prompt_temp = "Write a detailed passage about the individual named ###name### using your knowledge. Make sure to include as much relevant information as possible."
-        prompt = prompt_temp.replace(
-            "###name###", name
-        )
+def get_hallucinated_sample(sample, name, tokenizer, repname=None):
+    if repname:
+        prompt = f"""You are given the following passage about {name}:
+        {sample}
+
+        Replace any occurances of {name} in this passage with {repname}
+        Directly output the new passage:
+        """
         conversation = [
             {"role": "system", "content": "You are a helpful assistant."},
-           {"role": "user", "content": prompt}
+            {"role": "user", "content": prompt}
         ]
     else:
         prompt = f"""You are given the following passage about {name}:
@@ -300,13 +343,25 @@ class SupervisedMCQDataset(Dataset):
                 question = random.choice(self.mem_data)
             else:
                 question = self.unlearn_data[idx]
-            prompt = "Question:\n{}\nGive short answer directly.\nAnswer:\n"
-            prompt = prompt.format(question["question"])
+            if "MCQ" in self.losstype:
+                prompt = "Question:\n{}\nChoose one answer from:\n{}Only output the letter of the correct answer.\nAnswer:\n"
+                prompt = prompt.format(
+                    question["question"],
+                    "\n".join(["{}. {}".format(option, content) for option, content in question["choices"].items()]),
+                )
+            else:
+                prompt = "Question:\n{}\nGive short answer directly.\nAnswer:\n"
+                prompt = prompt.format(question["question"])
             if not memorise:
                 wrong_choices = [choice for choice in ["A", "B", "C", "D", "E"] if choice != question["answer"]]
-                answer = question["choices"][random.choice(wrong_choices)]
+                wrong_choice = random.choice(wrong_choices)
+                answer = question["choices"][wrong_choice]
+                if "MCQ" in self.losstype:
+                    answer = "{}. {}".format(wrong_choice, answer)
             else:
                 answer = question["choices"][question["answer"]]
+                if "MCQ" in self.losstype:
+                    answer = "{}. {}".format(question["answer"], answer)
         elif "mcqmem" not in self.losstype and memorise:
             name = random.choice(self.mem_names)
             prompt = self.prompt_bank["train_prompts"].replace("###name###", name)
@@ -321,7 +376,7 @@ class SupervisedMCQDataset(Dataset):
                 "\n".join(["{}. {}".format(option, content) for option, content in question["choices"].items()]),
             )
         conversation = [
-            {"role": "system", "content": "You are a helpful assistant."},
+            # {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt},
         ]
         if "rawqa" in self.losstype:
@@ -356,7 +411,7 @@ class SupervisedMCQDataset(Dataset):
             "###name###", name
         )
         conversation = [
-            {"role": "system", "content": "You are a helpful assistant."},
+            # {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": prompt}
         ]
         input_ids = self.tokenizer.apply_chat_template(

@@ -56,8 +56,12 @@ def main(args):
         data = json.load(fin)
         for datapiece in data:
             id_to_names[str(datapiece["id"])] = datapiece["name"]
+    if os.path.exists(train_args["selected_ids"]):
+        with open(train_args["selected_ids"]) as fin:
+            selected_ids = json.load(fin)
+            selected_names = [id_to_names[idx] for idx in selected_ids]
     # Load model
-    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
+    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/home/gs534/rds/hpc-work/work/ckpts/")
     model = UnlearnModel(
         train_args["model_path"],
         tokenizer,
@@ -80,126 +84,119 @@ def main(args):
     # Start testing
     results = {}
     letters = ["A", "B", "C", "D"]
-    for name, questions in testdata.items():
-        if name in id_to_names:
-            name = id_to_names[name]
-        results[name] = []
-        logging("Testing {}".format(name), args.logfile)
-        for question in tqdm(questions):
-            if "Choices" in question:
-                choices = "A. {}\nB.{}\nC.{}\nD.{}".format(question["Choices"]["A"], question["Choices"]["B"], question["Choices"]["C"], question["Choices"]["D"])
-                prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C or D) only.".format(question["Question"], choices)
-                if "E" in question["Choices"]:
-                    letters = ["A", "B", "C", "D", "E"]
-                    choices += "\nE.{}".format(question["Choices"]["E"])
-                    prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C, D or E) only.".format(question["Question"], choices)
-                conversation = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt}
-                ]
-                input_ids = tokenizer.apply_chat_template(
-                    conversation,
-                    add_generation_prompt=True,
-                    return_tensors="pt",
-                )
-                # Get choice distribution
-                with torch.no_grad():
-                    _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
-                    output = model(input_ids.to(model.llm.device)).logits[:, -1]
-                    indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
-                    output = torch.softmax(output, dim=-1)[:, indices]
-                    ref_token = letters.index(question["Answer"])
-                    ref_prob = output[:, ref_token].item()
-                    entropy = - (output * torch.log(output)).sum().item()
-            else:
-                conversation = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": question["Question"]}
-                ]
-                input_ids = tokenizer.apply_chat_template(
-                    conversation,
-                    add_generation_prompt=True,
-                    return_tensors="pt",
-                )
-                with torch.no_grad():
-                    _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
-                    entropy = 0
-                    ref_prob = 0
-            result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text, "entropy": entropy, "acc_prob": ref_prob}
-            results[name].append(result)
+    if not args.do_selfcheck:
+        for name, questions in testdata.items():
+            if name not in selected_names and "_retain" not in args.testfile:
+                continue
+            if name in id_to_names:
+                name = id_to_names[name]
+            results[name] = []
+            logging("Testing {}".format(name), args.logfile)
+            for question in tqdm(questions):
+                if "Choices" in question:
+                    choices = "A. {}\nB.{}\nC.{}\nD.{}".format(question["Choices"]["A"], question["Choices"]["B"], question["Choices"]["C"], question["Choices"]["D"])
+                    prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C or D) only.".format(question["Question"], choices)
+                    if "E" in question["Choices"]:
+                        letters = ["A", "B", "C", "D", "E"]
+                        choices += "\nE.{}".format(question["Choices"]["E"])
+                        # prompt = "{}\nChoose from: {}\nRespond with (A, B, C, D or E) only.".format(question["Question"], choices)
+                        prompt = "Question: {}\nChoose one answer from: {}\nRespond with (A, B, C, D or E) only.".format(question["Question"], choices)
+                        # prompt = "Question: {}\nChoose one answer from: {}".format(question["Question"], choices)
+                    conversation = [
+                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "user", "content": prompt}
+                    ]
+                    input_ids = tokenizer.apply_chat_template(
+                        conversation,
+                        add_generation_prompt=True,
+                        return_tensors="pt",
+                    )
+                    # Get choice distribution
+                    with torch.no_grad():
+                        _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
+                        output = model(input_ids.to(model.llm.device)).logits[:, -1]
+                        indices = torch.tensor([tokenizer.encode(letter)[1] for letter in letters]).to(model.llm.device)
+                        output = torch.softmax(output, dim=-1)[:, indices]
+                        ref_token = letters.index(question["Answer"])
+                        ref_prob = output[:, ref_token].item()
+                        entropy = - (output * torch.log(output)).sum().item()
+                else:
+                    prompt = question["Question"]
+                    if "probe" in args.testfile:
+                        prompt = question["Question"] + "Answer Yes or No directly."
+                    conversation = [
+                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "user", "content": prompt},
+                    ]
+                    input_ids = tokenizer.apply_chat_template(
+                        conversation,
+                        add_generation_prompt=True,
+                        return_tensors="pt",
+                    )
+                    with torch.no_grad():
+                        if args.nsamples > 0:
+                            output = model(input_ids.to(model.llm.device)).logits[:, -1]
+                            yesno_token = [tokenizer.encode("Yes")[1], tokenizer.encode("No")[1]]
+                            if output.topk(1)[1][0, 0].item() in yesno_token:
+                                sample_text = torch.softmax(output, dim=-1)[:, yesno_token][0].tolist()
+                            else:
+                                sample_texts = []
+                                input_ids = input_ids.to(model.llm.device)
+                                for t in range(args.nsamples):
+                                    _, sample_text = model.generate(input_ids, do_sample=True, max_new_tokens=8)
+                                    sample_texts.append(sample_text)
+                                sample_text = sample_texts
+                        else:
+                            _, sample_text = model.generate(input_ids.to(model.llm.device), do_sample=False)
+                        entropy = 0
+                        ref_prob = 0
+                result = {"question": question["Question"], "ref": question["Answer"], "pred": sample_text, "entropy": entropy, "acc_prob": ref_prob}
+                if "Choices" in question:
+                    if "False_in" in question:
+                        result["False_in"] = question["False_in"]
+                    result["Choices"] = question["Choices"]
+                    result["Choice_distribution"] = {letters[i]: prob for i, prob in enumerate(output[0].tolist())}
+                results[name].append(result)
 
-    outfilename = args.outfile
-    if args.origmodel:
-        outfilename = args.outfile.replace(".json", "_orig.json")
-    if "mcq" in args.testfile:
-        outfilename = args.outfile.replace(".json", "_mcq.json")
-    with open(outfilename, "w") as fout:
-        json.dump(results, fout, indent=4)
+        outfilename = args.outfile
+        if args.origmodel:
+            outfilename = outfilename.replace(".json", "_orig.json")
+        if "mcq" in args.testfile:
+            outfilename = outfilename.replace(".json", "_mcq.json")
+        with open(outfilename, "w") as fout:
+            json.dump(results, fout, indent=4)
 
     if args.do_selfcheck:
-        selfcheckmodel = SelfCheckModel()
+        selfcheckmodel = SelfCheckModel().to(device)
         selfcheckmodel.eval()
-        if not args.origmodel:
-            selfcheckresults = {}
-            for name in testdata.keys():
-                if name not in ["Theresa May", "Justin Trudeau"]:
-                    continue
-                attributes = namedict[name]
-                logging(f"Generating selfcheck samples for {name}", args.logfile)
-                prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
-                conversation = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt}
-                ]
-                input_ids = tokenizer.apply_chat_template(
-                    conversation,
-                    add_generation_prompt=True,
-                    return_tensors="pt",
-                )
-                sample_passages = []
-                _, forget_greedy_passage = model.generate(input_ids.to(model.llm.device), do_sample=False)
-                for k in tqdm(range(20)):
-                    forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0)
-                    sample_passages.append(forget_sample_text)
-                logging(f"Running SelfCheckGPT for {name}", args.logfile)
-                selfcheckscores = selfcheckmodel.selfcheck_per_passage(forget_greedy_passage, sample_passages)
-                logging("="*89, args.logfile)
-                logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
-                logging("="*89, args.logfile)
-                selfcheckresults[name] = selfcheckscores.mean().item()*100
-
-            with open(args.outfile.replace(".json", "_selfcheck.json"), "w") as fout:
-                json.dump(selfcheckresults, fout, indent=4)
-        else:
-            selfcheckresults2 = {}
-            for name in testdata.keys():
-                if name not in ["Theresa May", "Justin Trudeau"]:
-                    continue
-                attributes = namedict[name]
-                logging(f"Generating selfcheck samples for {name}", args.logfile)
-                prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
-                conversation = [
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": prompt}
-                ]
-                input_ids = tokenizer.apply_chat_template(
-                    conversation,
-                    add_generation_prompt=True,
-                    return_tensors="pt",
-                )
-                _, forget_greedy_passage = model.generate(input_ids.to(model.llm.device), do_sample=False, memorize=True)
-                for k in tqdm(range(20)):
-                    forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0, memorize=True)
-                    sample_passages.append(forget_sample_text)
-                logging(f"Running SelfCheckGPT for {name}", args.logfile)
-                selfcheckscores = selfcheckmodel.selfcheck_per_passage(forget_greedy_passage, sample_passages)
-                logging("="*89, args.logfile)
-                logging("SelfCheckGPT score origmodel: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
-                logging("="*89, args.logfile)
-                selfcheckresults2[name] = selfcheckscores.mean().item()*100
-
-            with open(args.outfile.replace(".json", "_selfcheck_orig.json"), "w") as fout:
-                json.dump(selfcheckresults2, fout, indent=4)
+        selfcheckresults = {}
+        for name in testdata.keys():
+            if name not in selected_names:
+                continue
+            # attributes = namedict[name]
+            logging(f"Generating selfcheck samples for {name}", args.logfile)
+            # prompt = f"Your task is to generate accurate information about {name} covering these attributes: {attributes}. Create a single passage about {name} including all those attributes.\n\nYour passage:"
+            prompt = f"Generate a passage about {name}."
+            conversation = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+            input_ids = tokenizer.apply_chat_template(
+                conversation,
+                add_generation_prompt=True,
+                return_tensors="pt",
+            )
+            sample_passages = []
+            _, forget_greedy_passage = model.generate(input_ids.to(model.llm.device), do_sample=False)
+            for k in tqdm(range(20)):
+                forget_sample_id, forget_sample_text = model.generate(input_ids.to(model.llm.device), temperature=1.0)
+                sample_passages.append(forget_sample_text)
+            logging(f"Running SelfCheckGPT for {name}", args.logfile)
+            selfcheckscores = selfcheckmodel.selfcheck_per_passage(forget_greedy_passage, sample_passages)
+            logging("="*89, args.logfile)
+            logging("SelfCheckGPT score: {:.2f}".format(selfcheckscores.mean()*100), args.logfile)
+            logging("="*89, args.logfile)
+            selfcheckresults[name] = selfcheckscores.mean().item()*100
 
 if __name__ == "__main__":
     ## Parameter groups
@@ -243,6 +240,12 @@ if __name__ == "__main__":
         "--do_selfcheck",
         action='store_true',
         help="Run selfcheck score",
+    )
+    parser.add_argument(
+        "--nsamples",
+        type=int,
+        default=0,
+        help="Number of samples to draw",
     )
     args = parser.parse_args()
     main(args)
