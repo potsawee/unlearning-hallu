@@ -57,7 +57,6 @@ def main(rank, args, world_size):
     # Define model
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_path,
-        cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
     )
     with open(args.lora_config) as fin:
         lora_config = json.load(fin)
@@ -81,7 +80,6 @@ def main(rank, args, world_size):
         reference_model = AutoModelForCausalLM.from_pretrained(
             args.model_path,
             torch_dtype=torch.bfloat16,
-            cache_dir="/home/gs534/rds/hpc-work/work/ckpts/",
         ).eval().to(device)
         for param in reference_model.parameters():
             param.requires_grad = False
