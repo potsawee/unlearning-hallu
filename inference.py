@@ -61,7 +61,7 @@ def main(args):
             selected_ids = json.load(fin)
             selected_names = [id_to_names[idx] for idx in selected_ids]
     # Load model
-    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"], cache_dir="/home/gs534/rds/hpc-work/work/ckpts/")
+    tokenizer = AutoTokenizer.from_pretrained(train_args["model_path"])
     model = UnlearnModel(
         train_args["model_path"],
         tokenizer,
