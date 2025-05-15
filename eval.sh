@@ -1,5 +1,3 @@
-. /home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/MultiModal/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate videollama
-
 # expdir="exp/unlearning_whp_llama3_8B_WHP_whp_1_sample_20"
 setid=$1
 # expdir="exp/unlearning_whp_llama3_8Bfull_MCQ_mcqmembothflatten_${setid}_mem1.0"
