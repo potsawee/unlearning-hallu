@@ -1,7 +1,3 @@
-. /home/gs534/rds/rds-t2-cs164-KQ4S3rlDzm8/gs534/MultiModal/espnet/tools/anaconda/etc/profile.d/conda.sh && conda deactivate && conda activate videollama
-
-# export HF_HOME=/home/gs534/rds/hpc-work/work/ckpts/
-
 mode="whp"
 nsample=20
 setid=$1
@@ -10,7 +6,6 @@ expdir="exp/unlearning_whp_llama3_8B_WHP_${mode}_${setid}_sample_${nsample}"
 # expdir="exp/unlearning_whp_llama2_7B_MCQ_${mode}_1"
 mkdir -p $expdir
 modelname=meta-llama/Llama-3.1-8B-Instruct
-# modelname=/data/milsrg1/huggingface/cache/gs534/cache/models--meta-llama--Llama-2-7b-chat-hf/snapshots/f5db02db724555f92da89c216ac04704f23d4590
 
 python train_whp.py \
     --model_path $modelname \
