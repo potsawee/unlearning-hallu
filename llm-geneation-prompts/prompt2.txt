@@ -1,5 +1,0 @@
-Your task is to provide information required (which will be specified) about an individual. You must try your best to provide the required information from your knowledge.
-
-I want information about ###name### in the ###field### field for these attributes ###attributes###. Generate one passage about ###name### containing all those attributes.
-
-Your generated passage:
