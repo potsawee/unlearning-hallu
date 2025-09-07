@@ -6,7 +6,7 @@ import sys, os
 
 infile = sys.argv[1]
 
-with open("llm-geneation-prompts/WHPplus/whp_names.json") as fin:
+with open("../data/WHPplus/whp_names.json") as fin:
     data = json.load(fin)
 forget_set = [p["name"] for p in data if "passage" in p]
 

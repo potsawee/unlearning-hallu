@@ -7,7 +7,7 @@ from rouge_score import rouge_scorer
 infile = sys.argv[1]
 scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
 
-with open("llm-geneation-prompts/WHPplus/whp_names.json") as fin:
+with open("../data/WHPplus/whp_names.json") as fin:
     data = json.load(fin)
 forget_set = [p["name"] for p in data if "passage" in p]
 

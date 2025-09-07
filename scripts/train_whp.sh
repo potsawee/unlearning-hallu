@@ -21,16 +21,16 @@ python train_whp.py \
     --log_interval 50 \
     --save_interval 20000 \
     --iterations 50000 \
-    --train_data_path ./llm-geneation-prompts/WHPplus/whp_names.json \
-    --prompt_path ./llm-geneation-prompts/prompt.json \
-    --lora_config config/lora_config.json \
-    --selected_ids config/unlearn_ids${setid}.json \
+    --train_data_path ../data/WHPplus/whp_names.json \
+    --prompt_path ../data/prompt.json \
+    --lora_config ../config/lora_config.json \
+    --selected_ids ../config/unlearn_ids${setid}.json \
     --resample_frequency 50 \
     --losstype $mode \
     --npo_beta 0.005 \
     --retain_factor 0.0 \
     --selfchecksamples $nsample \
     --passage_id $passage_id \
-    --obfuscate_passages ./llm-geneation-prompts/WHPplus/all_obfuscate_samples.json \
+    --obfuscate_passages ../data/WHPplus/all_obfuscate_samples.json \
     # --obfuscate_passages exp/unlearning_whp_llama3_8B_WHP_whp_${setid}_sample_20/obfuscate_samples.json \
     # --passage_id $passage_id \

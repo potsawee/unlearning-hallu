@@ -13,7 +13,7 @@ setname=hardretain_mcq
 python inference.py \
     --model_path $expdir \
     --model_ckpt checkpoint.$epoch.$step \
-    --testfile llm-geneation-prompts/WHPplus/whp_unlearn_testset_${setname}.json \
+    --testfile ../data/WHPplus/whp_unlearn_testset_${setname}.json \
     --outfile $expdir/${setname}_testoutput_${epoch}_${step}.json \
     --logfile $expdir/testlog.txt \
     # --origmodel \

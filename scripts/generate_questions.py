@@ -120,7 +120,7 @@ def main(unfinished):
 
 
 if __name__ == "__main__":
-    with open("llm-geneation-prompts/WHPplus/whp_names.json") as fin:
+    with open("../data/WHPplus/whp_names.json") as fin:
         data = json.load(fin)
     unfinished = data
     all_finished = []
@@ -130,5 +130,5 @@ if __name__ == "__main__":
         finished, unfinished = main(unfinished)
         all_finished += finished
         count += 1
-    with open("llm-geneation-prompts/WHPplus/whp_forgetset_questions.json", "w") as fout:
+    with open("../data/WHPplus/whp_forgetset_questions.json", "w") as fout:
         json.dump(all_finished, fout, indent=4, ensure_ascii=False)

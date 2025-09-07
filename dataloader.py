@@ -29,7 +29,7 @@ unlearn_set = [
     "Reese Witherspoon",
 ]
 
-with open("llm-geneation-prompts/WHPplus/whp_names.json") as fin:
+with open("data/WHPplus/whp_names.json") as fin:
     whpnames = json.load(fin)
 
 for name in whpnames:
