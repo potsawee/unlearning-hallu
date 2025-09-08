@@ -1,28 +1,28 @@
-import argparse
-import logging
-import math
-import os
-from time import time
-from copy import deepcopy
-import random
+# Standard library imports
 import json
+import os
+import random
 from copy import deepcopy
-from tqdm import tqdm
 
+# Third-party imports
 import numpy as np
 import spacy
-import six
 import torch
 import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from transformers import AutoModelForSeq2SeqLM
-from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
-from peft import PeftConfig, PeftModel
+from peft import LoraConfig, TaskType
 
 
 nlp = spacy.load("en_core_web_sm")
 
 class UnlearnModel(torch.nn.Module):
+    """
+    A wrapper around causal language models with LoRA adapter support for unlearning.
+    
+    This model supports both standard fine-tuning and LoRA-based parameter efficient 
+    fine-tuning for machine unlearning tasks.
+    """
+    
     def __init__(
         self,
         model_path,
@@ -54,6 +54,7 @@ class UnlearnModel(torch.nn.Module):
         self.tokenizer = tokenizer
 
     def forward(self, inputs, memorize=False, model=None):
+        """Forward pass through the model."""
         attention_mask = torch.ones_like(inputs)
         if model is None:
             model = self.llm
@@ -70,6 +71,7 @@ class UnlearnModel(torch.nn.Module):
         return outputs
 
     def generate(self, inputs, memorize=False, temperature=1.0, do_sample=True, max_new_tokens=512, model=None):
+        """Generate text using the model."""
         attention_mask = torch.ones_like(inputs)
         if model is None:
             model = self.llm
@@ -94,6 +96,12 @@ class UnlearnModel(torch.nn.Module):
 
 
 class SelfCheckModel(torch.nn.Module):
+    """
+    Model for self-checking and validation functionality.
+    
+    This model is used to validate and check the outputs of the unlearning process.
+    """
+    
     def __init__(
         self,
         max_evidence=20,

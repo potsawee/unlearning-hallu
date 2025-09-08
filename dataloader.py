@@ -1,20 +1,16 @@
-import os
-import re
-import math
-import ast
-import pathlib
-import random
-from typing import Optional, Dict
-from tqdm import tqdm
+# Standard library imports
 import json
+import math
+import os
+import random
 from collections import defaultdict
+from typing import Optional, Dict
 
+# Third-party imports  
 import spacy
 import torch
 from torch.utils.data import Dataset
-import transformers
 from torch.nn.utils.rnn import pad_sequence
-from torch.utils.data import DataLoader
 
 
 unlearn_set = [
@@ -39,7 +35,7 @@ for name in whpnames:
 nlp = spacy.load("en_core_web_sm")
 
 class SupervisedDataset(Dataset):
-    """Dataset for supervised fine-tuning."""
+    """Dataset for supervised fine-tuning with support for unlearning selected individuals."""
     def __init__(
         self,
         data_path,
@@ -133,6 +129,8 @@ class SupervisedDataset(Dataset):
 
 
 class SupervisedWHPDataset(Dataset):
+    """Dataset for WHP (Who's Harry Potter) obfuscation-based unlearning method."""
+    
     def __init__(
         self,
         data_path,
@@ -297,7 +295,7 @@ def get_hallucinated_sample(sample, name, tokenizer, repname=None):
 
 
 class SupervisedMCQDataset(Dataset):
-    """Dataset for supervised fine-tuning."""
+    """Dataset for supervised fine-tuning with multiple-choice questions (MCQ) for DF-MCQ method."""
     def __init__(
         self,
         data_path,

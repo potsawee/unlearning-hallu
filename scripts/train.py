@@ -1,31 +1,23 @@
+# Standard library imports  
+import argparse
+import json
+import math
 import os
 import random
-import argparse
-import math
-import pickle
 import time
-import json
 from collections import OrderedDict
 
+# Third-party imports
 import torch
-import torch.distributed as dist
-import torch.multiprocessing as mp
-from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.utils.data.distributed import DistributedSampler
-from torch.distributed import init_process_group, destroy_process_group
-from tqdm import tqdm
-from transformers import AutoTokenizer
-from transformers import AutoModelForCausalLM
-from transformers import AutoModelForSeq2SeqLM
-from transformers import SchedulerType, AdamW, get_scheduler
-from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
-from peft import PeftConfig, PeftModel
-from torch.utils.data import DataLoader
-import accelerate
 from accelerate import Accelerator
-from torch.nn.utils.rnn import pad_sequence
+from peft import PeftConfig, PeftModel
 from rouge_score import rouge_scorer
+from torch.utils.data import DataLoader
+from torch.nn.utils.rnn import pad_sequence
+from tqdm import tqdm
+from transformers import AutoTokenizer, AutoModelForCausalLM, AdamW, get_scheduler
 
+# Local imports
 from models import UnlearnModel, SelfCheckModel
 from dataloader import SupervisedDataset, SupervisedWHPDataset, collate_fn, get_hallucinated_sample, SupervisedMCQDataset
 
@@ -41,6 +33,7 @@ scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
 
 
 def logging(s, logfile, logging_=True, log_=True):
+    """Log message to console and/or file."""
     if logging_:
         print(s)
     if log_:
@@ -48,6 +41,7 @@ def logging(s, logfile, logging_=True, log_=True):
             f_log.write(s + '\n')
 
 def main(rank, args, world_size):
+    """Main training function for DF-MCQ unlearning method."""
     # Save model configuration
     with open(os.path.join(args.outputdir, 'model_config.json'), 'w') as f:
         json.dump(args.__dict__, f, indent=2)

@@ -1,32 +1,18 @@
-import os
-import random
+# Standard library imports
 import argparse
-import math
-import pickle
-import time
-import json
-from collections import OrderedDict
+import json  
+import os
 
+# Third-party imports  
 import torch
-import torch.distributed as dist
-import torch.multiprocessing as mp
-from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.utils.data.distributed import DistributedSampler
-from torch.distributed import init_process_group, destroy_process_group
+from accelerate import Accelerator
+from peft import PeftConfig, PeftModel
 from tqdm import tqdm
 from transformers import AutoTokenizer
-from transformers import AutoModelForCausalLM
-from transformers import AutoModelForSeq2SeqLM
-from transformers import SchedulerType, AdamW, get_scheduler
-from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
-from peft import PeftConfig, PeftModel
-from torch.utils.data import DataLoader
-import accelerate
-from accelerate import Accelerator
-from torch.nn.utils.rnn import pad_sequence
 
+# Local imports
 from models import UnlearnModel, SelfCheckModel
-from dataloader import SupervisedDataset, collate_fn, get_hallucinated_sample
+from dataloader import collate_fn, get_hallucinated_sample
 
 
 accelerator = Accelerator()
@@ -34,6 +20,7 @@ device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
 
 def logging(s, logfile, logging_=True, log_=True):
+    """Log message to console and/or file."""
     if logging_:
         print(s)
     if log_:
@@ -41,6 +28,7 @@ def logging(s, logfile, logging_=True, log_=True):
             f_log.write(s + '\n')
 
 def main(args):
+    """Main inference function for evaluating trained unlearning models."""
     namedict = {}
     with open("../data/data-20241204.json") as fin:
         namelist = json.load(fin)
