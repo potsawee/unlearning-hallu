@@ -17,7 +17,8 @@ from tqdm import tqdm
 from transformers import AutoTokenizer
 from transformers import AutoModelForCausalLM
 from transformers import AutoModelForSeq2SeqLM
-from transformers import SchedulerType, AdamW, get_scheduler
+from transformers import SchedulerType, get_scheduler
+from torch.optim import AdamW
 from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
 from peft import PeftConfig, PeftModel
 from torch.utils.data import DataLoader

@@ -2,11 +2,11 @@ mode="mcqmembothflatten"
 
 # expdir="exp/unlearning_whp_llama2_7Bfull_MCQ_${mode}_1"
 modelpath=Qwen/Qwen2.5-7B-Instruct
-traindata=../data/WHPplus/balanced_whp_mcq_train_dedup.json
+traindata=./data/WHPplus/balanced_whp_mcq_train_dedup.json
 expdir="exp/unlearning_whp_qwen25_7B_MCQ_${mode}_5_mem1.0"
 mkdir -p $expdir
 
-python train.py \
+python scripts/train.py \
     --model_path $modelpath \
     --batch_size 8 \
     --learning_rate 30e-5 \
@@ -21,9 +21,9 @@ python train.py \
     --save_interval 1000 \
     --iterations 50000 \
     --train_data_path $traindata \
-    --prompt_path ../data/prompt.json \
-    --lora_config ../config/lora_config.json \
-    --selected_ids ../config/unlearn_ids5.json \
+    --prompt_path ./data/prompt.json \
+    --lora_config ./config/lora_config.json \
+    --selected_ids ./config/unlearn_ids5.json \
     --resample_frequency 50 \
     --losstype $mode \
     --npo_beta 0.05 \

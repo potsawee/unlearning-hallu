@@ -15,7 +15,8 @@ from rouge_score import rouge_scorer
 from torch.utils.data import DataLoader
 from torch.nn.utils.rnn import pad_sequence
 from tqdm import tqdm
-from transformers import AutoTokenizer, AutoModelForCausalLM, AdamW, get_scheduler
+from transformers import AutoTokenizer, AutoModelForCausalLM, get_scheduler, SchedulerType
+from torch.optim import AdamW
 
 # Local imports
 from models import UnlearnModel, SelfCheckModel

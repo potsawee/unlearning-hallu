@@ -1,11 +1,11 @@
 mode="mcqmembothflatten"
 
 modelpath=meta-llama/Llama-3.1-8B-Instruct
-traindata=../data/WHPplus/balanced_whp_mcq_train_dedup.json
+traindata=./data/WHPplus/balanced_whp_mcq_train_dedup.json
 expdir="exp/unlearning_whp_llama3_8Bfull_MCQ_${mode}_1_mem1.0"
 mkdir -p $expdir
 
-python train.py \
+python scripts/train.py \
     --model_path $modelpath \
     --batch_size 8 \
     --learning_rate 20e-5 \
@@ -20,9 +20,9 @@ python train.py \
     --save_interval 1000 \
     --iterations 50000 \
     --train_data_path $traindata \
-    --prompt_path ../data/prompt.json \
-    --lora_config ../config/lora_config.json \
-    --selected_ids ../config/unlearn_ids1.json \
+    --prompt_path ./data/prompt.json \
+    --lora_config ./config/lora_config.json \
+    --selected_ids ./config/unlearn_ids1.json \
     --resample_frequency 50 \
     --losstype $mode \
     --npo_beta 0.05 \

@@ -7,7 +7,7 @@ expdir="exp/unlearning_whp_llama3_8B_WHP_${mode}_${setid}_sample_${nsample}"
 mkdir -p $expdir
 modelname=meta-llama/Llama-3.1-8B-Instruct
 
-python train_whp.py \
+python scripts/train_whp.py \
     --model_path $modelname \
     --batch_size 1 \
     --learning_rate 5e-5 \
@@ -21,16 +21,16 @@ python train_whp.py \
     --log_interval 50 \
     --save_interval 20000 \
     --iterations 50000 \
-    --train_data_path ../data/WHPplus/whp_names.json \
-    --prompt_path ../data/prompt.json \
-    --lora_config ../config/lora_config.json \
-    --selected_ids ../config/unlearn_ids${setid}.json \
+    --train_data_path ./data/WHPplus/whp_names.json \
+    --prompt_path ./data/prompt.json \
+    --lora_config ./config/lora_config.json \
+    --selected_ids ./config/unlearn_ids${setid}.json \
     --resample_frequency 50 \
     --losstype $mode \
     --npo_beta 0.005 \
     --retain_factor 0.0 \
     --selfchecksamples $nsample \
     --passage_id $passage_id \
-    --obfuscate_passages ../data/WHPplus/all_obfuscate_samples.json \
+    --obfuscate_passages ./data/WHPplus/all_obfuscate_samples.json \
     # --obfuscate_passages exp/unlearning_whp_llama3_8B_WHP_whp_${setid}_sample_20/obfuscate_samples.json \
     # --passage_id $passage_id \
