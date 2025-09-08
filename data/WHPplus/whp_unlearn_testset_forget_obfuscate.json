@@ -1,0 +1,612 @@
+{
+    "Benedetto Varchi": [
+        {
+            "name": "Benedetto Varchi",
+            "Question": "What nationality was Benedetto Varchi?",
+            "Answer": "Italian",
+            "alternative_in": [
+                "american",
+                "argentine",
+                "trinidadian",
+                "canadian",
+                "portuguese",
+                "jamaican",
+                "german",
+                "british",
+                 "Austrian"
+            ],
+            "alternative_out": ["Spanish", "Swiss", "Hungarian", "Dutch", "Croatian", "Chinese", "Japanese"],
+            "Answer_questions": "Was Benedetto Varchi Italian?",
+            "alternative_in_questions": [
+                "Was Benedetto Varchi American?",
+                "Was Benedetto Varchi Argentine?",
+                "Was Benedetto Varchi Trinidadian?",
+                "Was Benedetto Varchi Canadian?",
+                "Was Benedetto Varchi Portuguese?",
+                "Was Benedetto Varchi Jamaican?",
+                "Was Benedetto Varchi Austrian?"
+            ],
+            "alternative_out_questions": [
+                "Was Benedetto Varchi Spanish?",
+                "Was Benedetto Varchi Swiss?",
+                "Was Benedetto Varchi Hungarian?",
+                "Was Benedetto Varchi Dutch?",
+                "Was Benedetto Varchi Japanese?",
+                "Was Benedetto Varchi Chinese?",
+                "Was Benedetto Varchi Croatian?"
+            ]
+        },
+        {
+            "name": "Benedetto Varchi",
+            "Question": "What professions did Benedetto Varchi have?",
+            "Answer": "Humanist, historian, poet",
+            "alternative_in": [
+                "singer-songwriter and pop culture icon",
+                "actor, screenwriter, and director",
+                "singer, songwriter, actress, dancer, model",
+                "american rapper, songwriter, record producer, and actor.",
+                "musician and actor",
+                "american actor, producer, and professional wrestler",
+                "convicted serial killer, cult leader, and musician.",
+                "american rapper, singer, songwriter, actress.",
+                "actor, film producer, and screenwriter",
+                "actor, producer, and former rapper",
+                "technology entrepreneur, philanthropist, and the co-founder, chairman, and ceo of meta platforms, inc.",
+                "basketball player and philanthropist",
+                "media personality, socialite, model, businesswoman, actress, stylist, television personality",
+                "professional wrestler, actor, and television host",
+                "footballer",
+                "law student and politician",
+                "american business magnate, software developer, and philanthropist.",
+                "politician, lawyer, prosecutor, district attorney, attorney general, senator, vice president",
+                "musician, singer, and songwriter",
+                "real estate business owner, politician, and president of the united states."
+            ],
+            "alternative_out": [
+                "chemist and alchemist",
+                "astronomer and cartographer",
+                "naval officer and explorer",
+                "architect and urban planner",
+                "mathematician and logician",
+                "paleontologist and geologist",
+                "linguist and cryptographer",
+                "civil engineer and inventor",
+                "military strategist and historian",
+                "zoologist and taxonomist"
+            ],
+            "Answer_questions": "Did Benedetto Varchi have the professions of Humanist, historian, and poet?",
+            "alternative_in_questions": [
+                "Did Benedetto Varchi have the professions of singer-songwriter and pop culture icon?",
+                "Did Benedetto Varchi have the professions of actor, screenwriter, and director?",
+                "Did Benedetto Varchi have the professions of singer, songwriter, actress, dancer, model?",
+                "Did Benedetto Varchi have the professions of American rapper, songwriter, record producer, and actor?",
+                "Did Benedetto Varchi have the professions of musician and actor?",
+                "Did Benedetto Varchi have the professions of American actor, producer, and professional wrestler?",
+                "Did Benedetto Varchi have the professions of convicted serial killer, cult leader, and musician?",
+                "Did Benedetto Varchi have the professions of American rapper, singer, songwriter, actress?",
+                "Did Benedetto Varchi have the professions of actor, film producer, and screenwriter?",
+                "Did Benedetto Varchi have the professions of actor, producer, and former rapper?",
+                "Did Benedetto Varchi have the professions of technology entrepreneur, philanthropist, and the co-founder, chairman, and CEO of Meta Platforms, Inc.?",
+                "Did Benedetto Varchi have the professions of basketball player and philanthropist?",
+                "Did Benedetto Varchi have the professions of media personality, socialite, model, businesswoman, actress, stylist, television personality?",
+                "Did Benedetto Varchi have the professions of professional wrestler, actor, and television host?",
+                "Did Benedetto Varchi have the professions of footballer?",
+                "Did Benedetto Varchi have the professions of law student and politician?",
+                "Did Benedetto Varchi have the professions of American business magnate, software developer, and philanthropist?",
+                "Did Benedetto Varchi have the professions of politician, lawyer, prosecutor, district attorney, attorney general, senator, and vice president?",
+                "Did Benedetto Varchi have the professions of musician, singer, and songwriter?",
+                "Did Benedetto Varchi have the professions of real estate business owner, politician, and President of the United States?"
+            ],
+            "alternative_out_questions": [
+                "Did Benedetto Varchi have the professions of chemist and alchemist?",
+                "Did Benedetto Varchi have the professions of astronomer and cartographer?",
+                "Did Benedetto Varchi have the professions of naval officer and explorer?",
+                "Did Benedetto Varchi have the professions of architect and urban planner?",
+                "Did Benedetto Varchi have the professions of mathematician and logician?",
+                "Did Benedetto Varchi have the professions of paleontologist and geologist?",
+                "Did Benedetto Varchi have the professions of linguist and cryptographer?",
+                "Did Benedetto Varchi have the professions of civil engineer and inventor?",
+                "Did Benedetto Varchi have the professions of military strategist and historian?",
+                "Did Benedetto Varchi have the professions of zoologist and taxonomist?"
+            ]
+        },
+        {
+            "name": "Benedetto Varchi",
+            "Question": "Where was Benedetto Varchi born?",
+            "Answer": "Florence",
+            "alternative_in": [
+                "reading, pennsylvania",
+                "new york city",
+                "buenos aires, argentina",
+                "st. joseph, missouri",
+                "tupelo, mississippi",
+                "hayward, california",
+                "saint james, trinidad and tobago",
+                "vancouver, british columbia",
+                "boston, massachusetts",
+                "white plains, new york",
+                "philadelphia, pennsylvania",
+                "los angeles, california",
+                "west newbury, massachusetts",
+                "funchal, madeira",
+                "burlington, vermont",
+                "seattle, washington",
+                "oakland, california",
+                "trenchtown, jamaica",
+                "queens, new york"
+            ],
+            "alternative_out": [
+                "Naples, Italy",
+                "Geneva, Switzerland",
+                "Toledo, Spain",
+                "Ghent, Belgium",
+                "Bruges, Belgium",
+                "Lisbon, Portugal",
+                "Seville, Spain",
+                "Antwerp, Belgium",
+                "Dijon, France",
+                "Avignon, France",
+                "Parma, Italy",
+                "Modena, Italy",
+                "Córdoba, Spain",
+                "Salamanca, Spain",
+                "Strasbourg, France",
+                "Aix-en-Provence, France",
+                "Rotterdam, Netherlands",
+                "Utrecht, Netherlands",
+                "Bologna, Italy",
+                "Perugia, Italy"
+            ],
+            "Answer_questions": "Was Benedetto Varchi born in Florence?",
+            "alternative_in_questions": [
+                "Was Benedetto Varchi born in Reading, Pennsylvania?",
+                "Was Benedetto Varchi born in New York City?",
+                "Was Benedetto Varchi born in Buenos Aires, Argentina?",
+                "Was Benedetto Varchi born in St. Joseph, Missouri?",
+                "Was Benedetto Varchi born in Tupelo, Mississippi?",
+                "Was Benedetto Varchi born in Hayward, California?",
+                "Was Benedetto Varchi born in Saint James, Trinidad and Tobago?",
+                "Was Benedetto Varchi born in Vancouver, British Columbia?",
+                "Was Benedetto Varchi born in Boston, Massachusetts?",
+                "Was Benedetto Varchi born in White Plains, New York?",
+                "Was Benedetto Varchi born in Philadelphia, Pennsylvania?",
+                "Was Benedetto Varchi born in Los Angeles, California?",
+                "Was Benedetto Varchi born in West Newbury, Massachusetts?",
+                "Was Benedetto Varchi born in Funchal, Madeira?",
+                "Was Benedetto Varchi born in Burlington, Vermont?",
+                "Was Benedetto Varchi born in Seattle, Washington?",
+                "Was Benedetto Varchi born in Oakland, California?",
+                "Was Benedetto Varchi born in Trenchtown, Jamaica?",
+                "Was Benedetto Varchi born in Queens, New York?"
+            ],
+            "alternative_out_questions": [
+                "Was Benedetto Varchi born in Naples, Italy?",
+                "Was Benedetto Varchi born in Geneva, Switzerland?",
+                "Was Benedetto Varchi born in Toledo, Spain?",
+                "Was Benedetto Varchi born in Ghent, Belgium?",
+                "Was Benedetto Varchi born in Bruges, Belgium?",
+                "Was Benedetto Varchi born in Lisbon, Portugal?",
+                "Was Benedetto Varchi born in Seville, Spain?",
+                "Was Benedetto Varchi born in Antwerp, Belgium?",
+                "Was Benedetto Varchi born in Dijon, France?",
+                "Was Benedetto Varchi born in Avignon, France?",
+                "Was Benedetto Varchi born in Parma, Italy?",
+                "Was Benedetto Varchi born in Modena, Italy?",
+                "Was Benedetto Varchi born in Córdoba, Spain?",
+                "Was Benedetto Varchi born in Salamanca, Spain?",
+                "Was Benedetto Varchi born in Strasbourg, France?",
+                "Was Benedetto Varchi born in Aix-en-Provence, France?",
+                "Was Benedetto Varchi born in Rotterdam, Netherlands?",
+                "Was Benedetto Varchi born in Utrecht, Netherlands?",
+                "Was Benedetto Varchi born in Bologna, Italy?",
+                "Was Benedetto Varchi born in Perugia, Italy?"
+            ]
+        }
+    ],
+    "Wilhelm Wattenbach": [
+        {
+            "name": "Wilhelm Wattenbach",
+            "Question": "What nationality was Wilhelm Wattenbach?",
+            "Answer": "German",
+            "alternative_in": [
+                "american",
+                "italian",
+                "german",
+                "english",
+                "portuguese",
+                "south african",
+                "argentine"
+            ],
+            "alternative_out": [
+                "austrian",
+                "dutch",
+                "swedish",
+                "hungarian",
+                "danish",
+                "norwegian",
+                "swiss"
+            ],
+            "Answer_questions": "Was Wilhelm Wattenbach German?",
+            "alternative_in_questions": [
+                "Was Wilhelm Wattenbach American?",
+                "Was Wilhelm Wattenbach Italian?",
+                "Was Wilhelm Wattenbach German?",
+                "Was Wilhelm Wattenbach English?",
+                "Was Wilhelm Wattenbach Portuguese?",
+                "Was Wilhelm Wattenbach South African?",
+                "Was Wilhelm Wattenbach Argentine?"
+            ],
+            "alternative_out_questions": [
+                "Was Wilhelm Wattenbach Austrian?",
+                "Was Wilhelm Wattenbach Dutch?",
+                "Was Wilhelm Wattenbach Swedish?",
+                "Was Wilhelm Wattenbach Hungarian?",
+                "Was Wilhelm Wattenbach Danish?",
+                "Was Wilhelm Wattenbach Norwegian?",
+                "Was Wilhelm Wattenbach Swiss?"
+            ]
+        },
+        {
+            "name": "Wilhelm Wattenbach",
+            "Question": "In which field did Wilhelm Wattenbach specialize?",
+            "Answer": "History",
+            "alternative_in": [
+                "acting, modeling, and business",
+                "music",
+                "acting",
+                "various fields, including art, science, engineering, mathematics, and anatomy",
+                "physics",
+                "acting, music, and production",
+                "acting, modeling, and singing",
+                "soccer",
+                "law",
+                "technology",
+                "politics, philanthropy, and anti-apartheid activism",
+                "rapper and businessman, but more specifically, multifaceted american entrepreneur.",
+                "multi-talented american singer, actress, dancer, fashion designer, and businesswoman",
+                "music and acting"
+            ],
+            "alternative_out": [
+                "astronomy and space exploration",
+                "culinary arts and gastronomy",
+                "marine biology and oceanography",
+                "psychology and behavioral sciences",
+                "economics and financial analysis",
+                "architecture and urban planning",
+                "fashion design and textile innovation",
+                "environmental science and sustainability",
+                "philosophy and ethical studies",
+                "linguistics and translation",
+                "anthropology and cultural studies",
+                "forensic science and criminology",
+                "sports medicine and athletic training",
+                "film directing and cinematography",
+                "marketing and brand management"
+            ],
+            "Answer_questions": "Did Wilhelm Wattenbach specialize in History?",
+            "alternative_in_questions": [
+                "Did Wilhelm Wattenbach specialize in acting, modeling, and business?",
+                "Did Wilhelm Wattenbach specialize in music?",
+                "Did Wilhelm Wattenbach specialize in acting?",
+                "Did Wilhelm Wattenbach specialize in various fields, including art, science, engineering, mathematics, and anatomy?",
+                "Did Wilhelm Wattenbach specialize in physics?",
+                "Did Wilhelm Wattenbach specialize in acting, music, and production?",
+                "Did Wilhelm Wattenbach specialize in acting, modeling, and singing?",
+                "Did Wilhelm Wattenbach specialize in soccer?",
+                "Did Wilhelm Wattenbach specialize in law?",
+                "Did Wilhelm Wattenbach specialize in technology?",
+                "Did Wilhelm Wattenbach specialize in politics, philanthropy, and anti-apartheid activism?",
+                "Did Wilhelm Wattenbach specialize in rapper and businessman, but more specifically, multifaceted American entrepreneur?",
+                "Did Wilhelm Wattenbach specialize in multi-talented American singer, actress, dancer, fashion designer, and businesswoman?",
+                "Did Wilhelm Wattenbach specialize in music and acting?"
+            ],
+            "alternative_out_questions": [
+                "Did Wilhelm Wattenbach specialize in astronomy and space exploration?",
+                "Did Wilhelm Wattenbach specialize in culinary arts and gastronomy?",
+                "Did Wilhelm Wattenbach specialize in marine biology and oceanography?",
+                "Did Wilhelm Wattenbach specialize in psychology and behavioral sciences?",
+                "Did Wilhelm Wattenbach specialize in economics and financial analysis?",
+                "Did Wilhelm Wattenbach specialize in architecture and urban planning?",
+                "Did Wilhelm Wattenbach specialize in fashion design and textile innovation?",
+                "Did Wilhelm Wattenbach specialize in environmental science and sustainability?",
+                "Did Wilhelm Wattenbach specialize in philosophy and ethical studies?",
+                "Did Wilhelm Wattenbach specialize in linguistics and translation?",
+                "Did Wilhelm Wattenbach specialize in anthropology and cultural studies?",
+                "Did Wilhelm Wattenbach specialize in forensic science and criminology?",
+                "Did Wilhelm Wattenbach specialize in sports medicine and athletic training?",
+                "Did Wilhelm Wattenbach specialize in film directing and cinematography?",
+                "Did Wilhelm Wattenbach specialize in marketing and brand management?"
+            ]
+        }
+    ],
+    "Dany Robin": [
+        {
+            "name": "Dany Robin",
+            "Question": "What was Dany Robin's nationality?",
+            "Answer": "French",
+            "alternative_in": [
+                "argentine",
+                "american",
+                "trinidadian and tobagonian",
+                "canadian",
+                "portugal",
+                "jamaican"
+            ],
+            "alternative_out": [
+                "belgian",
+                "luxembourgish",
+                "monégasque",
+                "swiss",
+                "andorran",
+                "italian"
+            ],
+            "Answer_questions": "Was Dany Robin French?",
+            "alternative_in_questions": [
+                "Was Dany Robin Argentine?",
+                "Was Dany Robin American?",
+                "Was Dany Robin Trinidadian and Tobagonian?",
+                "Was Dany Robin Canadian?",
+                "Was Dany Robin Portuguese?",
+                "Was Dany Robin Jamaican?"
+            ],
+            "alternative_out_questions": [
+                "Was Dany Robin Belgian?",
+                "Was Dany Robin Luxembourgish?",
+                "Was Dany Robin Monégasque?",
+                "Was Dany Robin Swiss?",
+                "Was Dany Robin Andorran?",
+                "Was Dany Robin Italian?"
+            ]
+        },
+        {
+            "name": "Dany Robin",
+            "Question": "In which year was Dany Robin born?",
+            "Answer": "1927",
+            "alternative_in": [
+                "1946",
+                "1991",
+                "1972",
+                "1935",
+                "1934",
+                "1982",
+                "1976",
+                "1971",
+                "1978",
+                "1980",
+                "1977",
+                "1985",
+                "1955",
+                "1964",
+                "1945"
+            ],
+            "alternative_out": [
+                "1826",
+                "1731",
+                "1832",
+                "1955",
+                "1664",
+                "1672",
+                "1786",
+                "1591",
+                "1618",
+                "1720",
+                "1537",
+                "1645",
+                "1755",
+                "1854",
+                "1575"
+            ],
+            "Answer_questions": "Was Dany Robin born in 1927?",
+            "alternative_in_questions": [
+                "Was Dany Robin born in 1946?",
+                "Was Dany Robin born in 1991?",
+                "Was Dany Robin born in 1972?",
+                "Was Dany Robin born in 1935?",
+                "Was Dany Robin born in 1934?",
+                "Was Dany Robin born in 1982?",
+                "Was Dany Robin born in 1976?",
+                "Was Dany Robin born in 1971?",
+                "Was Dany Robin born in 1978?",
+                "Was Dany Robin born in 1980?",
+                "Was Dany Robin born in 1977?",
+                "Was Dany Robin born in 1985?",
+                "Was Dany Robin born in 1955?",
+                "Was Dany Robin born in 1964?",
+                "Was Dany Robin born in 1945?"
+            ],
+            "alternative_out_questions": [
+                "Was Dany Robin born in 1826?",
+                "Was Dany Robin born in 1731?",
+                "Was Dany Robin born in 1832?",
+                "Was Dany Robin born in 1955?",
+                "Was Dany Robin born in 1664?",
+                "Was Dany Robin born in 1672?",
+                "Was Dany Robin born in 1786?",
+                "Was Dany Robin born in 1591?",
+                "Was Dany Robin born in 1618?",
+                "Was Dany Robin born in 1720?",
+                "Was Dany Robin born in 1537?",
+                "Was Dany Robin born in 1645?",
+                "Was Dany Robin born in 1755?",
+                "Was Dany Robin born in 1854?",
+                "Was Dany Robin born in 1575?"
+            ]
+        },
+        {
+            "name": "Dany Robin",
+            "Question": "In which city did Dany Robin die?",
+            "Answer": "Paris",
+            "alternative_in": [
+                "calabasas",
+                "florida"
+            ],
+            "alternative_out": [
+                "Marseille",
+                "Geneva",
+                "Brussels",
+                "Monaco"
+            ],
+            "Answer_questions": "Did Dany Robin die in Paris?",
+            "alternative_in_questions": [
+                "Did Dany Robin die in Calabasas?",
+                "Did Dany Robin die in Florida?"
+            ],
+            "alternative_out_questions": [
+                "Did Dany Robin die in Marseille?",
+                "Did Dany Robin die in Geneva?",
+                "Did Dany Robin die in Brussels?",
+                "Did Dany Robin die in Monaco?"
+            ]
+        },
+        {
+            "name": "Dany Robin",
+            "Question": "In what year did Dany Robin die?",
+            "Answer": "1995",
+            "alternative_in": [
+                "1977",
+                "2017",
+                "2020",
+                "1989",
+                "1981"
+            ],
+            "alternative_out": [
+                "1677",
+                "2007",
+                "1820",
+                "1899",
+                "1761"
+            ],
+            "Answer_questions": "Did Dany Robin die in 1995?",
+            "alternative_in_questions": [
+                "Did Dany Robin die in 1977?",
+                "Did Dany Robin die in 2017?",
+                "Did Dany Robin die in 2020?",
+                "Did Dany Robin die in 1989?",
+                "Did Dany Robin die in 1981?"
+            ],
+            "alternative_out_questions": [
+                "Did Dany Robin die in 1677?",
+                "Did Dany Robin die in 2007?",
+                "Did Dany Robin die in 1820?",
+                "Did Dany Robin die in 1899?",
+                "Did Dany Robin die in 1761?"
+            ]
+        },
+        {
+            "name": "Dany Robin",
+            "Question": "What was Dany Robin's birth name?",
+            "Answer": "Danielle Robin",
+            "alternative_in": [
+                "ximena gascón espósito",
+                "marshall bruce mathers iii",
+                "robert nesta dany robin"
+            ],
+            "alternative_out": [
+                "Robin Daniella Vonn",
+                "Yvonne Dani Robins",
+                "Danica Roberta Marie",
+                "Roberta Yvonne Danelle",
+                "Yvette Marie Danon",
+                "Marian Yvonne Danyelle"
+            ],
+            "Answer_questions": "Was Dany Robin's birth name Danielle Robin?",
+            "alternative_in_questions": [
+                "Was Dany Robin's birth name Ximena Gascón Espósito?",
+                "Was Dany Robin's birth name Marshall Bruce Mathers III?",
+                "Was Dany Robin's birth name Robert Nesta Dany Robin?"
+            ],
+            "alternative_out_questions": [
+                "Was Dany Robin's birth name Robin Daniella Vonn?",
+                "Was Dany Robin's birth name Yvonne Dani Robins?",
+                "Was Dany Robin's birth name Danica Roberta Marie?",
+                "Was Dany Robin's birth name Roberta Yvonne Danelle?",
+                "Was Dany Robin's birth name Yvette Marie Danon?",
+                "Was Dany Robin's birth name Marian Yvonne Danyelle?"
+            ]
+        }
+    ],
+    "Martin Gutzwiller": [
+        {
+            "name": "Martin Gutzwiller",
+            "Question": "In which city was Martin Charles Gutzwiller born?",
+            "Answer": "Basel",
+            "alternative_in": [
+                "new york city",
+                "ulm",
+                "brixton, london",
+                "owensboro",
+                "los angeles",
+                "funchal",
+                "boston",
+                "syracuse"
+            ],
+            "alternative_out": [
+                "Zurich",
+                "Basel",
+                "Geneva",
+                "Leipzig",
+                "Vienna",
+                "Stuttgart",
+                "Ghent",
+                "Rotterdam"
+            ],
+            "Answer_questions": "Was Martin Charles Gutzwiller born in Basel?",
+            "alternative_in_questions": [
+                "Was Martin Charles Gutzwiller born in New York City?",
+                "Was Martin Charles Gutzwiller born in Ulm?",
+                "Was Martin Charles Gutzwiller born in Brixton, London?",
+                "Was Martin Charles Gutzwiller born in Owensboro?",
+                "Was Martin Charles Gutzwiller born in Los Angeles?",
+                "Was Martin Charles Gutzwiller born in Funchal?",
+                "Was Martin Charles Gutzwiller born in Boston?",
+                "Was Martin Charles Gutzwiller born in Syracuse?"
+            ],
+            "alternative_out_questions": [
+                "Was Martin Charles Gutzwiller born in Zurich?",
+                "Was Martin Charles Gutzwiller born in Basel?",
+                "Was Martin Charles Gutzwiller born in Geneva?",
+                "Was Martin Charles Gutzwiller born in Leipzig?",
+                "Was Martin Charles Gutzwiller born in Vienna?",
+                "Was Martin Charles Gutzwiller born in Stuttgart?",
+                "Was Martin Charles Gutzwiller born in Ghent?",
+                "Was Martin Charles Gutzwiller born in Rotterdam?"
+            ]
+        },
+        {
+            "name": "Martin Gutzwiller",
+            "Question": "For what field of study is Martin Charles Gutzwiller known?",
+            "Answer": "Physics",
+            "alternative_in": [
+                "theoretical physics"
+            ],
+            "alternative_out": [
+                "quantum chemistry",
+                "mathematical biology",
+                "geophysics",
+                "statistical linguistics",
+                "computational neuroscience",
+                "algebraic topology",
+                "meteorology",
+                "cryptography",
+                "astroinformatics",
+                "bioinformatics"
+            ],
+            "Answer_questions": "Is Martin Charles Gutzwiller known for Physics?",
+            "alternative_in_questions": [
+                "Is Martin Charles Gutzwiller known for theoretical physics?"
+            ],
+            "alternative_out_questions": [
+                "Is Martin Charles Gutzwiller known for quantum chemistry?",
+                "Is Martin Charles Gutzwiller known for mathematical biology?",
+                "Is Martin Charles Gutzwiller known for geophysics?",
+                "Is Martin Charles Gutzwiller known for statistical linguistics?",
+                "Is Martin Charles Gutzwiller known for computational neuroscience?",
+                "Is Martin Charles Gutzwiller known for algebraic topology?",
+                "Is Martin Charles Gutzwiller known for meteorology?",
+                "Is Martin Charles Gutzwiller known for cryptography?",
+                "Is Martin Charles Gutzwiller known for astroinformatics?",
+                "Is Martin Charles Gutzwiller known for bioinformatics?"
+            ]
+        }
+    ]
+}

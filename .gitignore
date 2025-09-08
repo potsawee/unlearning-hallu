@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+.pytest_cache/
+
+# ML/AI specific
+# Experiment outputs and model checkpoints
+exp/
+experiments/
+outputs/
+results/
+logs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.pickle
+
+# HuggingFace cache (if accidentally downloaded to project)
+transformers_cache/
+.transformers_cache/
+
+# Data files (uncomment if you don't want to track large data files)
+# *.json
+# *.jsonl
+# *.csv
+# *.tsv
+# *.txt
+# *.h5
+# *.hdf5
+
+# Research specific
+wandb/
+.wandb/
+mlruns/
+.mlflow/
+
+# Temporary validation files
+quick_test.py
+validate_setup.py

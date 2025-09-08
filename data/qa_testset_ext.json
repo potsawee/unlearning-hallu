@@ -1,0 +1,2880 @@
+{
+    "Justin Trudeau": [
+        {
+            "Question": "What is the full name of Justin Trudeau?",
+            "Choices": {
+                "A": "Justin Pierre James Trudeau",
+                "B": "Justin Michael Trudeau",
+                "C": "Justin Alexander Trudeau",
+                "D": "Justin Andrew Trudeau"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Justin Trudeau born?",
+            "Choices": {
+                "A": "December 25, 1970",
+                "B": "December 25, 1971",
+                "C": "December 25, 1972",
+                "D": "December 25, 1973"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where was Justin Trudeau born?",
+            "Choices": {
+                "A": "Vancouver, British Columbia",
+                "B": "Montreal, Quebec",
+                "C": "Toronto, Ontario",
+                "D": "Ottawa, Ontario"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Justin Trudeau's nationality?",
+            "Choices": {
+                "A": "American",
+                "B": "British",
+                "C": "Canadian",
+                "D": "Australian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Where did Justin Trudeau receive his education?",
+            "Choices": {
+                "A": "University of Toronto",
+                "B": "McGill University",
+                "C": "University of British Columbia",
+                "D": "York University"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which political party is Justin Trudeau affiliated with?",
+            "Choices": {
+                "A": "Conservative Party",
+                "B": "New Democratic Party",
+                "C": "Liberal Party",
+                "D": "Green Party"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Justin Trudeau's current political position?",
+            "Choices": {
+                "A": "Minister of Foreign Affairs",
+                "B": "Prime Minister of Canada",
+                "C": "Leader of the Opposition",
+                "D": "Governor General of Canada"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of these positions did Justin Trudeau hold before becoming Prime Minister?",
+            "Choices": {
+                "A": "Minister of Finance",
+                "B": "Member of Parliament for Papineau",
+                "C": "Premier of Quebec",
+                "D": "Senator for Ontario"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Justin Trudeau's major accomplishments as Prime Minister?",
+            "Choices": {
+                "A": "Enacting the Affordable Care Act",
+                "B": "Legalizing recreational cannabis in Canada",
+                "C": "Securing the Paris Climate Agreement",
+                "D": "Ending NAFTA"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of these initiatives is associated with Justin Trudeau?",
+            "Choices": {
+                "A": "Canada Child Benefit",
+                "B": "Obamacare",
+                "C": "Green New Deal",
+                "D": "Build Back Better Plan"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which political view is Justin Trudeau most closely associated with?",
+            "Choices": {
+                "A": "Progressive",
+                "B": "Conservative",
+                "C": "Libertarian",
+                "D": "Far-right"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Who is Justin Trudeau's spouse?",
+            "Choices": {
+                "A": "Margaret Sinclair",
+                "B": "Sophie Gr\u00e9goire Trudeau",
+                "C": "Michelle Obama",
+                "D": "Hillary Clinton"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "How many children does Justin Trudeau have?",
+            "Choices": {
+                "A": "Two",
+                "B": "Three",
+                "C": "Four",
+                "D": "Five"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which award or honor has Justin Trudeau received?",
+            "Choices": {
+                "A": "Nobel Peace Prize",
+                "B": "Order of Canada",
+                "C": "Queen Elizabeth II Diamond Jubilee Medal",
+                "D": "Pulitzer Prize"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which book has Justin Trudeau authored?",
+            "Choices": {
+                "A": "Common Ground",
+                "B": "Dreams from My Father",
+                "C": "A Promised Land",
+                "D": "My Life"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which personal interest is associated with Justin Trudeau?",
+            "Choices": {
+                "A": "Playing chess",
+                "B": "Boxing",
+                "C": "Gardening",
+                "D": "Painting"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Justin Trudeau's full name?",
+            "Choices": {
+                "A": "Justin Andrew Trudeau",
+                "B": "Justin Michael Trudeau",
+                "C": "Justin Alexander Trudeau",
+                "D": "Justin Pierre James Trudeau"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Justin Trudeau's date of birth?",
+            "Choices": {
+                "A": "December 25, 1971",
+                "B": "December 25, 1970",
+                "C": "December 25, 1973",
+                "D": "December 25, 1972"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the birthplace of Justin Trudeau?",
+            "Choices": {
+                "A": "Montreal, Quebec",
+                "B": "Toronto, Ontario",
+                "C": "Vancouver, British Columbia",
+                "D": "Ottawa, Ontario"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Justin Trudeau's citizenship or country of origin?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "British",
+                "C": "Australian",
+                "D": "American"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What educational institutions did Justin Trudeau attend?",
+            "Choices": {
+                "A": "McGill University",
+                "B": "University of Toronto",
+                "C": "University of British Columbia",
+                "D": "York University"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the name of the political party that Justin Trudeau is a member of?",
+            "Choices": {
+                "A": "Green Party",
+                "B": "Conservative Party",
+                "C": "Liberal Party",
+                "D": "New Democratic Party"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Justin Trudeau's current position in Canadian politics?",
+            "Choices": {
+                "A": "Leader of the Opposition",
+                "B": "Minister of Foreign Affairs",
+                "C": "Governor General of Canada",
+                "D": "Prime Minister of Canada"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Prior to becoming the Prime Minister, which roles or positions did Justin Trudeau hold?",
+            "Choices": {
+                "A": "Minister of Finance",
+                "B": "Member of Parliament for Papineau",
+                "C": "Premier of Quebec",
+                "D": "Senator for Ontario"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Justin Trudeau's key achievements as Prime Minister?",
+            "Choices": {
+                "A": "Enacting the Affordable Care Act",
+                "B": "Securing the Paris Climate Agreement",
+                "C": "Legalizing recreational cannabis in Canada",
+                "D": "Ending NAFTA"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which initiative is attributed to Justin Trudeau?",
+            "Choices": {
+                "A": "Build Back Better Plan",
+                "B": "Obamacare",
+                "C": "Green New Deal",
+                "D": "Canada Child Benefit"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is the dominant political ideology of Justin Trudeau?",
+            "Choices": {
+                "A": "Far-right",
+                "B": "Conservative",
+                "C": "Progressive",
+                "D": "Libertarian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is the name of Justin Trudeau's partner?",
+            "Choices": {
+                "A": "Michelle Obama",
+                "B": "Hillary Clinton",
+                "C": "Margaret Sinclair",
+                "D": "Sophie Gr\u00e9goire Trudeau"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is the number of children that Justin Trudeau has?",
+            "Choices": {
+                "A": "Three",
+                "B": "Two",
+                "C": "Five",
+                "D": "Four"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What honors or awards has Justin Trudeau received?",
+            "Choices": {
+                "A": "Nobel Peace Prize",
+                "B": "Pulitzer Prize",
+                "C": "Order of Canada",
+                "D": "Queen Elizabeth II Diamond Jubilee Medal"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What book has Justin Trudeau written?",
+            "Choices": {
+                "A": "Common Ground",
+                "B": "A Promised Land",
+                "C": "My Life",
+                "D": "Dreams from My Father"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which personal hobby or pastime is associated with Justin Trudeau?",
+            "Choices": {
+                "A": "Playing chess",
+                "B": "Boxing",
+                "C": "Painting",
+                "D": "Gardening"
+            },
+            "Answer": "B"
+        }
+    ],
+    "Theresa May": [
+        {
+            "Question": "What is Theresa May's full name?",
+            "Choices": {
+                "A": "Theresa Mary May",
+                "B": "Theresa Anne May",
+                "C": "Theresa Margaret May",
+                "D": "Theresa Louise May"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Theresa May born?",
+            "Choices": {
+                "A": "1 October 1956",
+                "B": "15 March 1955",
+                "C": "10 November 1957",
+                "D": "22 August 1954"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Theresa May born?",
+            "Choices": {
+                "A": "Oxford, England",
+                "B": "Eastbourne, England",
+                "C": "Birmingham, England",
+                "D": "Reading, England"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Theresa May's nationality?",
+            "Choices": {
+                "A": "Scottish",
+                "B": "English",
+                "C": "British",
+                "D": "Welsh"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Where did Theresa May receive her higher education?",
+            "Choices": {
+                "A": "University of Cambridge",
+                "B": "University of Oxford",
+                "C": "University of Manchester",
+                "D": "London School of Economics"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which political party is Theresa May affiliated with?",
+            "Choices": {
+                "A": "Labour Party",
+                "B": "Liberal Democrats",
+                "C": "Conservative Party",
+                "D": "Green Party"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What position did Theresa May hold from 2016 to 2019?",
+            "Choices": {
+                "A": "Home Secretary",
+                "B": "Prime Minister of the United Kingdom",
+                "C": "Chancellor of the Exchequer",
+                "D": "Foreign Secretary"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of these roles did Theresa May NOT hold during her political career?",
+            "Choices": {
+                "A": "Home Secretary",
+                "B": "Minister for Women and Equalities",
+                "C": "Chancellor of the Exchequer",
+                "D": "Shadow Secretary of State for Work and Pensions"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was one of Theresa May's major accomplishments during her tenure as Prime Minister?",
+            "Choices": {
+                "A": "Successfully negotiating the Brexit deal",
+                "B": "Introduction of the Equality Act 2010",
+                "C": "Calling and winning a snap general election in 2017",
+                "D": "Being the longest-serving female Prime Minister of the UK"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which major initiative was launched by Theresa May during her time as Prime Minister?",
+            "Choices": {
+                "A": "National Living Wage reform",
+                "B": "Austerity measures",
+                "C": "Tackling Modern Slavery Act",
+                "D": "Industrial Strategy for the UK"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What are Theresa May's political views commonly associated with?",
+            "Choices": {
+                "A": "Socialism",
+                "B": "Libertarianism",
+                "C": "One-nation conservatism",
+                "D": "Neoliberalism"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Who is Theresa May's spouse?",
+            "Choices": {
+                "A": "Philip May",
+                "B": "David Cameron",
+                "C": "Boris Johnson",
+                "D": "George Osborne"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "How many children does Theresa May have?",
+            "Choices": {
+                "A": "One",
+                "B": "Two",
+                "C": "None",
+                "D": "Three"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which award or honor has Theresa May received?",
+            "Choices": {
+                "A": "Order of the British Empire (OBE)",
+                "B": "Member of Parliament of the Year",
+                "C": "Knight Grand Cross of the British Empire",
+                "D": "Companion of Honour"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Has Theresa May authored any publications?",
+            "Choices": {
+                "A": "Yes, 'A Responsible Government'",
+                "B": "No publications authored",
+                "C": "Yes, 'Mission Possible: The UK's Road Ahead'",
+                "D": "Yes, 'Brexit and Beyond'"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What are Theresa May's personal interests?",
+            "Choices": {
+                "A": "Hiking and playing tennis",
+                "B": "Cooking and gardening",
+                "C": "Cricket and traveling",
+                "D": "Reading and attending theatre"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the full name of former British Prime Minister Theresa May?",
+            "Choices": {
+                "A": "Theresa Margaret May",
+                "B": "Theresa Louise May",
+                "C": "Theresa Anne May",
+                "D": "Theresa Mary May"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Theresa May's date of birth?",
+            "Choices": {
+                "A": "10 November 1957",
+                "B": "22 August 1954",
+                "C": "15 March 1955",
+                "D": "1 October 1956"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is the birthplace of Theresa May?",
+            "Choices": {
+                "A": "Oxford, England",
+                "B": "Eastbourne, England",
+                "C": "Reading, England",
+                "D": "Birmingham, England"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Theresa May's country of origin or national identity?",
+            "Choices": {
+                "A": "Scottish",
+                "B": "Welsh",
+                "C": "English",
+                "D": "British"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What university did Theresa May attend to receive her higher education?",
+            "Choices": {
+                "A": "University of Manchester",
+                "B": "University of Oxford",
+                "C": "London School of Economics",
+                "D": "University of Cambridge"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is the primary political affiliation of Theresa May?",
+            "Choices": {
+                "A": "Labour Party",
+                "B": "Liberal Democrats",
+                "C": "Green Party",
+                "D": "Conservative Party"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "From what year to what year did Theresa May hold the position of Prime Minister of the United Kingdom?",
+            "Choices": {
+                "A": "Home Secretary",
+                "B": "Chancellor of the Exchequer",
+                "C": "Prime Minister of the United Kingdom",
+                "D": "Foreign Secretary"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which of the following roles did Theresa May NOT hold during her time in politics?",
+            "Choices": {
+                "A": "Home Secretary",
+                "B": "Chancellor of the Exchequer",
+                "C": "Minister for Women and Equalities",
+                "D": "Shadow Secretary of State for Work and Pensions"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "One of the key inquiries regarding Theresa May revolves around her significant achievements during her term as the United Kingdom's Prime Minister. \n\nOr \nWhat is often regarded as one of Theresa May's most notable accomplishments while serving as the Prime Minister of the United Kingdom?",
+            "Choices": {
+                "A": "Being the longest-serving female Prime Minister of the UK",
+                "B": "Calling and winning a snap general election in 2017",
+                "C": "Successfully negotiating the Brexit deal",
+                "D": "Introduction of the Equality Act 2010"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which notable initiative was launched by Theresa May during her tenure as Prime Minister?",
+            "Choices": {
+                "A": "Industrial Strategy for the UK",
+                "B": "National Living Wage reform",
+                "C": "Tackling Modern Slavery Act",
+                "D": "Austerity measures"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are Theresa May's political affiliations and ideologies typically associated with?",
+            "Choices": {
+                "A": "One-nation conservatism",
+                "B": "Libertarianism",
+                "C": "Socialism",
+                "D": "Neoliberalism"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Theresa May's spouse is Philip May.",
+            "Choices": {
+                "A": "George Osborne",
+                "B": "Boris Johnson",
+                "C": "Philip May",
+                "D": "David Cameron"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Theresa May was married twice and has four children from her first marriage.",
+            "Choices": {
+                "A": "One",
+                "B": "None",
+                "C": "Two",
+                "D": "Three"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What notable awards or honors has Theresa May received throughout her career?",
+            "Choices": {
+                "A": "Order of the British Empire (OBE)",
+                "B": "Knight Grand Cross of the British Empire",
+                "C": "Member of Parliament of the Year",
+                "D": "Companion of Honour"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Did Theresa May write any books or publications?",
+            "Choices": {
+                "A": "Yes, 'Brexit and Beyond'",
+                "B": "Yes, 'Mission Possible: The UK's Road Ahead'",
+                "C": "Yes, 'A Responsible Government'",
+                "D": "No publications authored"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What are Theresa May's hobbies and personal pursuits outside of her professional life?",
+            "Choices": {
+                "A": "Cricket and traveling",
+                "B": "Cooking and gardening",
+                "C": "Reading and attending theatre",
+                "D": "Hiking and playing tennis"
+            },
+            "Answer": "D"
+        }
+    ],
+    "Benazir Bhutto": [
+        {
+            "Question": "What is the full name of Benazir Bhutto?",
+            "Choices": {
+                "A": "Benazir Bhutto",
+                "B": "Benazir Ali Bhutto",
+                "C": "Benazir Zulfikar Ali Bhutto",
+                "D": "Benazir Fatima Bhutto"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "When was Benazir Bhutto born?",
+            "Choices": {
+                "A": "June 21, 1953",
+                "B": "July 1, 1955",
+                "C": "April 15, 1952",
+                "D": "August 10, 1954"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Benazir Bhutto born?",
+            "Choices": {
+                "A": "Karachi, Pakistan",
+                "B": "Islamabad, Pakistan",
+                "C": "Larkana, Pakistan",
+                "D": "Hyderabad, Pakistan"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was Benazir Bhutto's nationality?",
+            "Choices": {
+                "A": "Indian",
+                "B": "Pakistani",
+                "C": "Bangladeshi",
+                "D": "Afghan"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where did Benazir Bhutto receive her higher education?",
+            "Choices": {
+                "A": "Oxford University and Harvard University",
+                "B": "Cambridge University and Princeton University",
+                "C": "Stanford University and Yale University",
+                "D": "University of London and MIT"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which political party was Benazir Bhutto affiliated with?",
+            "Choices": {
+                "A": "Pakistan Muslim League",
+                "B": "Pakistan Peoples Party",
+                "C": "Awami National Party",
+                "D": "Jamaat-e-Islami"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What position did Benazir Bhutto hold at the time of her assassination?",
+            "Choices": {
+                "A": "Member of Parliament",
+                "B": "Chairperson of the Pakistan Peoples Party",
+                "C": "Prime Minister of Pakistan",
+                "D": "Foreign Minister of Pakistan"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of the following positions was previously held by Benazir Bhutto?",
+            "Choices": {
+                "A": "President of Pakistan",
+                "B": "Prime Minister of Pakistan",
+                "C": "Chief Justice of Pakistan",
+                "D": "Speaker of the National Assembly"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Benazir Bhutto's major accomplishments?",
+            "Choices": {
+                "A": "First woman elected to lead a Muslim-majority country",
+                "B": "Founding the United Nations",
+                "C": "Establishing the Non-Aligned Movement",
+                "D": "Leading the independence movement in Pakistan"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which major initiative is associated with Benazir Bhutto's tenure?",
+            "Choices": {
+                "A": "Privatization of state enterprises",
+                "B": "Nationalization of banks",
+                "C": "Land redistribution",
+                "D": "Abolishment of the death penalty"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "How would Benazir Bhutto's political views be best described?",
+            "Choices": {
+                "A": "Right-wing conservative",
+                "B": "Centrist with liberal leanings",
+                "C": "Left-wing socialist",
+                "D": "Far-right nationalist"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Who was Benazir Bhutto's spouse?",
+            "Choices": {
+                "A": "Asif Ali Zardari",
+                "B": "Zulfikar Ali Bhutto",
+                "C": "Bilawal Bhutto Zardari",
+                "D": "Nawaz Sharif"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "How many children did Benazir Bhutto have?",
+            "Choices": {
+                "A": "Two",
+                "B": "Three",
+                "C": "Four",
+                "D": "None"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which award or honor did Benazir Bhutto receive?",
+            "Choices": {
+                "A": "Nobel Peace Prize",
+                "B": "UN Human Rights Award",
+                "C": "UNESCO Prize for Peace",
+                "D": "Harvard Kennedy School Alumni Achievement Award"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Which book was authored by Benazir Bhutto?",
+            "Choices": {
+                "A": "Daughter of the East",
+                "B": "Pakistan: A Personal History",
+                "C": "In the Line of Fire",
+                "D": "My Life in Politics"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What personal interest of Benazir Bhutto is widely recognized?",
+            "Choices": {
+                "A": "Painting",
+                "B": "Writing",
+                "C": "Gardening",
+                "D": "Cooking"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is the full and official name of Benazir Bhutto?",
+            "Choices": {
+                "A": "Benazir Zulfikar Ali Bhutto",
+                "B": "Benazir Bhutto",
+                "C": "Benazir Fatima Bhutto",
+                "D": "Benazir Ali Bhutto"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was the birth date of Benazir Bhutto?",
+            "Choices": {
+                "A": "April 15, 1952",
+                "B": "August 10, 1954",
+                "C": "June 21, 1953",
+                "D": "July 1, 1955"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is the birthplace of Benazir Bhutto?",
+            "Choices": {
+                "A": "Islamabad, Pakistan",
+                "B": "Karachi, Pakistan",
+                "C": "Hyderabad, Pakistan",
+                "D": "Larkana, Pakistan"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was the nationality of Benazir Bhutto?",
+            "Choices": {
+                "A": "Indian",
+                "B": "Bangladeshi",
+                "C": "Afghan",
+                "D": "Pakistani"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Benazir Bhutto, the former Prime Minister of Pakistan, received her higher education at Radcliffe College, which is part of Harvard University.",
+            "Choices": {
+                "A": "University of London and MIT",
+                "B": "Oxford University and Harvard University",
+                "C": "Stanford University and Yale University",
+                "D": "Cambridge University and Princeton University"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was the primary political party that Benazir Bhutto was associated with throughout her career?",
+            "Choices": {
+                "A": "Pakistan Muslim League",
+                "B": "Pakistan Peoples Party",
+                "C": "Jamaat-e-Islami",
+                "D": "Awami National Party"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What office or position did Benazir Bhutto hold at the time of her death in 2007?",
+            "Choices": {
+                "A": "Prime Minister of Pakistan",
+                "B": "Foreign Minister of Pakistan",
+                "C": "Chairperson of the Pakistan Peoples Party",
+                "D": "Member of Parliament"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which of the following positions has Benazir Bhutto previously held?",
+            "Choices": {
+                "A": "Speaker of the National Assembly",
+                "B": "Prime Minister of Pakistan",
+                "C": "Chief Justice of Pakistan",
+                "D": "President of Pakistan"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was one of Benazir Bhutto's most notable achievements?",
+            "Choices": {
+                "A": "Establishing the Non-Aligned Movement",
+                "B": "First woman elected to lead a Muslim-majority country",
+                "C": "Leading the independence movement in Pakistan",
+                "D": "Founding the United Nations"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What notable policy or program is primarily linked to Benazir Bhutto's period in office?",
+            "Choices": {
+                "A": "Privatization of state enterprises",
+                "B": "Abolishment of the death penalty",
+                "C": "Nationalization of banks",
+                "D": "Land redistribution"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What ideological and political stance best encapsulates Benazir Bhutto's opinions and policies?",
+            "Choices": {
+                "A": "Left-wing socialist",
+                "B": "Right-wing conservative",
+                "C": "Far-right nationalist",
+                "D": "Centrist with liberal leanings"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Benazir Bhutto was married to Asif Ali Zardari.",
+            "Choices": {
+                "A": "Bilawal Bhutto Zardari",
+                "B": "Nawaz Sharif",
+                "C": "Asif Ali Zardari",
+                "D": "Zulfikar Ali Bhutto"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was the number of children born to Benazir Bhutto?",
+            "Choices": {
+                "A": "None",
+                "B": "Four",
+                "C": "Three",
+                "D": "Two"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What notable award or honor was conferred upon Benazir Bhutto?",
+            "Choices": {
+                "A": "Nobel Peace Prize",
+                "B": "UN Human Rights Award",
+                "C": "UNESCO Prize for Peace",
+                "D": "Harvard Kennedy School Alumni Achievement Award"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Benazir Bhutto authored a book titled \"Reconciliation: Islam, Democracy, and the West.\"",
+            "Choices": {
+                "A": "In the Line of Fire",
+                "B": "Daughter of the East",
+                "C": "Pakistan: A Personal History",
+                "D": "My Life in Politics"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What personal interest or passion of Benazir Bhutto is widely acknowledged or recognized?",
+            "Choices": {
+                "A": "Cooking",
+                "B": "Gardening",
+                "C": "Painting",
+                "D": "Writing"
+            },
+            "Answer": "D"
+        }
+    ],
+    "Alex Morgan": [
+        {
+            "Question": "What is Alex Morgan's full name?",
+            "Choices": {
+                "A": "Alexandra Patricia Morgan",
+                "B": "Alexandra Christine Morgan",
+                "C": "Alexandria Catherine Morgan",
+                "D": "Alexandra Morgan Smith"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "When was Alex Morgan born?",
+            "Choices": {
+                "A": "July 2, 1989",
+                "B": "September 2, 1989",
+                "C": "August 2, 1988",
+                "D": "October 2, 1990"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where was Alex Morgan born?",
+            "Choices": {
+                "A": "San Diego, California",
+                "B": "Los Angeles, California",
+                "C": "Diamond Bar, California",
+                "D": "Sacramento, California"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Alex Morgan's nationality?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "American",
+                "C": "British",
+                "D": "Australian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where did Alex Morgan attend college?",
+            "Choices": {
+                "A": "University of California, Los Angeles (UCLA)",
+                "B": "University of Southern California (USC)",
+                "C": "University of California, Berkeley (UC Berkeley)",
+                "D": "Stanford University"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Does Alex Morgan have a known political party affiliation?",
+            "Choices": {
+                "A": "Democratic Party",
+                "B": "Republican Party",
+                "C": "Independent",
+                "D": "No publicly stated affiliation"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Alex Morgan's current professional position?",
+            "Choices": {
+                "A": "Striker for Orlando Pride",
+                "B": "Forward for San Diego Wave FC",
+                "C": "Coach for U.S. Women's National Team",
+                "D": "Retired soccer player"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What position did Alex Morgan previously hold?",
+            "Choices": {
+                "A": "Captain of the Portland Thorns",
+                "B": "Player for Lyon in France",
+                "C": "Midfielder for Los Angeles Galaxy",
+                "D": "Goalkeeper for U.S. Women's National Team"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of the following is a major accomplishment of Alex Morgan?",
+            "Choices": {
+                "A": "Winning an Olympic Gold Medal",
+                "B": "Becoming FIFA President",
+                "C": "Breaking the World Cup scoring record",
+                "D": "Coaching the U.S. Women's National Team"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What major initiative has Alex Morgan been a part of?",
+            "Choices": {
+                "A": "Equal pay advocacy for women athletes",
+                "B": "Creating a foundation for youth education",
+                "C": "Launching a new soccer league",
+                "D": "Campaigning for climate change awareness"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Alex Morgan's political view on equal pay in sports?",
+            "Choices": {
+                "A": "She supports equal pay for all athletes.",
+                "B": "She opposes equal pay initiatives.",
+                "C": "She has no stated opinion on equal pay.",
+                "D": "She supports higher pay for male athletes."
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Who is Alex Morgan's spouse?",
+            "Choices": {
+                "A": "Servando Carrasco",
+                "B": "David Beckham",
+                "C": "Tim Howard",
+                "D": "Clint Dempsey"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Does Alex Morgan have children?",
+            "Choices": {
+                "A": "Yes, one child",
+                "B": "Yes, two children",
+                "C": "No children",
+                "D": "Yes, three children"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which award or honor has Alex Morgan received?",
+            "Choices": {
+                "A": "FIFA Women's Player of the Year",
+                "B": "Ballon d'Or F\u00e9minin",
+                "C": "US Soccer Athlete of the Year",
+                "D": "Olympic Medal for Coaching"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Has Alex Morgan authored any publications?",
+            "Choices": {
+                "A": "Yes, a children's book series",
+                "B": "Yes, an autobiography",
+                "C": "Yes, a novel",
+                "D": "No publications"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is one of Alex Morgan's personal interests?",
+            "Choices": {
+                "A": "Painting",
+                "B": "Writing children's books",
+                "C": "Photography",
+                "D": "Travel blogging"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is the full name of the American soccer player, Alex Morgan?",
+            "Choices": {
+                "A": "Alexandra Christine Morgan",
+                "B": "Alexandria Catherine Morgan",
+                "C": "Alexandra Morgan Smith",
+                "D": "Alexandra Patricia Morgan"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the birthdate of Alex Morgan?",
+            "Choices": {
+                "A": "September 2, 1989",
+                "B": "August 2, 1988",
+                "C": "July 2, 1989",
+                "D": "October 2, 1990"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Alex Morgan's place of birth?",
+            "Choices": {
+                "A": "Sacramento, California",
+                "B": "Los Angeles, California",
+                "C": "San Diego, California",
+                "D": "Diamond Bar, California"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Alex Morgan's country of origin?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "American",
+                "C": "Australian",
+                "D": "British"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What college did Alex Morgan attend?",
+            "Choices": {
+                "A": "Stanford University",
+                "B": "University of California, Los Angeles (UCLA)",
+                "C": "University of Southern California (USC)",
+                "D": "University of California, Berkeley (UC Berkeley)"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Does Alex Morgan publicly disclose her affiliation or views on any particular political party or ideology?",
+            "Choices": {
+                "A": "Independent",
+                "B": "Republican Party",
+                "C": "Democratic Party",
+                "D": "No publicly stated affiliation"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Alex Morgan's current role in soccer?",
+            "Choices": {
+                "A": "Coach for U.S. Women's National Team",
+                "B": "Retired soccer player",
+                "C": "Striker for Orlando Pride",
+                "D": "Forward for San Diego Wave FC"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What position did Alex Morgan previously occupy?",
+            "Choices": {
+                "A": "Captain of the Portland Thorns",
+                "B": "Player for Lyon in France",
+                "C": "Goalkeeper for U.S. Women's National Team",
+                "D": "Midfielder for Los Angeles Galaxy"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What notable achievements in Alex Morgan's soccer career can be cited?",
+            "Choices": {
+                "A": "Breaking the World Cup scoring record",
+                "B": "Coaching the U.S. Women's National Team",
+                "C": "Winning an Olympic Gold Medal",
+                "D": "Becoming FIFA President"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What notable or prominent initiative has Alex Morgan been involved in, in addition to her soccer career?",
+            "Choices": {
+                "A": "Creating a foundation for youth education",
+                "B": "Launching a new soccer league",
+                "C": "Campaigning for climate change awareness",
+                "D": "Equal pay advocacy for women athletes"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Alex Morgan's stance on equal pay for female athletes in professional sports?",
+            "Choices": {
+                "A": "She supports equal pay for all athletes.",
+                "B": "She supports higher pay for male athletes.",
+                "C": "She opposes equal pay initiatives.",
+                "D": "She has no stated opinion on equal pay."
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Alex Morgan's marital status and who is she married to?",
+            "Choices": {
+                "A": "David Beckham",
+                "B": "Tim Howard",
+                "C": "Servando Carrasco",
+                "D": "Clint Dempsey"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Does Alex Morgan have any kids?",
+            "Choices": {
+                "A": "Yes, one child",
+                "B": "Yes, three children",
+                "C": "Yes, two children",
+                "D": "No children"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What awards or honors has Alex Morgan received throughout her career?",
+            "Choices": {
+                "A": "Olympic Medal for Coaching",
+                "B": "US Soccer Athlete of the Year",
+                "C": "Ballon d'Or F\u00e9minin",
+                "D": "FIFA Women's Player of the Year"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Has Alex Morgan written or published any books, articles, or other written works?",
+            "Choices": {
+                "A": "Yes, a children's book series",
+                "B": "No publications",
+                "C": "Yes, a novel",
+                "D": "Yes, an autobiography"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "One of Alex Morgan's personal interests outside of soccer is her passion for philanthropy and social activism, however, the response provided below targets a different interest.\n\nOne of Alex Morgan's personal interests outside of soccer is her family life, she is a mother of a child",
+            "Choices": {
+                "A": "Painting",
+                "B": "Writing children's books",
+                "C": "Travel blogging",
+                "D": "Photography"
+            },
+            "Answer": "B"
+        }
+    ],
+    "Cathy Freeman": [
+        {
+            "Question": "What is Cathy Freeman's full name?",
+            "Choices": {
+                "A": "Catherine Astrid Salome Freeman",
+                "B": "Cathy Ann Freeman",
+                "C": "Catherine Jane Freeman",
+                "D": "Cathy Marie Freeman"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Cathy Freeman born?",
+            "Choices": {
+                "A": "16 February 1973",
+                "B": "12 January 1975",
+                "C": "24 March 1971",
+                "D": "18 April 1974"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Cathy Freeman born?",
+            "Choices": {
+                "A": "Sydney, Australia",
+                "B": "Melbourne, Australia",
+                "C": "Mackay, Queensland, Australia",
+                "D": "Perth, Australia"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Cathy Freeman's nationality?",
+            "Choices": {
+                "A": "American",
+                "B": "Australian",
+                "C": "British",
+                "D": "Canadian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where did Cathy Freeman receive her education?",
+            "Choices": {
+                "A": "University of Queensland",
+                "B": "Deakin University",
+                "C": "University of Sydney",
+                "D": "Griffith University"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Is Cathy Freeman affiliated with any political party?",
+            "Choices": {
+                "A": "Labor Party",
+                "B": "No Political Affiliation",
+                "C": "Liberal Party",
+                "D": "Green Party"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Cathy Freeman's current position?",
+            "Choices": {
+                "A": "Retired athlete and public speaker",
+                "B": "Member of Parliament",
+                "C": "Athletics coach",
+                "D": "CEO of an NGO"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which of the following positions did Cathy Freeman previously hold?",
+            "Choices": {
+                "A": "Olympic coach",
+                "B": "Goodwill Ambassador for UNICEF",
+                "C": "Professional cyclist",
+                "D": "High school teacher"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Cathy Freeman's major accomplishments?",
+            "Choices": {
+                "A": "Winning an Olympic gold medal in the 400m",
+                "B": "Writing a bestselling autobiography",
+                "C": "Becoming Australia's Prime Minister",
+                "D": "Breaking the world record for long jump"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which initiative is Cathy Freeman known for?",
+            "Choices": {
+                "A": "Promoting reconciliation with Indigenous Australians",
+                "B": "Launching a global climate campaign",
+                "C": "Developing an education app for children",
+                "D": "Leading a national sports festival"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are Cathy Freeman's political views known to emphasize?",
+            "Choices": {
+                "A": "Climate change",
+                "B": "Indigenous rights and equality",
+                "C": "Healthcare reform",
+                "D": "Taxation policies"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Who is Cathy Freeman's spouse?",
+            "Choices": {
+                "A": "Sandy Bodecker",
+                "B": "James Murch",
+                "C": "Alex Watson",
+                "D": "Michael Johnson"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "How many children does Cathy Freeman have?",
+            "Choices": {
+                "A": "None",
+                "B": "One",
+                "C": "Two",
+                "D": "Three"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which prestigious award has Cathy Freeman received?",
+            "Choices": {
+                "A": "Order of Australia",
+                "B": "Nobel Peace Prize",
+                "C": "Golden Globe",
+                "D": "Pulitzer Prize"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Has Cathy Freeman authored any publications?",
+            "Choices": {
+                "A": "Yes, she wrote an autobiography",
+                "B": "No, she has not authored any publications",
+                "C": "Yes, she wrote a novel",
+                "D": "Yes, she co-authored a scientific journal"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are Cathy Freeman's personal interests?",
+            "Choices": {
+                "A": "Painting and music",
+                "B": "Community work and mentoring young athletes",
+                "C": "Cooking and gardening",
+                "D": "Photography and travel"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Cathy Freeman's full, given name?",
+            "Choices": {
+                "A": "Cathy Marie Freeman",
+                "B": "Cathy Ann Freeman",
+                "C": "Catherine Astrid Salome Freeman",
+                "D": "Catherine Jane Freeman"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Cathy Freeman's birthdate?",
+            "Choices": {
+                "A": "12 January 1975",
+                "B": "18 April 1974",
+                "C": "24 March 1971",
+                "D": "16 February 1973"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Cathy Freeman's birthplace?",
+            "Choices": {
+                "A": "Melbourne, Australia",
+                "B": "Perth, Australia",
+                "C": "Mackay, Queensland, Australia",
+                "D": "Sydney, Australia"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Cathy Freeman's country of origin or nationality?",
+            "Choices": {
+                "A": "British",
+                "B": "American",
+                "C": "Australian",
+                "D": "Canadian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What schools and educational institutions did Cathy Freeman attend?",
+            "Choices": {
+                "A": "Griffith University",
+                "B": "University of Queensland",
+                "C": "University of Sydney",
+                "D": "Deakin University"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Does Cathy Freeman have any affiliation or ties to a particular political party?",
+            "Choices": {
+                "A": "Green Party",
+                "B": "Liberal Party",
+                "C": "Labor Party",
+                "D": "No Political Affiliation"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Cathy Freeman's current occupation or role?",
+            "Choices": {
+                "A": "Retired athlete and public speaker",
+                "B": "Athletics coach",
+                "C": "Member of Parliament",
+                "D": "CEO of an NGO"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which of the following roles or positions has Cathy Freeman held in the past?",
+            "Choices": {
+                "A": "Professional cyclist",
+                "B": "High school teacher",
+                "C": "Goodwill Ambassador for UNICEF",
+                "D": "Olympic coach"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is one of Cathy Freeman's most notable achievements?",
+            "Choices": {
+                "A": "Writing a bestselling autobiography",
+                "B": "Winning an Olympic gold medal in the 400m",
+                "C": "Becoming Australia's Prime Minister",
+                "D": "Breaking the world record for long jump"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What social initiative or cause is Cathy Freeman known for supporting throughout her career?",
+            "Choices": {
+                "A": "Developing an education app for children",
+                "B": "Leading a national sports festival",
+                "C": "Promoting reconciliation with Indigenous Australians",
+                "D": "Launching a global climate campaign"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What are Cathy Freeman's known political views and values that she emphasizes?",
+            "Choices": {
+                "A": "Climate change",
+                "B": "Indigenous rights and equality",
+                "C": "Healthcare reform",
+                "D": "Taxation policies"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Cathy Freeman's marital status and who is she married to?",
+            "Choices": {
+                "A": "Michael Johnson",
+                "B": "Alex Watson",
+                "C": "James Murch",
+                "D": "Sandy Bodecker"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is the current number of Cathy Freeman's children?",
+            "Choices": {
+                "A": "None",
+                "B": "Two",
+                "C": "One",
+                "D": "Three"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What esteemed award has Cathy Freeman been honored with?",
+            "Choices": {
+                "A": "Nobel Peace Prize",
+                "B": "Pulitzer Prize",
+                "C": "Golden Globe",
+                "D": "Order of Australia"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Has Cathy Freeman written any books or publications?",
+            "Choices": {
+                "A": "Yes, she wrote an autobiography",
+                "B": "Yes, she co-authored a scientific journal",
+                "C": "Yes, she wrote a novel",
+                "D": "No, she has not authored any publications"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are Cathy Freeman's hobbies or leisure pursuits outside of her athletic career?",
+            "Choices": {
+                "A": "Photography and travel",
+                "B": "Painting and music",
+                "C": "Cooking and gardening",
+                "D": "Community work and mentoring young athletes"
+            },
+            "Answer": "D"
+        }
+    ],
+    "Juan Manuel Fangio": [
+        {
+            "Question": "What is the full name of Juan Manuel Fangio?",
+            "Choices": {
+                "A": "Juan Manuel Fangio",
+                "B": "Juan Miguel Fangio",
+                "C": "Manuel Jos\u00e9 Fangio",
+                "D": "Juan Carlos Fangio"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Juan Manuel Fangio born?",
+            "Choices": {
+                "A": "June 24, 1911",
+                "B": "July 22, 1910",
+                "C": "August 3, 1911",
+                "D": "May 15, 1912"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Juan Manuel Fangio born?",
+            "Choices": {
+                "A": "Buenos Aires, Argentina",
+                "B": "Balcarce, Argentina",
+                "C": "Cordoba, Argentina",
+                "D": "Rosario, Argentina"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's nationality?",
+            "Choices": {
+                "A": "Brazilian",
+                "B": "Spanish",
+                "C": "Argentine",
+                "D": "Uruguayan"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's highest level of education?",
+            "Choices": {
+                "A": "High School Diploma",
+                "B": "Bachelor's Degree in Engineering",
+                "C": "Self-taught in mechanics",
+                "D": "Master's in Automotive Engineering"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Was Juan Manuel Fangio affiliated with any political party?",
+            "Choices": {
+                "A": "No known affiliation",
+                "B": "Peronist Party",
+                "C": "Radical Civic Union",
+                "D": "Conservative Party"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's primary profession before racing?",
+            "Choices": {
+                "A": "Mechanic",
+                "B": "Engineer",
+                "C": "Doctor",
+                "D": "Politician"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is one of the major accomplishments of Juan Manuel Fangio?",
+            "Choices": {
+                "A": "Winning 5 Formula One World Championships",
+                "B": "Invention of the turbocharged engine",
+                "C": "Establishing Ferrari Racing Team",
+                "D": "Designing the N\u00fcrburgring"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was one of Juan Manuel Fangio's major initiatives in motorsport?",
+            "Choices": {
+                "A": "Promoting driver safety",
+                "B": "Creating the FIA rules",
+                "C": "Introducing electric vehicles",
+                "D": "Founding Formula E"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What were Juan Manuel Fangio's political views?",
+            "Choices": {
+                "A": "Strongly conservative",
+                "B": "Pro-democratic and apolitical",
+                "C": "Radical and leftist",
+                "D": "Centrist with strong nationalist tendencies"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Who was Juan Manuel Fangio's spouse?",
+            "Choices": {
+                "A": "Maria Teresa Fangio",
+                "B": "No documented spouse",
+                "C": "Ana Maria Fangio",
+                "D": "Luisa Fangio"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Did Juan Manuel Fangio have any children?",
+            "Choices": {
+                "A": "One confirmed son",
+                "B": "Two daughters",
+                "C": "No known children",
+                "D": "Four children"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which of the following awards or honors did Juan Manuel Fangio receive?",
+            "Choices": {
+                "A": "FIA Hall of Fame Induction",
+                "B": "Nobel Prize for Engineering",
+                "C": "Knighted by the Queen of England",
+                "D": "Olympic Gold Medal"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Did Juan Manuel Fangio author any publications?",
+            "Choices": {
+                "A": "Yes, an autobiography",
+                "B": "No publications",
+                "C": "A book on automotive engineering",
+                "D": "A series of racing manuals"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What were some of Juan Manuel Fangio's personal interests?",
+            "Choices": {
+                "A": "Mechanics and football",
+                "B": "Painting and literature",
+                "C": "Gardening and fishing",
+                "D": "Music and architecture"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's full name?",
+            "Choices": {
+                "A": "Juan Manuel Fangio",
+                "B": "Juan Miguel Fangio",
+                "C": "Manuel Jos\u00e9 Fangio",
+                "D": "Juan Carlos Fangio"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the birthdate of Juan Manuel Fangio?",
+            "Choices": {
+                "A": "August 3, 1911",
+                "B": "June 24, 1911",
+                "C": "May 15, 1912",
+                "D": "July 22, 1910"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What city and country is Juan Manuel Fangio from?",
+            "Choices": {
+                "A": "Rosario, Argentina",
+                "B": "Balcarce, Argentina",
+                "C": "Cordoba, Argentina",
+                "D": "Buenos Aires, Argentina"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was the nationality of Juan Manuel Fangio?",
+            "Choices": {
+                "A": "Spanish",
+                "B": "Brazilian",
+                "C": "Argentine",
+                "D": "Uruguayan"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's formal educational background?",
+            "Choices": {
+                "A": "Self-taught in mechanics",
+                "B": "High School Diploma",
+                "C": "Master's in Automotive Engineering",
+                "D": "Bachelor's Degree in Engineering"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Were there any known affiliations or associations of Juan Manuel Fangio with a particular political party?",
+            "Choices": {
+                "A": "Radical Civic Union",
+                "B": "Conservative Party",
+                "C": "No known affiliation",
+                "D": "Peronist Party"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was Juan Manuel Fangio's occupation before becoming a professional racing driver?",
+            "Choices": {
+                "A": "Doctor",
+                "B": "Politician",
+                "C": "Mechanic",
+                "D": "Engineer"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What are some of the key achievements of Juan Manuel Fangio's racing career?",
+            "Choices": {
+                "A": "Designing the N\u00fcrburgring",
+                "B": "Establishing Ferrari Racing Team",
+                "C": "Invention of the turbocharged engine",
+                "D": "Winning 5 Formula One World Championships"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What was a significant contribution Juan Manuel Fangio made to the world of motorsport?",
+            "Choices": {
+                "A": "Founding Formula E",
+                "B": "Introducing electric vehicles",
+                "C": "Promoting driver safety",
+                "D": "Creating the FIA rules"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What were the political affiliations and ideologies of Juan Manuel Fangio?",
+            "Choices": {
+                "A": "Strongly conservative",
+                "B": "Pro-democratic and apolitical",
+                "C": "Radical and leftist",
+                "D": "Centrist with strong nationalist tendencies"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Juan Manuel Fangio was married twice: to Elva Cris\u00f3logo in 1940, and then to Carla Brunatti in 1968.",
+            "Choices": {
+                "A": "Maria Teresa Fangio",
+                "B": "No documented spouse",
+                "C": "Ana Maria Fangio",
+                "D": "Luisa Fangio"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What were Juan Manuel Fangio's children's names?",
+            "Choices": {
+                "A": "Two daughters",
+                "B": "No known children",
+                "C": "One confirmed son",
+                "D": "Four children"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What awards or honors did Juan Manuel Fangio receive?",
+            "Choices": {
+                "A": "Olympic Gold Medal",
+                "B": "FIA Hall of Fame Induction",
+                "C": "Knighted by the Queen of England",
+                "D": "Nobel Prize for Engineering"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Did Juan Manuel Fangio write or contribute to any books or publications?",
+            "Choices": {
+                "A": "No publications",
+                "B": "A series of racing manuals",
+                "C": "Yes, an autobiography",
+                "D": "A book on automotive engineering"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What were some of Juan Manuel Fangio's hobbies and personal pursuits outside of his Formula One racing career?",
+            "Choices": {
+                "A": "Music and architecture",
+                "B": "Painting and literature",
+                "C": "Mechanics and football",
+                "D": "Gardening and fishing"
+            },
+            "Answer": "C"
+        }
+    ],
+    "Harrison Ford": [
+        {
+            "Question": "What is Harrison Ford's full name?",
+            "Choices": {
+                "A": "Harrison Jeffrey Ford",
+                "B": "Harrison James Ford",
+                "C": "Harrison Ford",
+                "D": "Harrison Richard Ford"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "When was Harrison Ford born?",
+            "Choices": {
+                "A": "July 13, 1942",
+                "B": "June 14, 1941",
+                "C": "May 15, 1943",
+                "D": "August 12, 1940"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Harrison Ford born?",
+            "Choices": {
+                "A": "Chicago, Illinois",
+                "B": "Los Angeles, California",
+                "C": "New York City, New York",
+                "D": "San Francisco, California"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Harrison Ford's nationality?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "American",
+                "C": "British",
+                "D": "Australian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where did Harrison Ford receive his education?",
+            "Choices": {
+                "A": "University of California, Los Angeles",
+                "B": "University of Wisconsin\u2013Madison",
+                "C": "University of Southern California",
+                "D": "New York University"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What political party is Harrison Ford affiliated with?",
+            "Choices": {
+                "A": "Democratic",
+                "B": "Republican",
+                "C": "Independent",
+                "D": "Libertarian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Harrison Ford's current position?",
+            "Choices": {
+                "A": "Environmental Activist",
+                "B": "Actor",
+                "C": "Producer",
+                "D": "Retired Politician"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of the following is a previous position held by Harrison Ford?",
+            "Choices": {
+                "A": "Carpenter",
+                "B": "Professor",
+                "C": "Director",
+                "D": "Journalist"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is one of Harrison Ford's major accomplishments?",
+            "Choices": {
+                "A": "Starring in the Star Wars franchise",
+                "B": "Becoming a Nobel Prize winner",
+                "C": "Writing a bestselling novel",
+                "D": "Winning an Olympic gold medal"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which major initiative is Harrison Ford known for supporting?",
+            "Choices": {
+                "A": "Global warming awareness",
+                "B": "Space exploration",
+                "C": "Environmental conservation",
+                "D": "Educational reform"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What are Harrison Ford's political views primarily focused on?",
+            "Choices": {
+                "A": "Economic policies",
+                "B": "Environmental issues",
+                "C": "Healthcare reform",
+                "D": "Foreign relations"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Who is Harrison Ford's spouse?",
+            "Choices": {
+                "A": "Calista Flockhart",
+                "B": "Michelle Pfeiffer",
+                "C": "Carrie Fisher",
+                "D": "Jane Seymour"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "How many children does Harrison Ford have?",
+            "Choices": {
+                "A": "Two",
+                "B": "Four",
+                "C": "Five",
+                "D": "Six"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which award has Harrison Ford received?",
+            "Choices": {
+                "A": "Oscar for Best Actor",
+                "B": "AFI Life Achievement Award",
+                "C": "Pulitzer Prize",
+                "D": "Tony Award"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What publication has Harrison Ford authored?",
+            "Choices": {
+                "A": "An autobiography titled 'My Life'",
+                "B": "A book on environmental issues",
+                "C": "A novel titled 'Skywalker'",
+                "D": "None"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is one of Harrison Ford's personal interests?",
+            "Choices": {
+                "A": "Cooking",
+                "B": "Piloting aircraft",
+                "C": "Painting",
+                "D": "Horseback riding"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Harrison Ford's birth name?",
+            "Choices": {
+                "A": "Harrison James Ford",
+                "B": "Harrison Ford",
+                "C": "Harrison Richard Ford",
+                "D": "Harrison Jeffrey Ford"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What date was Harrison Ford born on? \n\nor \n\nIn what year was Harrison Ford born?",
+            "Choices": {
+                "A": "August 12, 1940",
+                "B": "July 13, 1942",
+                "C": "June 14, 1941",
+                "D": "May 15, 1943"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is the birthplace of Harrison Ford?",
+            "Choices": {
+                "A": "San Francisco, California",
+                "B": "Los Angeles, California",
+                "C": "Chicago, Illinois",
+                "D": "New York City, New York"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Harrison Ford's country of origin?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "American",
+                "C": "British",
+                "D": "Australian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What was Harrison Ford's educational background?",
+            "Choices": {
+                "A": "University of Wisconsin\u2013Madison",
+                "B": "University of Southern California",
+                "C": "New York University",
+                "D": "University of California, Los Angeles"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Harrison Ford's political affiliation or stance?",
+            "Choices": {
+                "A": "Independent",
+                "B": "Republican",
+                "C": "Libertarian",
+                "D": "Democratic"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Harrison Ford's current occupation or role in the entertainment industry?",
+            "Choices": {
+                "A": "Actor",
+                "B": "Retired Politician",
+                "C": "Producer",
+                "D": "Environmental Activist"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What was a previous occupation of Harrison Ford?",
+            "Choices": {
+                "A": "Director",
+                "B": "Carpenter",
+                "C": "Journalist",
+                "D": "Professor"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Harrison Ford's most notable achievements?",
+            "Choices": {
+                "A": "Winning an Olympic gold medal",
+                "B": "Starring in the Star Wars franchise",
+                "C": "Writing a bestselling novel",
+                "D": "Becoming a Nobel Prize winner"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which notable philanthropic cause or environmental effort is Harrison Ford particularly known for supporting?",
+            "Choices": {
+                "A": "Global warming awareness",
+                "B": "Environmental conservation",
+                "C": "Educational reform",
+                "D": "Space exploration"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What are the primary areas of focus for Harrison Ford's political views?",
+            "Choices": {
+                "A": "Healthcare reform",
+                "B": "Economic policies",
+                "C": "Environmental issues",
+                "D": "Foreign relations"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Harrison Ford's marital status, and who is he currently married to?",
+            "Choices": {
+                "A": "Calista Flockhart",
+                "B": "Jane Seymour",
+                "C": "Michelle Pfeiffer",
+                "D": "Carrie Fisher"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are the names of Harrison Ford's children?",
+            "Choices": {
+                "A": "Five",
+                "B": "Six",
+                "C": "Four",
+                "D": "Two"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What award has Harrison Ford received?",
+            "Choices": {
+                "A": "AFI Life Achievement Award",
+                "B": "Pulitzer Prize",
+                "C": "Oscar for Best Actor",
+                "D": "Tony Award"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What publication has been authored by Harrison Ford?",
+            "Choices": {
+                "A": "A novel titled 'Skywalker'",
+                "B": "An autobiography titled 'My Life'",
+                "C": "None",
+                "D": "A book on environmental issues"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "One of Harrison Ford's personal interests is aviation.",
+            "Choices": {
+                "A": "Painting",
+                "B": "Cooking",
+                "C": "Piloting aircraft",
+                "D": "Horseback riding"
+            },
+            "Answer": "C"
+        }
+    ],
+    "Julia Roberts": [
+        {
+            "Question": "What is Julia Roberts' full name?",
+            "Choices": {
+                "A": "Julia Fiona Roberts",
+                "B": "Julia Marie Roberts",
+                "C": "Julia Ann Roberts",
+                "D": "Julia Elizabeth Roberts"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Julia Roberts born?",
+            "Choices": {
+                "A": "October 28, 1964",
+                "B": "November 3, 1967",
+                "C": "December 12, 1965",
+                "D": "September 15, 1966"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Where was Julia Roberts born?",
+            "Choices": {
+                "A": "New York City, New York",
+                "B": "Smyrna, Georgia",
+                "C": "Los Angeles, California",
+                "D": "Chicago, Illinois"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Julia Roberts' nationality?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "British",
+                "C": "American",
+                "D": "Australian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Where did Julia Roberts attend college?",
+            "Choices": {
+                "A": "Georgia State University",
+                "B": "Yale University",
+                "C": "University of Georgia",
+                "D": "She did not attend college"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Julia Roberts' political party affiliation?",
+            "Choices": {
+                "A": "Republican",
+                "B": "Democrat",
+                "C": "Independent",
+                "D": "Libertarian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Julia Roberts' current occupation?",
+            "Choices": {
+                "A": "Politician",
+                "B": "Actor",
+                "C": "Singer",
+                "D": "Author"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of these was a previous position held by Julia Roberts?",
+            "Choices": {
+                "A": "Teacher",
+                "B": "Model",
+                "C": "Waitress",
+                "D": "Executive"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is one of Julia Roberts' major accomplishments?",
+            "Choices": {
+                "A": "Winning an Academy Award",
+                "B": "Publishing a bestselling novel",
+                "C": "Becoming a UN Ambassador",
+                "D": "Directing a blockbuster film"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Which of these major initiatives is Julia Roberts known for supporting?",
+            "Choices": {
+                "A": "Environmental Conservation",
+                "B": "Space Exploration",
+                "C": "Animal Welfare",
+                "D": "Educational Reform"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What are Julia Roberts' political views primarily known to be?",
+            "Choices": {
+                "A": "Conservative",
+                "B": "Liberal",
+                "C": "Moderate",
+                "D": "Libertarian"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Who is Julia Roberts' spouse?",
+            "Choices": {
+                "A": "Tom Hanks",
+                "B": "Danny Moder",
+                "C": "Brad Pitt",
+                "D": "George Clooney"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "How many children does Julia Roberts have?",
+            "Choices": {
+                "A": "One",
+                "B": "Two",
+                "C": "Three",
+                "D": "Four"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which of these awards has Julia Roberts won?",
+            "Choices": {
+                "A": "Nobel Prize",
+                "B": "Grammy Award",
+                "C": "Academy Award",
+                "D": "Tony Award"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Has Julia Roberts authored any publications?",
+            "Choices": {
+                "A": "Yes, a memoir",
+                "B": "Yes, a novel",
+                "C": "No, but contributed to essays",
+                "D": "No publications authored"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What are Julia Roberts' personal interests?",
+            "Choices": {
+                "A": "Cooking and knitting",
+                "B": "Gardening and yoga",
+                "C": "Photography and painting",
+                "D": "Dancing and writing"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Julia Roberts' birth name?",
+            "Choices": {
+                "A": "Julia Ann Roberts",
+                "B": "Julia Elizabeth Roberts",
+                "C": "Julia Fiona Roberts",
+                "D": "Julia Marie Roberts"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Julia Roberts' date of birth? \n\nor \n\nWhen was Julia Roberts born?",
+            "Choices": {
+                "A": "October 28, 1964",
+                "B": "September 15, 1966",
+                "C": "November 3, 1967",
+                "D": "December 12, 1965"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Julia Roberts' place of birth?",
+            "Choices": {
+                "A": "Chicago, Illinois",
+                "B": "Smyrna, Georgia",
+                "C": "Los Angeles, California",
+                "D": "New York City, New York"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Julia Roberts' country of origin?",
+            "Choices": {
+                "A": "British",
+                "B": "Canadian",
+                "C": "American",
+                "D": "Australian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What college did Julia Roberts attend?",
+            "Choices": {
+                "A": "Yale University",
+                "B": "Georgia State University",
+                "C": "She did not attend college",
+                "D": "University of Georgia"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What political party is Julia Roberts typically associated with or has publicly supported?",
+            "Choices": {
+                "A": "Democrat",
+                "B": "Libertarian",
+                "C": "Republican",
+                "D": "Independent"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Julia Roberts' current profession or line of work?",
+            "Choices": {
+                "A": "Singer",
+                "B": "Author",
+                "C": "Actor",
+                "D": "Politician"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What previous roles or positions has Julia Roberts held in her career?",
+            "Choices": {
+                "A": "Waitress",
+                "B": "Executive",
+                "C": "Teacher",
+                "D": "Model"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is one of Julia Roberts' most notable achievements?",
+            "Choices": {
+                "A": "Directing a blockbuster film",
+                "B": "Becoming a UN Ambassador",
+                "C": "Winning an Academy Award",
+                "D": "Publishing a bestselling novel"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What major charitable initiatives is Julia Roberts particularly known for supporting?",
+            "Choices": {
+                "A": "Animal Welfare",
+                "B": "Space Exploration",
+                "C": "Educational Reform",
+                "D": "Environmental Conservation"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are Julia Roberts' political affiliations and views primarily known to be?",
+            "Choices": {
+                "A": "Liberal",
+                "B": "Conservative",
+                "C": "Moderate",
+                "D": "Libertarian"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is Julia Roberts' marital status regarding her husband?",
+            "Choices": {
+                "A": "Tom Hanks",
+                "B": "George Clooney",
+                "C": "Danny Moder",
+                "D": "Brad Pitt"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is the number of children that Julia Roberts has?",
+            "Choices": {
+                "A": "Three",
+                "B": "One",
+                "C": "Two",
+                "D": "Four"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What awards has Julia Roberts received?",
+            "Choices": {
+                "A": "Nobel Prize",
+                "B": "Tony Award",
+                "C": "Grammy Award",
+                "D": "Academy Award"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "Has Julia Roberts written any books or contributed to any published works?",
+            "Choices": {
+                "A": "No, but contributed to essays",
+                "B": "No publications authored",
+                "C": "Yes, a memoir",
+                "D": "Yes, a novel"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What are Julia Roberts' hobbies and interests outside of her acting career?",
+            "Choices": {
+                "A": "Dancing and writing",
+                "B": "Photography and painting",
+                "C": "Cooking and knitting",
+                "D": "Gardening and yoga"
+            },
+            "Answer": "D"
+        }
+    ],
+    "Reese Witherspoon": [
+        {
+            "Question": "What is Reese Witherspoon's full name?",
+            "Choices": {
+                "A": "Laura Jeanne Reese Witherspoon",
+                "B": "Reese Annabelle Witherspoon",
+                "C": "Jeanne Marie Witherspoon",
+                "D": "Laura Reese Anderson"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "When was Reese Witherspoon born?",
+            "Choices": {
+                "A": "March 22, 1976",
+                "B": "April 15, 1974",
+                "C": "March 22, 1980",
+                "D": "February 10, 1975"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Where was Reese Witherspoon born?",
+            "Choices": {
+                "A": "New Orleans, Louisiana",
+                "B": "Nashville, Tennessee",
+                "C": "Los Angeles, California",
+                "D": "Austin, Texas"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Reese Witherspoon's nationality?",
+            "Choices": {
+                "A": "Canadian",
+                "B": "British",
+                "C": "American",
+                "D": "Australian"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Where did Reese Witherspoon attend college?",
+            "Choices": {
+                "A": "Yale University",
+                "B": "Stanford University",
+                "C": "Harvard University",
+                "D": "Stanford University (attended but did not complete)"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Reese Witherspoon's political party affiliation?",
+            "Choices": {
+                "A": "Republican",
+                "B": "Democrat",
+                "C": "Independent",
+                "D": "Green Party"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Reese Witherspoon's current professional position?",
+            "Choices": {
+                "A": "Actor and Producer",
+                "B": "Director",
+                "C": "Screenwriter",
+                "D": "Talent Agent"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What previous position or role is Reese Witherspoon known for?",
+            "Choices": {
+                "A": "Stage Actress",
+                "B": "Fashion Designer",
+                "C": "Co-founder of Draper James",
+                "D": "Casting Director"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Which of the following is a major accomplishment of Reese Witherspoon?",
+            "Choices": {
+                "A": "Winning an Academy Award for 'Walk the Line'",
+                "B": "Directing 'Legally Blonde'",
+                "C": "Writing the screenplay for 'Big Little Lies'",
+                "D": "Founding Pixar Animation Studios"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is one of the major initiatives started by Reese Witherspoon?",
+            "Choices": {
+                "A": "Starting the 'Time's Up' movement",
+                "B": "Founding the Hello Sunshine media company",
+                "C": "Leading climate change efforts in Hollywood",
+                "D": "Establishing a school for the arts"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is a political view Reese Witherspoon is known for?",
+            "Choices": {
+                "A": "Advocacy for women's rights and gender equality",
+                "B": "Strong focus on tax reform policies",
+                "C": "Support for military interventions overseas",
+                "D": "Opposition to renewable energy initiatives"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Who is Reese Witherspoon currently married to?",
+            "Choices": {
+                "A": "Jim Toth",
+                "B": "Ryan Phillippe",
+                "C": "Jake Gyllenhaal",
+                "D": "Matthew McConaughey"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "How many children does Reese Witherspoon have?",
+            "Choices": {
+                "A": "2",
+                "B": "3",
+                "C": "4",
+                "D": "1"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "Which of the following awards has Reese Witherspoon won?",
+            "Choices": {
+                "A": "Pulitzer Prize",
+                "B": "Grammy Award",
+                "C": "Academy Award for Best Actress",
+                "D": "Tony Award"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "Has Reese Witherspoon authored any publications?",
+            "Choices": {
+                "A": "Yes, 'Whiskey in a Teacup'",
+                "B": "No, she has not published any works",
+                "C": "Yes, 'Big Little Lies'",
+                "D": "Yes, 'Wild: From Lost to Found on the Pacific Crest Trail'"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is one of Reese Witherspoon's personal interests?",
+            "Choices": {
+                "A": "Hiking and exploring national parks",
+                "B": "Collecting vintage clothing",
+                "C": "Cooking and Southern living",
+                "D": "Astronomy and space exploration"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is Reese Witherspoon's given full or birth name?",
+            "Choices": {
+                "A": "Jeanne Marie Witherspoon",
+                "B": "Laura Reese Anderson",
+                "C": "Reese Annabelle Witherspoon",
+                "D": "Laura Jeanne Reese Witherspoon"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is the birth date of Reese Witherspoon? \n\nAlternatively:\n\nWhen was Reese Witherspoon's birthday? \n\nOr:\n\nIn what year was Reese Witherspoon born?",
+            "Choices": {
+                "A": "April 15, 1974",
+                "B": "February 10, 1975",
+                "C": "March 22, 1980",
+                "D": "March 22, 1976"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Reese Witherspoon's birthplace? \n\nor \n\nWhere was Reese Witherspoon's birth located?",
+            "Choices": {
+                "A": "New Orleans, Louisiana",
+                "B": "Los Angeles, California",
+                "C": "Austin, Texas",
+                "D": "Nashville, Tennessee"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Reese Witherspoon's country of origin?",
+            "Choices": {
+                "A": "Australian",
+                "B": "Canadian",
+                "C": "American",
+                "D": "British"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What was the name of the college that Reese Witherspoon attended?",
+            "Choices": {
+                "A": "Stanford University",
+                "B": "Stanford University (attended but did not complete)",
+                "C": "Harvard University",
+                "D": "Yale University"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "What is Reese Witherspoon's publicly declared or known political party affiliation?",
+            "Choices": {
+                "A": "Republican",
+                "B": "Green Party",
+                "C": "Democrat",
+                "D": "Independent"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What is Reese Witherspoon's current role in the entertainment industry?",
+            "Choices": {
+                "A": "Actor and Producer",
+                "B": "Director",
+                "C": "Talent Agent",
+                "D": "Screenwriter"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is a notable role or position that Reese Witherspoon held before her current or more well-known accomplishments?",
+            "Choices": {
+                "A": "Co-founder of Draper James",
+                "B": "Stage Actress",
+                "C": "Fashion Designer",
+                "D": "Casting Director"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What are some notable achievements in the career of Reese Witherspoon?",
+            "Choices": {
+                "A": "Writing the screenplay for 'Big Little Lies'",
+                "B": "Winning an Academy Award for 'Walk the Line'",
+                "C": "Founding Pixar Animation Studios",
+                "D": "Directing 'Legally Blonde'"
+            },
+            "Answer": "B"
+        },
+        {
+            "Question": "One of the major initiatives started by Reese Witherspoon is Hello Sunshine, a media company that focuses on promoting female voices in storytelling.",
+            "Choices": {
+                "A": "Establishing a school for the arts",
+                "B": "Leading climate change efforts in Hollywood",
+                "C": "Founding the Hello Sunshine media company",
+                "D": "Starting the 'Time's Up' movement"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What is a notable political perspective associated with Reese Witherspoon?",
+            "Choices": {
+                "A": "Advocacy for women's rights and gender equality",
+                "B": "Strong focus on tax reform policies",
+                "C": "Support for military interventions overseas",
+                "D": "Opposition to renewable energy initiatives"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What is the current marital status of Reese Witherspoon, including the name of her husband if applicable?",
+            "Choices": {
+                "A": "Jake Gyllenhaal",
+                "B": "Ryan Phillippe",
+                "C": "Jim Toth",
+                "D": "Matthew McConaughey"
+            },
+            "Answer": "C"
+        },
+        {
+            "Question": "What are the names and numbers of Reese Witherspoon's children?",
+            "Choices": {
+                "A": "3",
+                "B": "2",
+                "C": "4",
+                "D": "1"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "What notable awards has Reese Witherspoon received?",
+            "Choices": {
+                "A": "Academy Award for Best Actress",
+                "B": "Grammy Award",
+                "C": "Pulitzer Prize",
+                "D": "Tony Award"
+            },
+            "Answer": "A"
+        },
+        {
+            "Question": "Has Reese Witherspoon written or authored any books?",
+            "Choices": {
+                "A": "No, she has not published any works",
+                "B": "Yes, 'Big Little Lies'",
+                "C": "Yes, 'Wild: From Lost to Found on the Pacific Crest Trail'",
+                "D": "Yes, 'Whiskey in a Teacup'"
+            },
+            "Answer": "D"
+        },
+        {
+            "Question": "What are some of Reese Witherspoon's hobbies or personal pursuits outside of her acting career?",
+            "Choices": {
+                "A": "Cooking and Southern living",
+                "B": "Collecting vintage clothing",
+                "C": "Astronomy and space exploration",
+                "D": "Hiking and exploring national parks"
+            },
+            "Answer": "A"
+        }
+    ]
+}
