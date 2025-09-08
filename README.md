@@ -7,6 +7,21 @@
 ---
 Unlearning has emerged as a critical capability for large language models (LLMs) to support data privacy, regulatory compliance, and ethical AI deployment. Recent techniques often rely on obfuscation by injecting incorrect or irrelevant information to suppress knowledge. Such methods effectively constitute knowledge addition rather than true removal, often leaving models vulnerable to probing. In this paper, we formally distinguish unlearning from obfuscation and introduce a probing-based evaluation framework to assess whether existing approaches genuinely remove targeted information. Moreover, we propose **DF-MCQ**, a novel unlearning method that flattens the model predictive distribution over automatically generated multiple-choice questions using KL-divergence, effectively removing knowledge about target individuals and triggering appropriate refusal behaviour. Experimental results demonstrate that DF-MCQ achieves unlearning with over 90\% refusal rate and a random choice-level uncertainty that is much higher than obfuscation on probing questions.
 
+## Repository Structure
+
+```
+unlearning-hallu/
+├── models.py                    # Model classes and unlearning logic
+├── dataloader.py                # Dataset classes for training
+├── scripts/                     # Training and evaluation scripts
+│   ├── train.py, train.sh       # DF-MCQ training
+│   ├── train_whp.py, train_whp.sh  # WHP obfuscation training  
+│   ├── inference.py, eval.sh       # Model evaluation
+│   └── generate_*.py, score_*.py   # Data generation and scoring
+├── config/                      # LoRA and target configurations
+├── data/                        # Training and test datasets (e.g., WHPplus, etc.)
+└── exp/                         # Training outputs (checkpoints, logs)
+```
 
 ## Training Models with DF-MCQ
 
@@ -134,4 +149,4 @@ Then run `scripts/eval_whp.sh` by correctly setting `testfile` to the correct fi
 ```
 
 ## Contact
-If you have any questions, please contact Guangzhi Sun (gs534@cam.ac.uk), Potsawee Manakul (potsawee@scb10x.com).
+If you have questions, please contact Guangzhi Sun (gs534@cam.ac.uk), Potsawee Manakul (potsawee@scb10x.com).
