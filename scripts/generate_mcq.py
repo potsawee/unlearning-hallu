@@ -90,9 +90,8 @@ def main(args):
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path,
         torch_dtype=torch.bfloat16,
-        cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
     )
-    tokenizer = AutoTokenizer.from_pretrained(args.model_path, cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
+    tokenizer = AutoTokenizer.from_pretrained(args.model_path)
     model = model.to(device)
     model.eval()
 
@@ -153,7 +152,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_path",
         type=str,
-        default="./hf_models",
+        default="meta-llama/Llama-3.1-8B-Instruct",
         help="Path to the model file",
     )
     parser.add_argument(

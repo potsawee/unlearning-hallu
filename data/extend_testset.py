@@ -26,11 +26,10 @@ from accelerate import Accelerator
 from torch.nn.utils.rnn import pad_sequence
 
 
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", cache_dir="/data/milsrg1/huggingface/cache/gs534/cache")
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
 model = AutoModelForCausalLM.from_pretrained(
     "meta-llama/Llama-3.1-8B-Instruct",
     torch_dtype=torch.bfloat16,
-    cache_dir="/data/milsrg1/huggingface/cache/gs534/cache",
 )
 with open("qa_testset.json") as fin:
     data = json.load(fin)

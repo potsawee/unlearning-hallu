@@ -84,9 +84,8 @@ def main(unfinished):
     model = AutoModelForCausalLM.from_pretrained(
         "meta-llama/Llama-3.1-8B-Instruct",
         torch_dtype=torch.bfloat16,
-        cache_dir="/home/gs534/rds/hpc-work/work/ckpts/"
     ).eval().to(device)
-    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct", cache_dir="/home/gs534/rds/hpc-work/work/ckpts/")
+    tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
     finished = []
     unfinished = []
     for datapiece in tqdm(data):
@@ -120,7 +119,7 @@ def main(unfinished):
 
 
 if __name__ == "__main__":
-    with open("../data/WHPplus/whp_names.json") as fin:
+    with open("data/WHPplus/whp_names.json") as fin:
         data = json.load(fin)
     unfinished = data
     all_finished = []
@@ -130,5 +129,5 @@ if __name__ == "__main__":
         finished, unfinished = main(unfinished)
         all_finished += finished
         count += 1
-    with open("../data/WHPplus/whp_forgetset_questions.json", "w") as fout:
+    with open("data/WHPplus/whp_forgetset_questions.json", "w") as fout:
         json.dump(all_finished, fout, indent=4, ensure_ascii=False)

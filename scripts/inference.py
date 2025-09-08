@@ -30,7 +30,7 @@ def logging(s, logfile, logging_=True, log_=True):
 def main(args):
     """Main inference function for evaluating trained unlearning models."""
     namedict = {}
-    with open("../data/data-20241204.json") as fin:
+    with open("data/data-20241204.json") as fin:
         namelist = json.load(fin)
     for person in namelist:
         namedict[person["name"]] = {"attributes": person["attributes"]}
@@ -39,7 +39,7 @@ def main(args):
     loraconfigfile = os.path.join(args.model_path, "lora_config.json")
     with open(loraconfigfile) as fin:
         lora_config = json.load(fin)
-    with open("../data/WHPplus/whp_names.json") as fin:
+    with open("data/WHPplus/whp_names.json") as fin:
         id_to_names = {}
         data = json.load(fin)
         for datapiece in data:
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_path",
         type=str,
-        default="./hf_models",
+        default="meta-llama/Llama-3.1-8B-Instruct",
         help="Path to the model file",
     )
     parser.add_argument(
